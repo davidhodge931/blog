@@ -11,7 +11,9 @@ One-way ANOVA is a test used to assess whether there is a statistically signific
 
 There is 1 response numeric variable and 1 explanatory categorical variable with more than 1 level.
 
-ANOVA considers the probability of observing the sample ratio of explained variance to unexplained variance (i.e. the F statistic)... if the null hypothesis is true that all population means are equal.
+ANOVA considers the probability of observing the sample ratio of explained variance to unexplained variance (i.e. the F statistic)... if the null hypothesis is true that all population means are equal. 
+
+The higher this ratio of explained to unexplained variance is (i.e. the F statistic), then the lower the probability of observing this if our null hypothesis was correct.
 
 You can perform a one-way ANOVA very easily in R using the `aov` function etc. But what fun would that be?! 
 
@@ -111,7 +113,7 @@ head(reduced, 3)
 (explained_mse <- explained_sse / explained_df)
 ```
 
-4. Calculate the ratio of variance (i.e. MSE) the complete model has explained to the variance (i.e. MSE) that is left unexplained. 
+4. Calculate the ratio of variance (i.e. MSE) the complete model has explained to the variance (i.e. MSE) that is left unexplained. Then determine the probability of this statistic, if the null hypothesis was true.
 
 ```{r, message = FALSE, warning = FALSE}
 (f <- explained_mse / complete$mse)
@@ -119,7 +121,7 @@ head(reduced, 3)
 pf(f, explained_df, complete$df, lower.tail = F)
 ```
 
-There was a p < 0.05, so we will reject the null hyothesis, and accept that there is a statistically significant difference between the means of the groups.
+There was a p < 0.05, so we will reject the null hypothesis, and accept that the population group means are not the same.
 
 Let's check whether we got it right... We did!
 
