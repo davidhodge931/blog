@@ -7,7 +7,7 @@ categories: ["R"]
 tags: ["R"]
 ---
 
-One-way ANOVA is a test used to assess whether there is a statistically significant difference between the mean of different levels of a factor.
+One-way ANOVA is a test used to assess whether there is a statistically significant difference between the mean of groups.
 
 There is 1 response numeric variable and 1 explanatory categorical variable with more than 1 level.
 
@@ -17,7 +17,7 @@ You can perform a one-way ANOVA very easily in R using the `aov` function etc. B
 
 On a serious note, it is really helpful for understanding to see how the algorithm of the test works to calculate it 'by hand'.
 
-First, let's load some libraries and sample data.
+First, let's load some libraries, and create some sample data.
 
 ```{r, message=F, warning=F}
 library(tidyverse)
@@ -119,7 +119,7 @@ head(reduced, 3)
 pf(f, explained_df, complete$df, lower.tail = F)
 ```
 
-There was a p < 0.05, so we will reject the null hyothesis, and accept that there is a statistically significant difference between the means of the factor levels.
+There was a p < 0.05, so we will reject the null hyothesis, and accept that there is a statistically significant difference between the means of the groups.
 
 Let's check whether we got it right... We did!
 
