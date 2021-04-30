@@ -40,11 +40,13 @@ head(data, n = 3)
 Next, let's visualise the data.
 
 ```{r, message=F, warning=F}
-ggplot_boxplot(data, cat_var, num_var,
+plot <- ggplot_boxplot(data, cat_var, num_var,
        y_zero = T,
        title = NULL,
        x_title = "Catagorical explanatory variable", 
        y_title = "Numeric response variable")
+
+plotly::ggplotly(plot)
 ```
 
 I'm going to use a fixed effects means model for simplicity (Model I).
