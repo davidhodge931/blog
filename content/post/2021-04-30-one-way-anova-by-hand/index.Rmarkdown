@@ -15,7 +15,7 @@ ANOVA considers the probability of observing the sample ratio of explained varia
 
 You can perform a one-way ANOVA very easily in R using the `aov` function etc. But what fun would that be?! 
 
-On a serious note, it is really helpful for understanding to see how the algorithm of the test works to calculate it 'by hand'.
+On a serious note, it is really helpful to understand how the algorithm of the test works to calculate it 'by hand'.
 
 First, let's load some libraries, and create some sample data.
 
