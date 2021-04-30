@@ -13,9 +13,9 @@ There is 1 response numeric variable and 1 explanatory categorical variable with
 
 ANOVA considers the probability of observing the sample ratio of explained variance to unexplained variance (i.e. the F statistic)... if the null hypothesis is true that all population means are equal.
 
-You can perform a one-way ANOVA very easily in R using the `aov` function etc. But what fun would be that?! 
+You can perform a one-way ANOVA very easily in R using the `aov` function etc. But what fun would that be?! 
 
-On a serious note, it is really helpful for understanding to see how the algorathm of the test works to calculate it 'by hand'.
+On a serious note, it is really helpful for understanding to see how the algorithm of the test works to calculate it 'by hand'.
 
 First, let's load some libraries and sample data.
 
