@@ -52,6 +52,7 @@ Next, let's visualise the data.
 
 ```r
 ggplot_boxplot(data, cat_var, num_var,
+       y_zero = T,
        title = NULL,
        x_title = "Catagorical explanatory variable", 
        y_title = "Numeric response variable")
