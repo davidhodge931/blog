@@ -11,7 +11,7 @@ One-way ANOVA is a test used to assess whether there is a statistically signific
 
 There is 1 response numeric variable and 1 explanatory categorical variable with more than 1 level.
 
-ANOVA samples the ratio of explained variance to unexplained variance in the complete model, if the null hypothesis is true that all population means are equal. 
+ANOVA assesses the ratio of explained variance to unexplained variance in the complete model, if the null hypothesis is true that all population means are equal. 
 
 There is a distribution of sample F statistics with different probabilities, if the null hypothesis was true of no difference between means.  
 
