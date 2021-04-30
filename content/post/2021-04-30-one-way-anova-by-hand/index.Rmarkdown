@@ -54,6 +54,8 @@ H0: _all_ population means are equal
 
 H1: _not all_ population means are equal
 
+We will use a significance level of p = 0.05.
+
 1. Calculate SSE, df and MSE for if H1 is TRUE (i.e. complete model)
 
 ```{r, message = FALSE, warning = FALSE}
