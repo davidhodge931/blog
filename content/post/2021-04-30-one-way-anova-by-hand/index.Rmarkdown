@@ -11,9 +11,13 @@ One-way ANOVA is a test used to assess whether there is a statistically signific
 
 There is 1 response numeric variable and 1 explanatory categorical variable with more than 1 level.
 
-ANOVA considers the probability of observing the sample ratio of explained variance to unexplained variance (i.e. the F statistic)... if the null hypothesis is true that all population means are equal. 
+ANOVA samples the ratio of explained variance to unexplained variance in the complete model, if the null hypothesis is true that all population means are equal. 
 
-The higher this ratio of explained to unexplained variance is (i.e. the F statistic), then the lower the probability of observing this if our null hypothesis was correct.
+There is a distribution of sample F statistics with different probabilities, if the null hypothesis was true of no difference between means.  
+
+The higher this ratio of explained to unexplained variance is, then the lower the probability of observing this if our null hypothesis was correct.
+
+This ratio is called the F statistic after the great frequentist statistician Ronald Fischer.
 
 You can perform a one-way ANOVA very easily in R using the `aov` function etc. But what fun would that be?! 
 
