@@ -59,6 +59,8 @@ H1: _not all_ population means are equal
 
 We will use a significance level of p = 0.05.
 
+Note the mean square error (MSE) is used to quantify variance, and this is obtained by dividing the sum of squared error (SSE) by the degrees of freedom (df).
+
 1. Calculate SSE, df and MSE for if H1 is TRUE (i.e. complete model)
 
 ```{r, message = FALSE, warning = FALSE}
@@ -99,22 +101,22 @@ head(reduced, 3)
 )
 ```
 
-3. Calculate the _extra_ SSE, df and MSE explained by the complete model. 
+3. Calculate the SSE, df and MSE explained by the complete model. 
 
 ```{r, message = FALSE, warning = FALSE}
-(extra_sse <- reduced$sse - complete$sse)
+(explained_sse <- reduced$sse - complete$sse)
 
-(extra_df <- reduced$df - complete$df)
+(explained_df <- reduced$df - complete$df)
 
-(extra_mse <- extra_sse / extra_df)
+(explained_mse <- explained_sse / explained_df)
 ```
 
-4. Calculate the ratio of _extra_ variance (i.e. MSE) the complete model has explained to the variance (i.e. MSE) in the complete model itself. 
+4. Calculate the ratio of variance (i.e. MSE) the complete model has explained to the variance (i.e. MSE) that is left unexplained. 
 
 ```{r, message = FALSE, warning = FALSE}
-(f <- extra_mse / complete$mse)
+(f <- explained_mse / complete$mse)
 
-pf(f, extra_df, complete$df, lower.tail = F)
+pf(f, explained_df, complete$df, lower.tail = F)
 ```
 
 There was a p < 0.05, so we will reject the null hyothesis, and accept that there is a statistically significant difference between the means of the factor levels.

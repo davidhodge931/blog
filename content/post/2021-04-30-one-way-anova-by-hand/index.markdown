@@ -72,6 +72,8 @@ H1: _not all_ population means are equal
 
 We will use a significance level of p = 0.05.
 
+Note the mean square error (MSE) is used to quantify variance, and this is obtained by dividing the sum of squared error (SSE) by the degrees of freedom (df).
+
 1. Calculate SSE, df and MSE for if H1 is TRUE (i.e. complete model)
 
 
@@ -150,11 +152,11 @@ head(reduced, 3)
 ## 1  76.4    31    32     1
 ```
 
-3. Calculate the _extra_ SSE, df and MSE explained by the complete model. 
+3. Calculate the SSE, df and MSE explained by the complete model. 
 
 
 ```r
-(extra_sse <- reduced$sse - complete$sse)
+(explained_sse <- reduced$sse - complete$sse)
 ```
 
 ```
@@ -162,7 +164,7 @@ head(reduced, 3)
 ```
 
 ```r
-(extra_df <- reduced$df - complete$df)
+(explained_df <- reduced$df - complete$df)
 ```
 
 ```
@@ -170,18 +172,18 @@ head(reduced, 3)
 ```
 
 ```r
-(extra_mse <- extra_sse / extra_df)
+(explained_mse <- explained_sse / explained_df)
 ```
 
 ```
 ## [1] 9.556979
 ```
 
-4. Calculate the ratio of _extra_ variance (i.e. MSE) the complete model has explained to the variance (i.e. MSE) in the complete model itself. 
+4. Calculate the ratio of variance (i.e. MSE) the complete model has explained to the variance (i.e. MSE) that is left unexplained. 
 
 
 ```r
-(f <- extra_mse / complete$mse)
+(f <- explained_mse / complete$mse)
 ```
 
 ```
@@ -189,7 +191,7 @@ head(reduced, 3)
 ```
 
 ```r
-pf(f, extra_df, complete$df, lower.tail = F)
+pf(f, explained_df, complete$df, lower.tail = F)
 ```
 
 ```
