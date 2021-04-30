@@ -32,7 +32,7 @@ num_var <- c(1.4, 2.0, 3.2, 1.4, 2.3, 4.0, 5.0, 4.7,
 data <- tibble(cat_var, num_var) %>% 
   mutate(cat_var = as.factor(cat_var))
 
-head(data, n = 1)
+head(data, n = 3)
 ```
 
 Next, let's visualise the data.
@@ -64,7 +64,7 @@ complete <- data %>%
   mutate(sq_error = error ^ 2) %>%
   ungroup()
 
-head(complete)
+head(complete, 3)
 
 (complete <- complete %>% 
   summarise(n = n(), sse = sum(sq_error)) %>% 
@@ -84,7 +84,7 @@ reduced <- data %>%
   mutate(sq_error = error ^ 2) %>%
   ungroup() 
 
-head(reduced)
+head(reduced, 3)
 
 (reduced <- reduced %>% 
   summarise(n = n(), sse = sum(sq_error)) %>% # sse = sum square error
@@ -111,6 +111,8 @@ head(reduced)
 
 pf(f, extra_df, complete$df, lower.tail = F)
 ```
+
+There was a p < 0.05, so we will reject the null hyothesis, and accept that there is a statistically significant difference between the means of the factor levels.
 
 Let's check whether we got it right.
 

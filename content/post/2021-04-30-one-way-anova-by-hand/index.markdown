@@ -33,14 +33,16 @@ num_var <- c(1.4, 2.0, 3.2, 1.4, 2.3, 4.0, 5.0, 4.7,
 data <- tibble(cat_var, num_var) %>% 
   mutate(cat_var = as.factor(cat_var))
 
-head(data, n = 1)
+head(data, n = 3)
 ```
 
 ```
-## # A tibble: 1 x 2
+## # A tibble: 3 x 2
 ##   cat_var num_var
 ##   <fct>     <dbl>
 ## 1 8           1.4
+## 2 8           2  
+## 3 8           3.2
 ```
 
 Next, let's visualise the data.
@@ -76,19 +78,16 @@ complete <- data %>%
   mutate(sq_error = error ^ 2) %>%
   ungroup()
 
-head(complete)
+head(complete, 3)
 ```
 
 ```
-## # A tibble: 6 x 5
+## # A tibble: 3 x 5
 ##   cat_var num_var   fit  error sq_error
 ##   <fct>     <dbl> <dbl>  <dbl>    <dbl>
 ## 1 8           1.4     3  1.6     2.56  
 ## 2 8           2       3  1       1     
 ## 3 8           3.2     3 -0.200   0.0400
-## 4 8           1.4     3  1.6     2.56  
-## 5 8           2.3     3  0.7     0.49  
-## 6 8           4       3 -1       1
 ```
 
 ```r
@@ -118,19 +117,16 @@ reduced <- data %>%
   mutate(sq_error = error ^ 2) %>%
   ungroup() 
 
-head(reduced)
+head(reduced, 3)
 ```
 
 ```
-## # A tibble: 6 x 5
+## # A tibble: 3 x 5
 ##   cat_var num_var   fit error sq_error
 ##   <fct>     <dbl> <dbl> <dbl>    <dbl>
-## 1 8           1.4  4.45 3.05     9.28 
-## 2 8           2    4.45 2.45     5.99 
-## 3 8           3.2  4.45 1.25     1.55 
-## 4 8           1.4  4.45 3.05     9.28 
-## 5 8           2.3  4.45 2.15     4.61 
-## 6 8           4    4.45 0.447    0.200
+## 1 8           1.4  4.45  3.05     9.28
+## 2 8           2    4.45  2.45     5.99
+## 3 8           3.2  4.45  1.25     1.55
 ```
 
 ```r
@@ -194,6 +190,8 @@ pf(f, extra_df, complete$df, lower.tail = F)
 ```
 ## [1] 0.003871857
 ```
+
+There was a p < 0.05, so we will reject the null hyothesis, and accept that there is a statistically significant difference between the means of the factor levels.
 
 Let's check whether we got it right.
 
