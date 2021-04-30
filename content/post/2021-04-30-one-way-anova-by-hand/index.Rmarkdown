@@ -136,7 +136,7 @@ Of course, we should also check the assumptions:
 
 We can do the last 2 visually, and the 1st by understanding the study design. 
 
-```{r}
+```{r, message = FALSE, warning = FALSE}
 data <- augment(anova)
 
 ggplot_boxplot(data, cat_var, .resid,
@@ -146,7 +146,7 @@ ggplot_boxplot(data, cat_var, .resid,
   y_title = "Residual error")
 ```
 
-```{r}
+```{r, message = FALSE, warning = FALSE}
 ggplot(data) +
   geom_qq(aes(sample = .resid)) +
   geom_qq_line(aes(sample = .resid)) +
