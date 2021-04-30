@@ -40,14 +40,11 @@ head(data, n = 3)
 Next, let's visualise the data.
 
 ```{r, message=F, warning=F}
-plot <- ggplot_boxplot(data, cat_var, num_var,
+ggplot_boxplot(data, cat_var, num_var,
        y_zero = T,
        title = NULL,
        x_title = "Catagorical explanatory variable", 
        y_title = "Numeric response variable")
-
-plotly::ggplotly(plot) %>% 
-  plotly_camera()
 ```
 
 I'm going to use a fixed effects means model for simplicity (Model I).
@@ -142,25 +139,19 @@ We can do the last 2 visually, and the 1st by understanding the study design.
 ```{r, message = FALSE, warning = FALSE}
 data <- augment(anova)
 
-plot <- ggplot_boxplot(data, cat_var, .resid,
+ggplot_boxplot(data, cat_var, .resid,
   y_balance = TRUE,
   title = "Residual error across groups", 
   x_title = "Group", 
   y_title = "Residual error")
-
-plotly::ggplotly(plot) %>% 
-  plotly_camera()
 ```
 
 ```{r, message = FALSE, warning = FALSE}
-plot <- ggplot(data) +
+ggplot(data) +
   geom_qq(aes(sample = .resid)) +
   geom_qq_line(aes(sample = .resid)) +
   labs(title = "Normal Q-Q plot", 
        x = "Theoretical normal distribution quantile", 
        y = "Residual error quantile") +
   theme_point() 
-
-plotly::ggplotly(plot) %>% 
-  plotly_camera()
 ```
