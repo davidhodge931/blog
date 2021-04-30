@@ -46,7 +46,8 @@ plot <- ggplot_boxplot(data, cat_var, num_var,
        x_title = "Catagorical explanatory variable", 
        y_title = "Numeric response variable")
 
-plotly::ggplotly(plot)
+plotly::ggplotly(plot) %>% 
+  plotly_camera()
 ```
 
 I'm going to use a fixed effects means model for simplicity (Model I).
@@ -141,19 +142,25 @@ We can do the last 2 visually, and the 1st by understanding the study design.
 ```{r, message = FALSE, warning = FALSE}
 data <- augment(anova)
 
-ggplot_boxplot(data, cat_var, .resid,
+plot <- ggplot_boxplot(data, cat_var, .resid,
   y_balance = TRUE,
   title = "Residual error across groups", 
   x_title = "Group", 
   y_title = "Residual error")
+
+plotly::ggplotly(plot) %>% 
+  plotly_camera()
 ```
 
 ```{r, message = FALSE, warning = FALSE}
-ggplot(data) +
+plot <- ggplot(data) +
   geom_qq(aes(sample = .resid)) +
   geom_qq_line(aes(sample = .resid)) +
   labs(title = "Normal Q-Q plot", 
        x = "Theoretical normal distribution quantile", 
        y = "Residual error quantile") +
   theme_point() 
+
+plotly::ggplotly(plot) %>% 
+  plotly_camera()
 ```
