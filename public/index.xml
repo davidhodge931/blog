@@ -2,29 +2,30 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>A Hugo website</title>
-    <link>/</link>
+    <link>https://davidhodge931.netlify.app/</link>
     <description>Recent content on A Hugo website</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 30 Apr 2021 00:00:00 +0000</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 30 Apr 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://davidhodge931.netlify.app/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>One-way ANOVA by hand</title>
-      <link>/2021/04/30/one-way-anova-by-hand/</link>
+      <link>https://davidhodge931.netlify.app/2021/04/30/one-way-anova-by-hand/</link>
       <pubDate>Fri, 30 Apr 2021 00:00:00 +0000</pubDate>
       
-      <guid>/2021/04/30/one-way-anova-by-hand/</guid>
+      <guid>https://davidhodge931.netlify.app/2021/04/30/one-way-anova-by-hand/</guid>
       <description>One-way ANOVA is a test used to assess whether there is a statistically significant difference between the mean of different levels of a factor.
-So in this case, there is a response numeric variable and an explanatory categorical variable with more than 1 level.
-ANOVA considers the probability of observing the sample ratio of explained variance to unexplained variance (i.e. the F statistic), if the null hypothesis is true that all population means are equal.</description>
+There is 1 response numeric variable and 1 explanatory categorical variable with more than 1 level.
+ANOVA considers the probability of observing the sample ratio of explained variance to unexplained variance (i.e. the F statistic)&amp;hellip; if the null hypothesis is true that all population means are equal.</description>
     </item>
     
     <item>
       <title>About</title>
-      <link>/about/</link>
+      <link>https://davidhodge931.netlify.app/about/</link>
       <pubDate>Thu, 05 May 2016 21:48:51 -0700</pubDate>
       
-      <guid>/about/</guid>
-      <description>This is a &amp;ldquo;hello world&amp;rdquo; example website for the blogdown package. The theme was forked from @jrutheiser/hugo-lithium-theme and modified by Yihui Xie.</description>
+      <guid>https://davidhodge931.netlify.app/about/</guid>
+      <description>This is a blog by David Hodge.
+I&amp;rsquo;ve set up this blog mainly to publicise my fantastic simplevis R package via Rbloggers.</description>
     </item>
     
   </channel>

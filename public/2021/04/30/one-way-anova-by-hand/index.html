@@ -10,7 +10,7 @@
 <meta property="og:title" content="One-way ANOVA by hand - A Hugo website">
 
 
-  <link href='/favicon.ico' rel='icon' type='image/x-icon'/>
+  <link href='https://davidhodge931.netlify.app/favicon.ico' rel='icon' type='image/x-icon'/>
 
 
 
@@ -73,9 +73,10 @@
 
     <div class="article-content">
       <p>One-way ANOVA is a test used to assess whether there is a statistically significant difference between the mean of different levels of a factor.</p>
-<p>So in this case, there is a response numeric variable and an explanatory categorical variable with more than 1 level.</p>
-<p>ANOVA considers the probability of observing the sample ratio of explained variance to unexplained variance (i.e. the F statistic), if the null hypothesis is true that all population means are equal.</p>
-<p>You can perform a one-way ANOVA very easily in R using the <code>aov</code> function etc. But for the purposes of understanding what is actually gone on in this test,  let&rsquo;s calculate it &lsquo;by hand&rsquo;.</p>
+<p>There is 1 response numeric variable and 1 explanatory categorical variable with more than 1 level.</p>
+<p>ANOVA considers the probability of observing the sample ratio of explained variance to unexplained variance (i.e. the F statistic)&hellip; if the null hypothesis is true that all population means are equal.</p>
+<p>You can perform a one-way ANOVA very easily in R using the <code>aov</code> function etc. But what fun would be that?!</p>
+<p>On a serious note, it is really helpful for understanding to see how the algorathm of the test works to calculate it &lsquo;by hand&rsquo;.</p>
 <p>First, let&rsquo;s load some libraries and sample data.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">library</span>(tidyverse)
 <span style="color:#a6e22e">library</span>(tidymodels)
@@ -91,22 +92,25 @@ num_var <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">c</
 data <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">tibble</span>(cat_var, num_var) <span style="color:#f92672">%&gt;%</span> 
   <span style="color:#a6e22e">mutate</span>(cat_var <span style="color:#f92672">=</span> <span style="color:#a6e22e">as.factor</span>(cat_var))
 
-<span style="color:#a6e22e">head</span>(data, n <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>)
-</code></pre></div><pre><code>## # A tibble: 1 x 2
+<span style="color:#a6e22e">head</span>(data, n <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>)
+</code></pre></div><pre><code>## # A tibble: 3 x 2
 ##   cat_var num_var
 ##   &lt;fct&gt;     &lt;dbl&gt;
 ## 1 8           1.4
+## 2 8           2  
+## 3 8           3.2
 </code></pre><p>Next, let&rsquo;s visualise the data.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">ggplot_boxplot</span>(data, cat_var, num_var,
        title <span style="color:#f92672">=</span> <span style="color:#66d9ef">NULL</span>,
        x_title <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Catagorical explanatory variable&#34;</span>, 
        y_title <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Numeric response variable&#34;</span>)
-</code></pre></div><p><img src="/2021/04/30/one-way-anova-by-hand/index_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+</code></pre></div><p><img src="https://davidhodge931.netlify.app/2021/04/30/one-way-anova-by-hand/index_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
 <p>I&rsquo;m going to use a fixed effects means model for simplicity (Model I).</p>
 <p>Yij = μi + Eij</p>
 <p>The hypotheses are as follow.</p>
 <p>H0: <em>all</em> population means are equal</p>
 <p>H1: <em>not all</em> population means are equal</p>
+<p>We will use a significance level of p = 0.05.</p>
 <ol>
 <li>Calculate SSE, df and MSE for if H1 is TRUE (i.e. complete model)</li>
 </ol>
@@ -117,16 +121,13 @@ data <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">tibble
   <span style="color:#a6e22e">mutate</span>(sq_error <span style="color:#f92672">=</span> error ^ <span style="color:#ae81ff">2</span>) <span style="color:#f92672">%&gt;%</span>
   <span style="color:#a6e22e">ungroup</span>()
 
-<span style="color:#a6e22e">head</span>(complete)
-</code></pre></div><pre><code>## # A tibble: 6 x 5
+<span style="color:#a6e22e">head</span>(complete, <span style="color:#ae81ff">3</span>)
+</code></pre></div><pre><code>## # A tibble: 3 x 5
 ##   cat_var num_var   fit  error sq_error
 ##   &lt;fct&gt;     &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;
 ## 1 8           1.4     3  1.6     2.56  
 ## 2 8           2       3  1       1     
 ## 3 8           3.2     3 -0.200   0.0400
-## 4 8           1.4     3  1.6     2.56  
-## 5 8           2.3     3  0.7     0.49  
-## 6 8           4       3 -1       1
 </code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">(complete <span style="color:#f92672">&lt;-</span> complete <span style="color:#f92672">%&gt;%</span> 
   <span style="color:#a6e22e">summarise</span>(n <span style="color:#f92672">=</span> <span style="color:#a6e22e">n</span>(), sse <span style="color:#f92672">=</span> <span style="color:#a6e22e">sum</span>(sq_error)) <span style="color:#f92672">%&gt;%</span> 
   <span style="color:#a6e22e">mutate</span>(p <span style="color:#f92672">=</span> <span style="color:#a6e22e">length</span>(<span style="color:#a6e22e">unique</span>(data<span style="color:#f92672">$</span>cat_var))) <span style="color:#f92672">%&gt;%</span> 
@@ -147,16 +148,13 @@ data <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">tibble
   <span style="color:#a6e22e">mutate</span>(sq_error <span style="color:#f92672">=</span> error ^ <span style="color:#ae81ff">2</span>) <span style="color:#f92672">%&gt;%</span>
   <span style="color:#a6e22e">ungroup</span>() 
 
-<span style="color:#a6e22e">head</span>(reduced)
-</code></pre></div><pre><code>## # A tibble: 6 x 5
+<span style="color:#a6e22e">head</span>(reduced, <span style="color:#ae81ff">3</span>)
+</code></pre></div><pre><code>## # A tibble: 3 x 5
 ##   cat_var num_var   fit error sq_error
 ##   &lt;fct&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;
-## 1 8           1.4  4.45 3.05     9.28 
-## 2 8           2    4.45 2.45     5.99 
-## 3 8           3.2  4.45 1.25     1.55 
-## 4 8           1.4  4.45 3.05     9.28 
-## 5 8           2.3  4.45 2.15     4.61 
-## 6 8           4    4.45 0.447    0.200
+## 1 8           1.4  4.45  3.05     9.28
+## 2 8           2    4.45  2.45     5.99
+## 3 8           3.2  4.45  1.25     1.55
 </code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">(reduced <span style="color:#f92672">&lt;-</span> reduced <span style="color:#f92672">%&gt;%</span> 
   <span style="color:#a6e22e">summarise</span>(n <span style="color:#f92672">=</span> <span style="color:#a6e22e">n</span>(), sse <span style="color:#f92672">=</span> <span style="color:#a6e22e">sum</span>(sq_error)) <span style="color:#f92672">%&gt;%</span> <span style="color:#75715e"># sse = sum square error</span>
   <span style="color:#a6e22e">mutate</span>(p <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">%&gt;%</span> 
@@ -183,7 +181,8 @@ data <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">tibble
 </code></pre></div><pre><code>## [1] 5.601893
 </code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">pf</span>(f, extra_df, complete<span style="color:#f92672">$</span>df, lower.tail <span style="color:#f92672">=</span> F)
 </code></pre></div><pre><code>## [1] 0.003871857
-</code></pre><p>Let&rsquo;s check whether we got it right.</p>
+</code></pre><p>There was a p &lt; 0.05, so we will reject the null hyothesis, and accept that there is a statistically significant difference between the means of the factor levels.</p>
+<p>Let&rsquo;s check whether we got it right.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">anova <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">aov</span>(num_var <span style="color:#f92672">~</span> cat_var, data)
 <span style="color:#a6e22e">summary</span>(anova)
 </code></pre></div><pre><code>##             Df Sum Sq Mean Sq F value  Pr(&gt;F)   
