@@ -200,7 +200,7 @@ pf(f, explained_df, complete$df, lower.tail = F)
 
 There was a p < 0.05, so we will reject the null hyothesis, and accept that there is a statistically significant difference between the means of the factor levels.
 
-Let's check whether we got it right.
+Let's check whether we got it right... We did!
 
 
 ```r
@@ -216,4 +216,100 @@ summary(anova)
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ```
 
-Nice one!
+Of course, we should also check the assumptions:
+
+* independence of observations
+* constant variation across groups
+* normal distribution of residual error.
+
+We can do the last 2 visually, and the 1st by understanding the study design. 
+
+
+```r
+data <- augment(anova)
+```
+
+```
+## Warning: Tidiers for objects of class aov are not maintained by the broom team,
+## and are only supported through the lm tidier method. Please be cautious in
+## interpreting and reporting broom output.
+```
+
+```r
+ggplot_boxplot(data, cat_var, .resid,
+  y_balance = TRUE,
+  title = "Residual error across groups", 
+  x_title = "Group", 
+  y_title = "Residual error")
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
+## family not found in Windows font database
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
+## family not found in Windows font database
+
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
+## family not found in Windows font database
+
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
+## family not found in Windows font database
+
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
+## family not found in Windows font database
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## font family not found in Windows font database
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
+## family not found in Windows font database
+```
+
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-8-1.png" width="672" />
+
+
+```r
+ggplot(data) +
+  geom_qq(aes(sample = .resid)) +
+  geom_qq_line(aes(sample = .resid)) +
+  labs(title = "Normal Q-Q plot", 
+       x = "Theoretical normal distribution quantile", 
+       y = "Residual error quantile") +
+  theme_point() 
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
+## family not found in Windows font database
+
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
+## family not found in Windows font database
+
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
+## family not found in Windows font database
+
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
+## family not found in Windows font database
+
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
+## family not found in Windows font database
+```
+
+```
+## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :
+## font family not found in Windows font database
+```
+
+```
+## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : font
+## family not found in Windows font database
+```
+
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-9-1.png" width="672" />
