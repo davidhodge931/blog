@@ -62,7 +62,7 @@
 
   <article class="article">
     
-    <span class="article-duration">4 min read</span>
+    <span class="article-duration">5 min read</span>
     
 
     <h1 class="article-title">One-way ANOVA by hand</h1>
@@ -72,12 +72,15 @@
     
 
     <div class="article-content">
-      <p>One-way ANOVA is a test used to assess whether there is a statistically significant difference between the mean of different levels of a factor.</p>
+      <p>One-way ANOVA is a test used to assess whether there is a statistically significant difference between the mean of groups.</p>
 <p>There is 1 response numeric variable and 1 explanatory categorical variable with more than 1 level.</p>
-<p>ANOVA considers the probability of observing the sample ratio of explained variance to unexplained variance (i.e. the F statistic)&hellip; if the null hypothesis is true that all population means are equal.</p>
-<p>You can perform a one-way ANOVA very easily in R using the <code>aov</code> function etc. But what fun would be that?!</p>
-<p>On a serious note, it is really helpful for understanding to see how the algorathm of the test works to calculate it &lsquo;by hand&rsquo;.</p>
-<p>First, let&rsquo;s load some libraries and sample data.</p>
+<p>ANOVA assesses the ratio of explained variance to unexplained variance in the complete model, if the null hypothesis is true that all population means are equal.</p>
+<p>There is a distribution of sample F statistics with different probabilities, if the null hypothesis was true of no difference between means.</p>
+<p>The higher this ratio of explained to unexplained variance is, then the lower the probability of observing this if our null hypothesis was correct.</p>
+<p>This ratio is called the F statistic after the great frequentist statistician Ronald Fischer.</p>
+<p>You can perform a one-way ANOVA very easily in R using the <code>aov</code> function etc. But what fun would that be?!</p>
+<p>On a serious note, it is really helpful to understand how the algorithm of the test works to calculate it &lsquo;by hand&rsquo;.</p>
+<p>First, let&rsquo;s load some libraries, and create some sample data.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">library</span>(tidyverse)
 <span style="color:#a6e22e">library</span>(tidymodels)
 <span style="color:#a6e22e">library</span>(simplevis)
@@ -101,6 +104,7 @@ data <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">tibble
 ## 3 8           3.2
 </code></pre><p>Next, let&rsquo;s visualise the data.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">ggplot_boxplot</span>(data, cat_var, num_var,
+       y_zero <span style="color:#f92672">=</span> T,
        title <span style="color:#f92672">=</span> <span style="color:#66d9ef">NULL</span>,
        x_title <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Catagorical explanatory variable&#34;</span>, 
        y_title <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Numeric response variable&#34;</span>)
@@ -111,6 +115,7 @@ data <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">tibble
 <p>H0: <em>all</em> population means are equal</p>
 <p>H1: <em>not all</em> population means are equal</p>
 <p>We will use a significance level of p = 0.05.</p>
+<p>Note the mean square error (MSE) is used to quantify variance, and this is obtained by dividing the sum of squared error (SSE) by the degrees of freedom (df).</p>
 <ol>
 <li>Calculate SSE, df and MSE for if H1 is TRUE (i.e. complete model)</li>
 </ol>
@@ -166,23 +171,23 @@ data <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">tibble
 ##   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt;
 ## 1  76.4    31    32     1
 </code></pre><ol start="3">
-<li>Calculate the <em>extra</em> SSE, df and MSE explained by the complete model.</li>
+<li>Calculate the SSE, df and MSE explained by the complete model.</li>
 </ol>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">(extra_sse <span style="color:#f92672">&lt;-</span> reduced<span style="color:#f92672">$</span>sse <span style="color:#f92672">-</span> complete<span style="color:#f92672">$</span>sse)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">(explained_sse <span style="color:#f92672">&lt;-</span> reduced<span style="color:#f92672">$</span>sse <span style="color:#f92672">-</span> complete<span style="color:#f92672">$</span>sse)
 </code></pre></div><pre><code>## [1] 28.67094
-</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">(extra_df <span style="color:#f92672">&lt;-</span> reduced<span style="color:#f92672">$</span>df <span style="color:#f92672">-</span> complete<span style="color:#f92672">$</span>df)
+</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">(explained_df <span style="color:#f92672">&lt;-</span> reduced<span style="color:#f92672">$</span>df <span style="color:#f92672">-</span> complete<span style="color:#f92672">$</span>df)
 </code></pre></div><pre><code>## [1] 3
-</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">(extra_mse <span style="color:#f92672">&lt;-</span> extra_sse <span style="color:#f92672">/</span> extra_df)
+</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">(explained_mse <span style="color:#f92672">&lt;-</span> explained_sse <span style="color:#f92672">/</span> explained_df)
 </code></pre></div><pre><code>## [1] 9.556979
 </code></pre><ol start="4">
-<li>Calculate the ratio of <em>extra</em> variance (i.e. MSE) the complete model has explained to the variance (i.e. MSE) in the complete model itself.</li>
+<li>Calculate the ratio of variance (i.e. MSE) the complete model has explained to the variance (i.e. MSE) that is left unexplained. Then determine the probability of this statistic, if the null hypothesis was true.</li>
 </ol>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">(f <span style="color:#f92672">&lt;-</span> extra_mse <span style="color:#f92672">/</span> complete<span style="color:#f92672">$</span>mse)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">(f <span style="color:#f92672">&lt;-</span> explained_mse <span style="color:#f92672">/</span> complete<span style="color:#f92672">$</span>mse)
 </code></pre></div><pre><code>## [1] 5.601893
-</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">pf</span>(f, extra_df, complete<span style="color:#f92672">$</span>df, lower.tail <span style="color:#f92672">=</span> F)
+</code></pre><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">pf</span>(f, explained_df, complete<span style="color:#f92672">$</span>df, lower.tail <span style="color:#f92672">=</span> F)
 </code></pre></div><pre><code>## [1] 0.003871857
-</code></pre><p>There was a p &lt; 0.05, so we will reject the null hyothesis, and accept that there is a statistically significant difference between the means of the factor levels.</p>
-<p>Let&rsquo;s check whether we got it right.</p>
+</code></pre><p>There was a p &lt; 0.05, so we will reject the null hypothesis, and accept that the population group means are not the same.</p>
+<p>Let&rsquo;s check whether we got it right&hellip; We did!</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">anova <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">aov</span>(num_var <span style="color:#f92672">~</span> cat_var, data)
 <span style="color:#a6e22e">summary</span>(anova)
 </code></pre></div><pre><code>##             Df Sum Sq Mean Sq F value  Pr(&gt;F)   
@@ -190,7 +195,29 @@ data <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">tibble
 ## Residuals   28  47.77   1.706                   
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-</code></pre><p>Nice one!</p>
+</code></pre><p>Of course, we should also check the assumptions:</p>
+<ul>
+<li>independence of observations</li>
+<li>constant variation across groups</li>
+<li>normal distribution of residual error.</li>
+</ul>
+<p>We can do the last 2 visually, and the 1st by understanding the study design.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">data <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">augment</span>(anova)
+
+<span style="color:#a6e22e">ggplot_boxplot</span>(data, cat_var, .resid,
+  y_balance <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>,
+  title <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Residual error across groups&#34;</span>, 
+  x_title <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Group&#34;</span>, 
+  y_title <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Residual error&#34;</span>)
+</code></pre></div><p><img src="https://davidhodge931.netlify.app/2021/04/30/one-way-anova-by-hand/index_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">ggplot</span>(data) <span style="color:#f92672">+</span>
+  <span style="color:#a6e22e">geom_qq</span>(<span style="color:#a6e22e">aes</span>(sample <span style="color:#f92672">=</span> .resid)) <span style="color:#f92672">+</span>
+  <span style="color:#a6e22e">geom_qq_line</span>(<span style="color:#a6e22e">aes</span>(sample <span style="color:#f92672">=</span> .resid)) <span style="color:#f92672">+</span>
+  <span style="color:#a6e22e">labs</span>(title <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Normal Q-Q plot&#34;</span>, 
+       x <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Theoretical normal distribution quantile&#34;</span>, 
+       y <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Residual error quantile&#34;</span>) <span style="color:#f92672">+</span>
+  <span style="color:#a6e22e">theme_point</span>() 
+</code></pre></div><p><img src="https://davidhodge931.netlify.app/2021/04/30/one-way-anova-by-hand/index_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
 
     </div>
   </article>
@@ -232,6 +259,17 @@ data <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">tibble
 
 
     
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-EGCQLRSZK9"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-EGCQLRSZK9', { 'anonymize_ip': false });
+}
+</script>
+
   </body>
 </html>
 

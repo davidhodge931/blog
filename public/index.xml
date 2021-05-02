@@ -13,9 +13,10 @@
       <pubDate>Fri, 30 Apr 2021 00:00:00 +0000</pubDate>
       
       <guid>https://davidhodge931.netlify.app/2021/04/30/one-way-anova-by-hand/</guid>
-      <description>One-way ANOVA is a test used to assess whether there is a statistically significant difference between the mean of different levels of a factor.
+      <description>One-way ANOVA is a test used to assess whether there is a statistically significant difference between the mean of groups.
 There is 1 response numeric variable and 1 explanatory categorical variable with more than 1 level.
-ANOVA considers the probability of observing the sample ratio of explained variance to unexplained variance (i.e. the F statistic)&amp;hellip; if the null hypothesis is true that all population means are equal.</description>
+ANOVA assesses the ratio of explained variance to unexplained variance in the complete model, if the null hypothesis is true that all population means are equal.
+There is a distribution of sample F statistics with different probabilities, if the null hypothesis was true of no difference between means.</description>
     </item>
     
     <item>
@@ -25,7 +26,7 @@ ANOVA considers the probability of observing the sample ratio of explained varia
       
       <guid>https://davidhodge931.netlify.app/about/</guid>
       <description>This is a blog by David Hodge.
-I&amp;rsquo;ve set up this blog mainly to publicise my fantastic simplevis R package via Rbloggers.</description>
+I&amp;rsquo;ve set up this blog mainly to publicise the simplevis R package via Rbloggers.</description>
     </item>
     
   </channel>
