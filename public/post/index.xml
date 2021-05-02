@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on A Hugo website</title>
@@ -6,7 +5,11 @@
     <description>Recent content in Posts on A Hugo website</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 30 Apr 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://davidhodge931.netlify.app/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 30 Apr 2021 00:00:00 +0000</lastBuildDate>
+    
+        <atom:link href="https://davidhodge931.netlify.app/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    
     <item>
       <title>One-way ANOVA by hand</title>
       <link>https://davidhodge931.netlify.app/2021/04/30/one-way-anova-by-hand/</link>
@@ -17,6 +20,9 @@
 There is 1 response numeric variable and 1 explanatory categorical variable with more than 1 level.
 ANOVA assesses the ratio of explained variance to unexplained variance in the complete model, if the null hypothesis is true that all population means are equal.
 There is a distribution of sample F statistics with different probabilities, if the null hypothesis was true of no difference between means.</description>
+      
+            <category>R</category>
+      
     </item>
     
   </channel>
