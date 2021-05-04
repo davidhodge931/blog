@@ -66,7 +66,7 @@ ggplot_boxplot(data, cat_var, num_var,
 
 <img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-2-1.png" width="672" />
 
-I'm going to use a fixed effects means model for simplicity (Model I).
+I'm going to use a means model for simplicity (Model I).
 
 Yij = μi + Eij 
 
