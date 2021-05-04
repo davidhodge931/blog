@@ -1,8 +1,8 @@
-baseurl: https://davidhodge931.netlify.app/
+baseurl: "https://davidhodge931.netlify.app/"
 languageCode: en-us
 title: A Hugo website
 theme: hugo-lithium
-googleAnalytics: G-EGCQLRSZK9
+googleAnalytics: "G-EGCQLRSZK9"
 disqusShortname: 
 ignoreFiles:
   - \.Rmd$
