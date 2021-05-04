@@ -120,17 +120,17 @@ head(complete, 3)
 ## 1  47.8    28    32     4  1.71
 ```
 
-2. Calculate SSE, df and MSE for if H0 is TRUE (i.e. reduced model)
+2. Calculate SSE, df and MSE for if H0 is TRUE (i.e. null model)
 
 
 ```r
-reduced <- data %>%  
-  mutate(fit = mean(num_var)) %>% #in reduced model, fit is the overall mean 
+null <- data %>%  
+  mutate(fit = mean(num_var)) %>% #in null model, fit is the overall mean 
   mutate(error = fit - num_var) %>% 
   mutate(sq_error = error ^ 2) %>%
   ungroup() 
 
-head(reduced, 3)
+head(null, 3)
 ```
 
 ```
@@ -143,7 +143,7 @@ head(reduced, 3)
 ```
 
 ```r
-(reduced <- reduced %>% 
+(null <- null %>% 
   summarise(n = n(), sse = sum(sq_error)) %>% # sse = sum square error
   mutate(p = 1) %>% 
   mutate(df = n - p) %>% 
@@ -162,7 +162,7 @@ head(reduced, 3)
 
 
 ```r
-(explained_sse <- reduced$sse - complete$sse)
+(explained_sse <- null$sse - complete$sse)
 ```
 
 ```
@@ -170,7 +170,7 @@ head(reduced, 3)
 ```
 
 ```r
-(explained_df <- reduced$df - complete$df)
+(explained_df <- null$df - complete$df)
 ```
 
 ```
