@@ -9,10 +9,10 @@
     <lastBuildDate>Fri, 30 Apr 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://davidhodge931.netlify.app/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>One-way ANOVA by hand</title>
-      <link>https://davidhodge931.netlify.app/2021/04/30/one-way-anova-by-hand/</link>
+      <link>https://davidhodge931.netlify.app/post/2021/04/30/one-way-anova-by-hand/</link>
       <pubDate>Fri, 30 Apr 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://davidhodge931.netlify.app/2021/04/30/one-way-anova-by-hand/</guid>
+      <guid>https://davidhodge931.netlify.app/post/2021/04/30/one-way-anova-by-hand/</guid>
       <description>&lt;p&gt;One-way ANOVA is a test used to assess whether there is a statistically significant difference between the mean of groups.&lt;/p&gt;
 &lt;p&gt;There is 1 response numeric variable and 1 explanatory categorical variable with more than 1 level.&lt;/p&gt;
 &lt;p&gt;ANOVA assesses the ratio of explained variance to unexplained variance in the complete model, if the null hypothesis is true that all population means are equal.&lt;/p&gt;
@@ -49,7 +49,7 @@ data &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span s
        title &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;NULL&lt;/span&gt;,
        x_title &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Catagorical explanatory variable&amp;#34;&lt;/span&gt;, 
        y_title &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Numeric response variable&amp;#34;&lt;/span&gt;)
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://davidhodge931.netlify.app/2021/04/30/one-way-anova-by-hand/index_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://davidhodge931.netlify.app/post/2021/04/30/one-way-anova-by-hand/index_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;I&amp;rsquo;m going to use a means model for simplicity (Model I).&lt;/p&gt;
 &lt;p&gt;Yij = μi + Eij&lt;/p&gt;
 &lt;p&gt;The hypotheses are as follow.&lt;/p&gt;
@@ -150,7 +150,7 @@ data &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span s
   title &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Residual error across groups&amp;#34;&lt;/span&gt;, 
   x_title &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Group&amp;#34;&lt;/span&gt;, 
   y_title &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Residual error&amp;#34;&lt;/span&gt;)
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://davidhodge931.netlify.app/2021/04/30/one-way-anova-by-hand/index_files/figure-html/unnamed-chunk-8-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://davidhodge931.netlify.app/post/2021/04/30/one-way-anova-by-hand/index_files/figure-html/unnamed-chunk-8-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;ggplot&lt;/span&gt;(data) &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;
   &lt;span style=&#34;color:#a6e22e&#34;&gt;geom_qq&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;aes&lt;/span&gt;(sample &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; .resid)) &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;
   &lt;span style=&#34;color:#a6e22e&#34;&gt;geom_qq_line&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;aes&lt;/span&gt;(sample &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; .resid)) &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;
@@ -158,7 +158,7 @@ data &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span s
        x &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Theoretical normal distribution quantile&amp;#34;&lt;/span&gt;, 
        y &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Residual error quantile&amp;#34;&lt;/span&gt;) &lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;
   &lt;span style=&#34;color:#a6e22e&#34;&gt;theme_point&lt;/span&gt;() 
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://davidhodge931.netlify.app/2021/04/30/one-way-anova-by-hand/index_files/figure-html/unnamed-chunk-9-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://davidhodge931.netlify.app/post/2021/04/30/one-way-anova-by-hand/index_files/figure-html/unnamed-chunk-9-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 </description>
     </item>
     
