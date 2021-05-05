@@ -162,16 +162,5 @@ data &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span s
 </description>
     </item>
     
-    <item>
-      <title>About</title>
-      <link>https://davidhodge931.netlify.app/about/</link>
-      <pubDate>Thu, 05 May 2016 21:48:51 -0700</pubDate>
-      
-      <guid>https://davidhodge931.netlify.app/about/</guid>
-      <description>&lt;p&gt;This is a blog by David Hodge.&lt;/p&gt;
-&lt;p&gt;I&amp;rsquo;ve set up this blog mainly to publicise the &lt;a href=&#34;https://github.com/StatisticsNZ/simplevis&#34;&gt;simplevis&lt;/a&gt; R package via &lt;a href=&#34;https://www.r-bloggers.com&#34;&gt;Rbloggers&lt;/a&gt;.&lt;/p&gt;
-</description>
-    </item>
-    
   </channel>
 </rss>
