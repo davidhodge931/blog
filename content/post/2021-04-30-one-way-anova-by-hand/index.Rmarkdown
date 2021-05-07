@@ -3,8 +3,9 @@ title: One-way ANOVA by hand
 author: 'David Hodge'
 date: '2021-04-30'
 slug: one-way-anova-by-hand
-categories: ["R"]
-tags: ["R"]
+categories:
+  - R
+tags: []
 ---
 
 One-way ANOVA is a test used to assess whether there is a statistically significant difference between the mean of groups.
