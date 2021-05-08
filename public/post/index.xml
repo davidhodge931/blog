@@ -6,17 +6,17 @@
     <description>Recent content in Posts on A Hugo website</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 30 Apr 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://davidhodge931.netlify.app/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 08 May 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://davidhodge931.netlify.app/post/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>One-way ANOVA by hand</title>
-      <link>https://davidhodge931.netlify.app/2021/04/30/one-way-anova-by-hand/</link>
-      <pubDate>Fri, 30 Apr 2021 00:00:00 +0000</pubDate>
+      <link>https://davidhodge931.netlify.app/2021/05/08/one-way-anova-by-hand/</link>
+      <pubDate>Sat, 08 May 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://davidhodge931.netlify.app/2021/04/30/one-way-anova-by-hand/</guid>
+      <guid>https://davidhodge931.netlify.app/2021/05/08/one-way-anova-by-hand/</guid>
       <description>One-way ANOVA is a test used to assess whether there is a statistically significant difference between the mean of groups.
 There is 1 response numeric variable and 1 explanatory categorical variable with more than 1 level.
-ANOVA assesses the ratio of explained variance to unexplained variance in the complete model, if the null hypothesis is true that all population means are equal.
-There is a distribution of sample F statistics with different probabilities, if the null hypothesis was true of no difference between means.</description>
+ANOVA considers the probability of observing the sample ratio of explained variance to unexplained variance (i.e. the F statistic)&amp;hellip; if the null hypothesis is true that all population means are equal.
+The higher this ratio of explained to unexplained variance is (i.</description>
     </item>
     
   </channel>

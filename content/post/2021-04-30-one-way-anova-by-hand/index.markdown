@@ -1,23 +1,22 @@
 ---
 title: One-way ANOVA by hand
-author: 'David Hodge'
-date: '2021-04-30'
+author: David Hodge
+date: '2021-05-08'
+categories:
+  - R
+tags:
+  - ANOVA
 slug: one-way-anova-by-hand
-categories: ["R"]
-tags: ["R"]
+
 ---
 
 One-way ANOVA is a test used to assess whether there is a statistically significant difference between the mean of groups.
 
 There is 1 response numeric variable and 1 explanatory categorical variable with more than 1 level.
 
-ANOVA assesses the ratio of explained variance to unexplained variance in the complete model, if the null hypothesis is true that all population means are equal. 
+ANOVA considers the probability of observing the sample ratio of explained variance to unexplained variance (i.e. the F statistic)... if the null hypothesis is true that all population means are equal. 
 
-There is a distribution of sample F statistics with different probabilities, if the null hypothesis was true of no difference between means.  
-
-The higher this ratio of explained to unexplained variance is, then the lower the probability of observing this if our null hypothesis was correct.
-
-This ratio is called the F statistic after the great frequentist statistician Ronald Fischer.
+The higher this ratio of explained to unexplained variance is (i.e. the F statistic), then the lower the probability of observing this if our null hypothesis was correct.
 
 You can perform a one-way ANOVA very easily in R using the `aov` function etc. But what fun would that be?! 
 
@@ -66,7 +65,7 @@ ggplot_boxplot(data, cat_var, num_var,
 
 <img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-2-1.png" width="672" />
 
-I'm going to use a means model for simplicity (Model I).
+I'm going to use a fixed effects means model for simplicity (Model I).
 
 Yij = μi + Eij 
 
@@ -120,17 +119,17 @@ head(complete, 3)
 ## 1  47.8    28    32     4  1.71
 ```
 
-2. Calculate SSE, df and MSE for if H0 is TRUE (i.e. null model)
+2. Calculate SSE, df and MSE for if H0 is TRUE (i.e. reduced model)
 
 
 ```r
-null <- data %>%  
-  mutate(fit = mean(num_var)) %>% #in null model, fit is the overall mean 
+reduced <- data %>%  
+  mutate(fit = mean(num_var)) %>% #in reduced model, fit is the overall mean 
   mutate(error = fit - num_var) %>% 
   mutate(sq_error = error ^ 2) %>%
   ungroup() 
 
-head(null, 3)
+head(reduced, 3)
 ```
 
 ```
@@ -143,7 +142,7 @@ head(null, 3)
 ```
 
 ```r
-(null <- null %>% 
+(reduced <- reduced %>% 
   summarise(n = n(), sse = sum(sq_error)) %>% # sse = sum square error
   mutate(p = 1) %>% 
   mutate(df = n - p) %>% 
@@ -162,7 +161,7 @@ head(null, 3)
 
 
 ```r
-(explained_sse <- null$sse - complete$sse)
+(explained_sse <- reduced$sse - complete$sse)
 ```
 
 ```
@@ -170,7 +169,7 @@ head(null, 3)
 ```
 
 ```r
-(explained_df <- null$df - complete$df)
+(explained_df <- reduced$df - complete$df)
 ```
 
 ```
