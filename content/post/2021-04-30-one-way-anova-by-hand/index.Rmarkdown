@@ -135,9 +135,9 @@ summary(anova)
 
 Of course, we should also check the assumptions:
 
-* independence of observations
-* constant variation across groups
-* normal distribution of residual error.
+* independence between & within groups
+* constant variation between groups
+* approximately normally distributed response variable within groups.
 
 We can do the last 2 visually, and the 1st by understanding the study design. 
 
