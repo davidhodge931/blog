@@ -223,9 +223,9 @@ summary(anova)
 
 Of course, we should also check the assumptions:
 
-* independence between & within groups
-* constant variation between groups
-* approximately normally distributed response variable within groups.
+* independence of observations
+* constant variation between treatments
+* approximately normally distributed within treatments.
 
 We can do the last 2 visually, and the 1st by understanding the study design. 
 
