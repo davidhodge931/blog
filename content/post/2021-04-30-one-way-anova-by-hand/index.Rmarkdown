@@ -54,13 +54,13 @@ ggplot_boxplot(data, cat_var, num_var,
 
 I'm going to use a fixed effects means model for simplicity (Model I).
 
-Yij = μi + Eij 
+$Y_{ij} = \mu_i + E_{ij}$ 
 
 The hypotheses are as follow.
 
-H0: _all_ population means are equal
+$H_0: \mu_1 = \mu_2... = \mu_p$  (i.e. _all_ population means are equal)
 
-H1: _not all_ population means are equal
+$H_1$: _not all_ population means are equal
 
 We will use a significance level of p = 0.05.
 

@@ -108,10 +108,10 @@ data <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">tibble
        y_title <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Numeric response variable&#34;</span>)
 </code></pre></div><p><img src="https://davidhodge931.netlify.app/2021/05/08/one-way-anova-by-hand/index_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
 <p>I&rsquo;m going to use a fixed effects means model for simplicity (Model I).</p>
-<p>Yij = μi + Eij</p>
+<p><code>\(Y_{ij} = \mu_i + E_{ij}\)</code></p>
 <p>The hypotheses are as follow.</p>
-<p>H0: <em>all</em> population means are equal</p>
-<p>H1: <em>not all</em> population means are equal</p>
+<p><code>\(H_0: \mu_1 = \mu_2... = \mu_p\)</code>  (i.e. <em>all</em> population means are equal)</p>
+<p><code>\(H_1\)</code>: <em>not all</em> population means are equal</p>
 <p>We will use a significance level of p = 0.05.</p>
 <p>Note the mean square error (MSE) is used to quantify variance, and this is obtained by dividing the sum of squared error (SSE) by the degrees of freedom (df).</p>
 <ol>

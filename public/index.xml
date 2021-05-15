@@ -49,10 +49,10 @@ data &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span s
        y_title &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Numeric response variable&amp;#34;&lt;/span&gt;)
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://davidhodge931.netlify.app/2021/05/08/one-way-anova-by-hand/index_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;I&amp;rsquo;m going to use a fixed effects means model for simplicity (Model I).&lt;/p&gt;
-&lt;p&gt;Yij = μi + Eij&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;\(Y_{ij} = \mu_i + E_{ij}\)&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;The hypotheses are as follow.&lt;/p&gt;
-&lt;p&gt;H0: &lt;em&gt;all&lt;/em&gt; population means are equal&lt;/p&gt;
-&lt;p&gt;H1: &lt;em&gt;not all&lt;/em&gt; population means are equal&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;\(H_0: \mu_1 = \mu_2... = \mu_p\)&lt;/code&gt;  (i.e. &lt;em&gt;all&lt;/em&gt; population means are equal)&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;\(H_1\)&lt;/code&gt;: &lt;em&gt;not all&lt;/em&gt; population means are equal&lt;/p&gt;
 &lt;p&gt;We will use a significance level of p = 0.05.&lt;/p&gt;
 &lt;p&gt;Note the mean square error (MSE) is used to quantify variance, and this is obtained by dividing the sum of squared error (SSE) by the degrees of freedom (df).&lt;/p&gt;
 &lt;ol&gt;
