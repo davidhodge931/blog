@@ -1,12 +1,42 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>R on Simpleblog</title>
+    <title>R on simpleblog</title>
     <link>https://davidhodge931.netlify.app/categories/r/</link>
-    <description>Recent content in R on Simpleblog</description>
+    <description>Recent content in R on simpleblog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 08 May 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://davidhodge931.netlify.app/categories/r/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 18 May 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://davidhodge931.netlify.app/categories/r/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Statistics common notation</title>
+      <link>https://davidhodge931.netlify.app/2021/05/18/statistics-common-notation/</link>
+      <pubDate>Tue, 18 May 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://davidhodge931.netlify.app/2021/05/18/statistics-common-notation/</guid>
+      <description>Statistics notation is very easy in Rmarkdown.
+Below a list of common components of statistics notation for reference.
+Greek parameters
+\(\mu\)
+$\mu$ \(\alpha\)
+$\alpha$ \(\beta\)
+$\beta$ \(\gamma\)
+$\gamma$ \(\tau\)
+$\tau$ \(\sigma\)
+$\sigma$ Subscript
+\(H_0\)
+$H_0$ \(Y_{ij}\)
+$Y_{ij}$ Superscript
+\(\sigma^2\)
+$\sigma^2$ Hats and bars
+\(\hat{Y}\)
+$\hat{Y}$ \(\bar{Y}\)
+$\bar{Y}$ \(\hat{f}_i\)
+$\hat{f}_i$ Operators
+\(\ge\)
+$\ge$ \(\le\)
+$\le$ \(\neq\)</description>
+    </item>
+    
     <item>
       <title>One-way ANOVA by hand</title>
       <link>https://davidhodge931.netlify.app/2021/05/08/one-way-anova-by-hand/</link>

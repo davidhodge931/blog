@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Categories on Simpleblog</title>
+    <title>Categories on simpleblog</title>
     <link>https://davidhodge931.netlify.app/categories/</link>
-    <description>Recent content in Categories on Simpleblog</description>
+    <description>Recent content in Categories on simpleblog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 08 May 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://davidhodge931.netlify.app/categories/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 18 May 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://davidhodge931.netlify.app/categories/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>R</title>
       <link>https://davidhodge931.netlify.app/categories/r/</link>
-      <pubDate>Sat, 08 May 2021 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 18 May 2021 00:00:00 +0000</pubDate>
       
       <guid>https://davidhodge931.netlify.app/categories/r/</guid>
       <description></description>

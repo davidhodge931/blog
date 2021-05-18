@@ -1,6 +1,6 @@
 baseurl: "https://davidhodge931.netlify.app/"
 languageCode: en-us
-title: Simpleblog
+title: simpleblog
 theme: hugo-lithium
 googleAnalytics: "G-EGCQLRSZK9"
 disqusShortname: 
