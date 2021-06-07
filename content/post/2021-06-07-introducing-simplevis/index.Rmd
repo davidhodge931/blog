@@ -1,0 +1,130 @@
+---
+title: simplevis - simple ggplot2 visualisation with less brainpower and typing  
+author: 'David Hodge'
+date: '2021-06-07'
+slug: introducing-simplevis
+categories:
+  - R
+tags: []
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  message = FALSE,
+  warning = FALSE,
+  fig.height = 3.5, 
+  fig.width = 6
+)
+```
+
+### Introduction
+
+`simplevis` is a package of `ggplot2` wrapper functions that aims to make beautiful `ggplot2` visualisation with less brainpower and typing!
+
+This blog will provide an overview of: 
+
+* the visualisation family types that `simplevis` currently supports
+* how visualisation families support combinations of colouring (by a variable), facetting. both or neither.
+
+```{r}
+library(simplevis)
+library(dplyr)
+library(palmerpenguins)
+```
+
+### Visualisation family types
+
+bar
+
+```{r}
+plot_data <- storms %>%
+  group_by(year) %>%
+  summarise(wind = mean(wind))
+
+gg_bar(plot_data, year, wind)
+```
+
+point
+
+```{r}
+gg_point(iris, Sepal.Width, Sepal.Length)
+```
+
+line
+
+```{r}
+plot_data <- storms %>%
+  group_by(year) %>%
+  summarise(wind = mean(wind))
+
+gg_line(plot_data, year, wind)
+```
+
+boxplot
+
+```{r}
+gg_boxplot(storms, year, wind)
+```
+
+hbar (i.e horizontal bar)
+
+```{r, fig.height = 3}
+plot_data <- ggplot2::diamonds %>%
+  group_by(cut) %>%
+  summarise(price = mean(price))
+
+gg_hbar(plot_data, price, cut)
+```
+
+sf (short for simple features map)
+
+```{r}
+gg_sf(example_sf_point, borders = nz)
+```
+
+### Colouring, facetting, neither or both
+
+Each visualisation family generally has 4 functions.
+
+The function name specifies whether or not a visualisation is to be coloured by a variable `*_col()`, facetted by a variable `*_facet()`, neither `*()` or both of these `*_col_facet()`. 
+
+Colouring by a variable means that different values of a selected variable are to have different colours. Facetting means that different values of a selected variable are to have their facet.
+
+A `*()` function such `gg_point()` requires only a dataset, an x variable and a y variable. 
+
+```{r}
+gg_point(penguins, bill_length_mm, body_mass_g)
+```
+
+A `*_col()` function such `gg_point_col()` requires only a dataset, an x variable, a y variable, and a colour variable. 
+```{r}
+gg_point_col(penguins, bill_length_mm, body_mass_g, sex)
+```
+
+A `*_facet()` function such `gg_point_facet()` requires only a dataset, an x variable, a y variable, and a facet variable. 
+
+```{r}
+gg_point_facet(penguins, bill_length_mm, body_mass_g, species)
+```
+
+A `*_col_facet()` function such `gg_point_col_facet()` requires only a dataset, an x variable, a y variable, a colour variable, and a facet variable. 
+
+```{r}
+gg_point_col_facet(penguins, bill_length_mm, body_mass_g, sex, species)
+```
+
+Data is generally plotted with a stat of `identity`, which means data is plotted as is. Only for boxplot, there is a different default stat of boxplot, which means data will be transformed to boxplot statistics. 
+
+`_sf` functions for maps differ slightly, which is discussed further below.  
+
+### Further information
+
+More blogs to come on `simplevis` methods for adjusting colours, titles and scales, filtering out NA values, and working with `ggplotly` and `leaflet`. In the meantime, see the vignette and articles on the [simplevis website](https://statisticsnz.github.io/simplevis/).
+
+<center>
+
+![](logo.png){width=25%}
+
+</center>
