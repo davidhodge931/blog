@@ -117,8 +117,6 @@ gg_point_col_facet(penguins, bill_length_mm, body_mass_g, sex, species)
 
 Data is generally plotted with a stat of `identity`, which means data is plotted as is. Only for boxplot, there is a different default stat of boxplot, which means data will be transformed to boxplot statistics. 
 
-`_sf` functions for maps differ slightly, which is discussed further below.  
-
 ### Further information
 
 More blogs to come on `simplevis` methods for adjusting colours, titles and scales, filtering out NA values, and working with `ggplotly` and `leaflet`. In the meantime, see the vignette and articles on the [simplevis website](https://statisticsnz.github.io/simplevis/).
