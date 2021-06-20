@@ -1,0 +1,87 @@
+---
+title: Colouring with simplevis
+author: David Hodge
+date: '2021-06-20'
+slug: colouring-with-simplevis
+categories:
+  - R
+tags: []
+---
+
+
+
+<div id="overview" class="section level3">
+<h3>Overview</h3>
+<p>In the <a href="https://www.r-bloggers.com/2021/06/simplevis-simple-ggplot2-visualisation-with-less-brainpower-and-typing/">first simplevis blog post</a> about simplevis, we discussed how simplevis provides simple families of functions for when the user is colouring or facetting by a variable or both or neither. If you haven’t read that post, please read that one before this one. In the current post, we will discus the simplified and consistent method for colouring that simplevis has adopted.</p>
+<p>In simplevis, users adhere to the following rules for adjusting colour:</p>
+<ol style="list-style-type: decimal">
+<li>Always define the colours to use via the <code>pal</code> argument (short for palette)</li>
+<li>If colouring by a variable, use a <code>*_col()</code> or <code>*_col_facet()</code> function, and define the <code>col_var</code></li>
+<li>For <code>gg_sf_col*()</code> and <code>gg_point_col*()</code> functions where the <code>col_var</code> is numeric, also define the <code>col_method</code> of <code>bin</code> or <code>quantile</code>, and the <code>col_cuts</code> to use.</li>
+</ol>
+<pre class="r"><code>library(simplevis)
+library(dplyr)
+library(palmerpenguins)</code></pre>
+</div>
+<div id="always-define-the-colours-to-use-via-the-pal-argument" class="section level3">
+<h3>1. Always define the colours to use via the <code>pal</code> argument</h3>
+<p>The colour palette can be changed from the default viridis colours by providing a character vector of hex codes to the <code>pal</code> argument.</p>
+<pre class="r"><code>gg_point(penguins, bill_length_mm, body_mass_g, pal = &quot;#e7298a&quot;)</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-3-1.png" width="576" /></p>
+<p>Users can get access to a large amount of colour palettes through the <code>pals</code> package.</p>
+</div>
+<div id="if-colouring-by-a-variable-use-a-_col-or-_col_facet-function-and-define-the-col_var" class="section level3">
+<h3>2. If colouring by a variable, use a <code>*_col()</code> or <code>*_col_facet()</code> function, and define the <code>col_var</code></h3>
+<p>To colour by a variable, use a <code>*_col()</code> function and then define that variable to be coloured using the <code>col_var</code> argument.</p>
+<pre class="r"><code>gg_point_col(penguins, bill_length_mm, body_mass_g, species)</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-4-1.png" width="576" /></p>
+</div>
+<div id="for-gg_sf_col-and-gg_point_col-functions-where-colouring-by-a-numeric-variable-also-define-the-col_method-and-col_cuts" class="section level3">
+<h3>3. For <code>gg_sf_col*()</code> and <code>gg_point_col*()</code> functions where colouring by a numeric variable, also define the <code>col_method</code> and <code>col_cuts</code></h3>
+<p>All <code>simplevis</code> <code>*_col()</code> and <code>*_col_facet()</code> functions support colouring by a categorical variable.</p>
+<p>In addition, <code>sf</code> and <code>point</code> <code>*_col()</code> and <code>*_col_facet()</code> functions support colouring by a numeric variable.</p>
+<p>You do this by specifying whether you want to do this by:</p>
+<ul>
+<li>defining whether the col_method is to be by <code>bin</code> or <code>quantile</code></li>
+<li>defining a vector or col_cuts. These should be between 0 and infinity (<code>Inf</code>) for <code>bin</code> and between 0 and 1 for <code>quantile</code></li>
+</ul>
+<pre class="r"><code>plot_data &lt;- ggplot2::diamonds %&gt;% 
+  slice_sample(prop = 0.01)
+
+plot_data
+#&gt; # A tibble: 539 x 10
+#&gt;    carat cut       color clarity depth table price     x     y     z
+#&gt;    &lt;dbl&gt; &lt;ord&gt;     &lt;ord&gt; &lt;ord&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+#&gt;  1  1.01 Ideal     E     SI1      61.6    57  5206  6.44  6.49  3.98
+#&gt;  2  1.01 Very Good F     SI2      63.4    54  4270  6.42  6.39  4.06
+#&gt;  3  0.36 Premium   H     VS2      61      60   729  4.6   4.55  2.79
+#&gt;  4  1.11 Premium   D     VS2      59.5    60  6579  6.77  6.7   4.01
+#&gt;  5  1.01 Ideal     G     VS1      61.8    57  6499  6.4   6.45  3.97
+#&gt;  6  1.11 Ideal     G     VVS2     61.6    57  9507  6.7   6.74  4.14
+#&gt;  7  0.31 Ideal     D     SI1      61.8    57   533  4.33  4.37  2.69
+#&gt;  8  0.31 Ideal     H     VS2      61.7    55   507  4.34  4.38  2.69
+#&gt;  9  0.84 Very Good E     SI2      62.1    58  3125  6.02  6.09  3.76
+#&gt; 10  1.5  Very Good E     SI1      59.3    60 12247  7.4   7.5   4.42
+#&gt; # ... with 529 more rows
+
+gg_point_col(plot_data, 
+                 x_var = carat, 
+                 y_var = price, 
+                 col_var = z,
+                 col_method = &quot;quantile&quot;,
+                 col_cuts = c(0, 0.25, 0.5, 0.75, 1))</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-5-1.png" width="576" /></p>
+<pre class="r"><code>gg_point_col(plot_data, 
+                 x_var = carat, 
+                 y_var = price, 
+                 col_var = z,
+                 col_method = &quot;bin&quot;,
+                 col_cuts = c(0, 1, 2, 3, 4, 5, Inf))</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-6-1.png" width="576" /></p>
+</div>
+<div id="further-information" class="section level3">
+<h3>Further information</h3>
+<p>More blogs to come on <code>simplevis</code>. In the meantime, see the vignette and articles on the <a href="https://statisticsnz.github.io/simplevis/">simplevis website</a>.</p>
+<center>
+<p><img src="logo.png" style="width:25.0%" /></p>
+</div>
