@@ -86,7 +86,8 @@ You can use the `x_zero` and `y_zero` arguments to change the defaults.
 
 ```{r}
 gg_point_col(penguins, bill_length_mm, body_mass_g, species, 
-               x_zero = TRUE, y_zero = TRUE)
+               x_zero = TRUE, 
+               y_zero = TRUE)
 ```
 
 Adjust the number of breaks for numeric x and/or y scales.

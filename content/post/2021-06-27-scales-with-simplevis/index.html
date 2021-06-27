@@ -62,7 +62,8 @@ library(palmerpenguins)</code></pre>
 </ul>
 <p>You can use the <code>x_zero</code> and <code>y_zero</code> arguments to change the defaults.</p>
 <pre class="r"><code>gg_point_col(penguins, bill_length_mm, body_mass_g, species, 
-               x_zero = TRUE, y_zero = TRUE)</code></pre>
+               x_zero = TRUE, 
+               y_zero = TRUE)</code></pre>
 <p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-5-1.png" width="576" /></p>
 <p>Adjust the number of breaks for numeric x and/or y scales.</p>
 <pre class="r"><code>gg_point_col(penguins, bill_length_mm, body_mass_g, species, 
