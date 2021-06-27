@@ -245,7 +245,7 @@ gg_point_col_facet(penguins, bill_length_mm, body_mass_g, sex, sex,
 
 ### NA values
 
-You can quickly remove NA values by setting `x_na`, `y_na`, `col_na` or `facet_na` arguments to FALSE.
+You can quickly remove NA values by setting `x_na`, `y_na`, `col_na` or `facet_na` arguments to `FALSE`.
 
 ```{r}
 gg_point_col_facet(penguins, bill_length_mm, body_mass_g, sex, species, 
