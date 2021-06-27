@@ -1,0 +1,278 @@
+---
+title: simplevis - simple methods to adjust titles and scales
+author: 'David Hodge'
+date: '2021-06-27'
+slug: scales-with-simplevis
+categories:
+  - R
+tags: []
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  message = FALSE,
+  warning = FALSE,
+  fig.height = 3.5, 
+  fig.width = 6
+)
+```
+
+```{r}
+library(simplevis)
+library(dplyr)
+library(palmerpenguins)
+```
+
+### Overview
+
+`simplevis` provides `gglot2` (and `leaflet`) wrapper functions with an objective to help users make beautiful visualisation with less brainpower and typing.
+
+In the [first simplevis blog post](https://www.r-bloggers.com/2021/06/simplevis-simple-ggplot2-visualisation-with-less-brainpower-and-typing/), we discussed how `simplevis` provides families of functions for when the user is colouring or facetting by a variable or both or neither. 
+
+If you haven't read that post, please read that one before this one. 
+
+In the [2nd simplevis blog post](https://www.r-bloggers.com/2021/06/simplevis-simple-methods-for-adding-colour-to-visualisations/), we discussed how colouring works with `simplevis`. 
+
+In the current post, we discus how to adjust titles and scales within `simplevis`. 
+
+### Titles
+
+Default titles in `simplevis` try to provide a polished quick graph with minimal code by:
+
+* having no title, subtitle or caption 
+* converting x, y and colour titles to sentence case using the `snakecase::to_sentence_case` function.
+
+```{r}
+gg_point_col(penguins, bill_length_mm, body_mass_g, species)
+```
+
+You can add or adjust titles using the `title`, `subtitle`, `x_title`, `y_title`, `col_title` and `caption` arguments. 
+
+```{r}
+gg_point_col(penguins, bill_length_mm, body_mass_g, species, 
+             title = "Adult penguin mass by bill length and species",
+             subtitle = "Palmer station, Antarctica",
+             x_title = "Bill length (mm)", 
+             y_title = "Body mass (g)",
+             col_title = "Penguin species",
+             caption = "Source: Gorman KB, Williams TD, Fraser WR (2014)")
+```
+
+If you want no x, y or colour title, you need to use `x_title = ""`, `y_title = ""` or `col_title = ""` as applicable.
+
+```{r}
+gg_point_col(penguins, bill_length_mm, body_mass_g, species, 
+             x_title = "")
+```
+
+### Scales: consistent prefixes and the autocomplete
+
+`simplevis` uses consistent prefixes in arguments to help users narrow down what they are looking for and then enable the Rstudio auto-complete to provide options.
+
+In general, arguments that relate to:
+
+* the x scale start with `x_` 
+* the y scale start with `y_` 
+* the colour scale start with `col_`
+* facetting start with `facet_`
+
+Therefore, if you know want to adjust the x scale but can't think how, you can start typing `x_` within the `simplevis` function, press tab, and then you will be presented with a lot of options. You can use the arrow keys to scroll through these, and the tab to select.
+
+### Numeric scales
+
+`simplevis` graphs numeric scales default to:
+
+* starting from zero for numeric scales on bar graphs. 
+* <i>not</i> starting from zero for numeric scales on all other graphs. 
+
+You can use the `x_zero` and `y_zero` arguments to change the defaults.
+
+```{r}
+gg_point_col(penguins, bill_length_mm, body_mass_g, species, 
+               y_zero = TRUE)
+```
+
+```{r}
+gg_point_col(penguins, bill_length_mm, body_mass_g, species, 
+               x_zero = TRUE, y_zero = TRUE)
+```
+
+Adjust the number of breaks for numeric x and/or y scales.
+
+```{r}
+gg_point_col(penguins, bill_length_mm, body_mass_g, species, 
+               y_pretty_n = 10,
+               x_pretty_n = 6)
+```
+
+Transform numeric x and y scales.
+
+```{r}
+gg_point_col(penguins, bill_length_mm, body_mass_g, species, 
+               x_trans = "sqrt", x_zero = T,
+               y_trans = "log10")
+```
+
+Balance a numeric scale so that it has equivalence between positive and negative values.
+
+```{r}
+gg_point_col(penguins, bill_length_mm, body_mass_g, species, y_balance = T)
+```
+
+Zero lines default on if a numeric scale includes positive and negative values, but can be turned off if desired.
+
+```{r}
+gg_point_col(penguins, bill_length_mm, body_mass_g, species, y_balance = T, y_zero_line = F)
+```
+
+### Discrete scales
+
+`simplevis` automatically orders hbar graphs of character variables alphabetically.
+
+```{r}
+plot_data <- ggplot2::diamonds %>%
+  mutate(cut = as.character(cut)) %>% 
+  group_by(cut) %>%
+  summarise(price = mean(price)) 
+  
+gg_hbar(plot_data, price, cut)
+
+```
+
+If there is an inherent order to the character variable that you want it to plot in, then you should convert the variable to a factor, and give it the appropriate levels. 
+
+```{r}
+cut_levels <-  c("Fair", "Good", "Very Good", "Premium", "Ideal")
+
+plot_data <- ggplot2::diamonds %>%
+  mutate(cut = as.character(cut)) %>%
+   mutate(cut = factor(cut, levels = cut_levels)) %>% 
+  group_by(cut) %>%
+  summarise(price = mean(price)) 
+
+gg_hbar(plot_data, price, cut)
+```
+
+Discrete scales can be reversed easily using the relevant `y_rev` or `x_rev` argument. 
+
+```{r}
+plot_data <- ggplot2::diamonds %>%
+  mutate(cut = as.character(cut)) %>% 
+  group_by(cut) %>%
+  summarise(price = mean(price)) 
+
+gg_hbar(plot_data, price, cut,
+            y_rev = TRUE)
+```
+
+Simple hbar and vbar plots made with `gg_bar()` or `gg_hbar` can be ordered by size using y_reorder or x_reorder. For other functions, you will need to reorder variables in the data as you wish them to be ordered.
+
+```{r}
+plot_data <- ggplot2::diamonds %>%
+  mutate(cut = as.character(cut)) %>% 
+  group_by(cut) %>%
+  summarise(price = mean(price)) 
+  
+gg_hbar(plot_data, price, cut, y_reorder = T)
+```
+
+### Colour scales
+
+Customise the colour title. Note that because colour labels will be converted to sentence case by default in simplevis, but we can turn this off when we do not want this to occur using `ggplot2::waiver()`
+
+```{r}
+plot_data <- ggplot2::diamonds %>%
+  group_by(cut, clarity) %>%
+  summarise(average_price = mean(price))
+
+gg_hbar_col(plot_data, average_price, cut, clarity,
+            col_labels = ggplot2::waiver(), 
+            pal_rev = TRUE)
+```
+
+Reverse the palette.
+
+```{r}
+plot_data <- ggplot2::diamonds %>%
+  group_by(cut, clarity) %>%
+  summarise(average_price = mean(price))
+
+gg_hbar_col(plot_data, average_price, cut, clarity,
+            col_labels = ggplot2::waiver(), 
+            pal_rev = TRUE)
+
+```
+
+Reverse the order of coloured bars.
+
+```{r}
+plot_data <- ggplot2::diamonds %>%
+  group_by(cut, clarity) %>%
+  summarise(average_price = mean(price))
+
+gg_hbar_col(plot_data, average_price, cut, clarity,
+            col_labels = ggplot2::waiver(), 
+            col_rev = TRUE)
+```
+
+### Labels
+
+You can adjust x, y or colour scale labels using `x_labels`, `y_labels` or `col_labels` arguments, and functions from the `scales` package. 
+
+```{r}
+gg_point_col(penguins, bill_length_mm, body_mass_g, species, 
+                   y_labels = scales::comma_format(), 
+                   x_labels = scales::number_format(accuracy = 0.1))
+```
+
+Or via a function.
+
+```{r}
+gg_point_col(penguins, bill_length_mm, body_mass_g, species, 
+                   x_labels = function(x) glue::glue("{x} mm"))
+```
+
+Note there is a default sentence case transformation for categorical x, y or col variables. But you can use `ggplot2::waiver()` to turn this off. 
+
+The `facet_labels` argument works slightly differently in that it provides access to the ggplot2 `labeller` argument within the ggplot `facet_wrap` function. Therefore you need to use ggplot labeller functions to modify them.
+
+Notice with the default transformation turned off, the `sex` variable returns to being lower case as it is in the `penguins` dataset.
+
+```{r}
+gg_point_col_facet(penguins, bill_length_mm, body_mass_g, sex, sex, 
+  col_labels = ggplot2::waiver(),
+  facet_labels = ggplot2::label_value) 
+
+```
+
+### NA values
+
+You can quickly remove NA values by setting `x_na`, `y_na`, `col_na` or `facet_na` arguments to FALSE.
+
+```{r}
+gg_point_col_facet(penguins, bill_length_mm, body_mass_g, sex, species, col_na = F)
+```
+
+### Expanding the scale
+
+To expand the scale use `x_expand` and `y_expand` arguments with the `ggplot2::expansion` function, which allows to expand in either or both directions of both x and y in an additive or multiplative way. 
+
+```{r}
+plot_data <- storms %>%
+  group_by(year) %>%
+  summarise(wind = mean(wind))
+
+gg_line(plot_data, year, wind, 
+        x_expand = ggplot2::expansion(add = c(0, 5)),
+        y_expand = ggplot2::expansion(mult = c(0, 0.025)))
+```
+
+### Further information
+
+More blogs to come on `simplevis`. In the meantime, see the vignette and articles on the [simplevis website](https://statisticsnz.github.io/simplevis/).
+
+<center>
+
+![](logo.png){width=25%}

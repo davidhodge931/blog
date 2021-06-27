@@ -1,0 +1,201 @@
+---
+title: simplevis - simple methods to adjust titles and scales
+author: 'David Hodge'
+date: '2021-06-27'
+slug: scales-with-simplevis
+categories:
+  - R
+tags: []
+---
+
+
+
+<pre class="r"><code>library(simplevis)
+library(dplyr)
+library(palmerpenguins)</code></pre>
+<div id="overview" class="section level3">
+<h3>Overview</h3>
+<p><code>simplevis</code> provides <code>gglot2</code> (and <code>leaflet</code>) wrapper functions with an objective to help users make beautiful visualisation with less brainpower and typing.</p>
+<p>In the <a href="https://www.r-bloggers.com/2021/06/simplevis-simple-ggplot2-visualisation-with-less-brainpower-and-typing/">first simplevis blog post</a>, we discussed how <code>simplevis</code> provides families of functions for when the user is colouring or facetting by a variable or both or neither.</p>
+<p>If you haven’t read that post, please read that one before this one.</p>
+<p>In the <a href="https://www.r-bloggers.com/2021/06/simplevis-simple-methods-for-adding-colour-to-visualisations/">2nd simplevis blog post</a>, we discussed how colouring works with <code>simplevis</code>.</p>
+<p>In the current post, we discus how to adjust titles and scales within <code>simplevis</code>.</p>
+</div>
+<div id="titles" class="section level3">
+<h3>Titles</h3>
+<p>Default titles in <code>simplevis</code> try to provide a polished quick graph with minimal code by:</p>
+<ul>
+<li>having no title, subtitle or caption</li>
+<li>converting x, y and colour titles to sentence case using the <code>snakecase::to_sentence_case</code> function.</li>
+</ul>
+<pre class="r"><code>gg_point_col(penguins, bill_length_mm, body_mass_g, species)</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-3-1.png" width="576" /></p>
+<p>You can add or adjust titles using the <code>title</code>, <code>subtitle</code>, <code>x_title</code>, <code>y_title</code>, <code>col_title</code> and <code>caption</code> arguments.</p>
+<pre class="r"><code>gg_point_col(penguins, bill_length_mm, body_mass_g, species, 
+             title = &quot;Adult penguin mass by bill length and species&quot;,
+             subtitle = &quot;Palmer station, Antarctica&quot;,
+             x_title = &quot;Bill length (mm)&quot;, 
+             y_title = &quot;Body mass (g)&quot;,
+             col_title = &quot;Penguin species&quot;,
+             caption = &quot;Source: Gorman KB, Williams TD, Fraser WR (2014)&quot;)</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-4-1.png" width="576" /></p>
+<p>If you want no x, y or colour title, you need to use <code>x_title = ""</code>, <code>y_title = ""</code> or <code>col_title = ""</code> as applicable.</p>
+<pre class="r"><code>gg_point_col(penguins, bill_length_mm, body_mass_g, species, 
+             x_title = &quot;&quot;)</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-5-1.png" width="576" /></p>
+</div>
+<div id="scales-consistent-prefixes-and-the-autocomplete" class="section level3">
+<h3>Scales: consistent prefixes and the autocomplete</h3>
+<p><code>simplevis</code> uses consistent prefixes in arguments to help users narrow down what they are looking for and then enable the Rstudio auto-complete to provide options.</p>
+<p>In general, arguments that relate to:</p>
+<ul>
+<li>the x scale start with <code>x_</code></li>
+<li>the y scale start with <code>y_</code></li>
+<li>the colour scale start with <code>col_</code></li>
+<li>facetting start with <code>facet_</code></li>
+</ul>
+<p>Therefore, if you know want to adjust the x scale but can’t think how, you can start typing <code>x_</code> within the <code>simplevis</code> function, press tab, and then you will be presented with a lot of options. You can use the arrow keys to scroll through these, and the tab to select.</p>
+</div>
+<div id="numeric-scales" class="section level3">
+<h3>Numeric scales</h3>
+<p><code>simplevis</code> graphs numeric scales default to:</p>
+<ul>
+<li>starting from zero for numeric scales on bar graphs.</li>
+<li><i>not</i> starting from zero for numeric scales on all other graphs.</li>
+</ul>
+<p>You can use the <code>x_zero</code> and <code>y_zero</code> arguments to change the defaults.</p>
+<pre class="r"><code>gg_point_col(penguins, bill_length_mm, body_mass_g, species, 
+               y_zero = TRUE)</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-6-1.png" width="576" /></p>
+<pre class="r"><code>gg_point_col(penguins, bill_length_mm, body_mass_g, species, 
+               x_zero = TRUE, y_zero = TRUE)</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-7-1.png" width="576" /></p>
+<p>Adjust the number of breaks for numeric x and/or y scales.</p>
+<pre class="r"><code>gg_point_col(penguins, bill_length_mm, body_mass_g, species, 
+               y_pretty_n = 10,
+               x_pretty_n = 6)</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-8-1.png" width="576" /></p>
+<p>Transform numeric x and y scales.</p>
+<pre class="r"><code>gg_point_col(penguins, bill_length_mm, body_mass_g, species, 
+               x_trans = &quot;sqrt&quot;, x_zero = T,
+               y_trans = &quot;log10&quot;)</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-9-1.png" width="576" /></p>
+<p>Balance a numeric scale so that it has equivalence between positive and negative values.</p>
+<pre class="r"><code>gg_point_col(penguins, bill_length_mm, body_mass_g, species, y_balance = T)</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-10-1.png" width="576" /></p>
+<p>Zero lines default on if a numeric scale includes positive and negative values, but can be turned off if desired.</p>
+<pre class="r"><code>gg_point_col(penguins, bill_length_mm, body_mass_g, species, y_balance = T, y_zero_line = F)</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-11-1.png" width="576" /></p>
+</div>
+<div id="discrete-scales" class="section level3">
+<h3>Discrete scales</h3>
+<p><code>simplevis</code> automatically orders hbar graphs of character variables alphabetically.</p>
+<pre class="r"><code>plot_data &lt;- ggplot2::diamonds %&gt;%
+  mutate(cut = as.character(cut)) %&gt;% 
+  group_by(cut) %&gt;%
+  summarise(price = mean(price)) 
+  
+gg_hbar(plot_data, price, cut)</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-12-1.png" width="576" /></p>
+<p>If there is an inherent order to the character variable that you want it to plot in, then you should convert the variable to a factor, and give it the appropriate levels.</p>
+<pre class="r"><code>cut_levels &lt;-  c(&quot;Fair&quot;, &quot;Good&quot;, &quot;Very Good&quot;, &quot;Premium&quot;, &quot;Ideal&quot;)
+
+plot_data &lt;- ggplot2::diamonds %&gt;%
+  mutate(cut = as.character(cut)) %&gt;%
+   mutate(cut = factor(cut, levels = cut_levels)) %&gt;% 
+  group_by(cut) %&gt;%
+  summarise(price = mean(price)) 
+
+gg_hbar(plot_data, price, cut)</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-13-1.png" width="576" /></p>
+<p>Discrete scales can be reversed easily using the relevant <code>y_rev</code> or <code>x_rev</code> argument.</p>
+<pre class="r"><code>plot_data &lt;- ggplot2::diamonds %&gt;%
+  mutate(cut = as.character(cut)) %&gt;% 
+  group_by(cut) %&gt;%
+  summarise(price = mean(price)) 
+
+gg_hbar(plot_data, price, cut,
+            y_rev = TRUE)</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-14-1.png" width="576" /></p>
+<p>Simple hbar and vbar plots made with <code>gg_bar()</code> or <code>gg_hbar</code> can be ordered by size using y_reorder or x_reorder. For other functions, you will need to reorder variables in the data as you wish them to be ordered.</p>
+<pre class="r"><code>plot_data &lt;- ggplot2::diamonds %&gt;%
+  mutate(cut = as.character(cut)) %&gt;% 
+  group_by(cut) %&gt;%
+  summarise(price = mean(price)) 
+  
+gg_hbar(plot_data, price, cut, y_reorder = T)</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-15-1.png" width="576" /></p>
+</div>
+<div id="colour-scales" class="section level3">
+<h3>Colour scales</h3>
+<p>Customise the colour title. Note that because colour labels will be converted to sentence case by default in simplevis, but we can turn this off when we do not want this to occur using <code>ggplot2::waiver()</code></p>
+<pre class="r"><code>plot_data &lt;- ggplot2::diamonds %&gt;%
+  group_by(cut, clarity) %&gt;%
+  summarise(average_price = mean(price))
+
+gg_hbar_col(plot_data, average_price, cut, clarity,
+            col_labels = ggplot2::waiver(), 
+            pal_rev = TRUE)</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-16-1.png" width="576" /></p>
+<p>Reverse the palette.</p>
+<pre class="r"><code>plot_data &lt;- ggplot2::diamonds %&gt;%
+  group_by(cut, clarity) %&gt;%
+  summarise(average_price = mean(price))
+
+gg_hbar_col(plot_data, average_price, cut, clarity,
+            col_labels = ggplot2::waiver(), 
+            pal_rev = TRUE)</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-17-1.png" width="576" /></p>
+<p>Reverse the order of coloured bars.</p>
+<pre class="r"><code>plot_data &lt;- ggplot2::diamonds %&gt;%
+  group_by(cut, clarity) %&gt;%
+  summarise(average_price = mean(price))
+
+gg_hbar_col(plot_data, average_price, cut, clarity,
+            col_labels = ggplot2::waiver(), 
+            col_rev = TRUE)</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-18-1.png" width="576" /></p>
+</div>
+<div id="labels" class="section level3">
+<h3>Labels</h3>
+<p>You can adjust x, y or colour scale labels using <code>x_labels</code>, <code>y_labels</code> or <code>col_labels</code> arguments, and functions from the <code>scales</code> package.</p>
+<pre class="r"><code>gg_point_col(penguins, bill_length_mm, body_mass_g, species, 
+                   y_labels = scales::comma_format(), 
+                   x_labels = scales::number_format(accuracy = 0.1))</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-19-1.png" width="576" /></p>
+<p>Or via a function.</p>
+<pre class="r"><code>gg_point_col(penguins, bill_length_mm, body_mass_g, species, 
+                   x_labels = function(x) glue::glue(&quot;{x} mm&quot;))</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-20-1.png" width="576" /></p>
+<p>Note there is a default sentence case transformation for categorical x, y or col variables. But you can use <code>ggplot2::waiver()</code> to turn this off.</p>
+<p>The <code>facet_labels</code> argument works slightly differently in that it provides access to the ggplot2 <code>labeller</code> argument within the ggplot <code>facet_wrap</code> function. Therefore you need to use ggplot labeller functions to modify them.</p>
+<p>Notice with the default transformation turned off, the <code>sex</code> variable returns to being lower case as it is in the <code>penguins</code> dataset.</p>
+<pre class="r"><code>gg_point_col_facet(penguins, bill_length_mm, body_mass_g, sex, sex, 
+  col_labels = ggplot2::waiver(),
+  facet_labels = ggplot2::label_value) </code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-21-1.png" width="576" /></p>
+</div>
+<div id="na-values" class="section level3">
+<h3>NA values</h3>
+<p>You can quickly remove NA values by setting <code>x_na</code>, <code>y_na</code>, <code>col_na</code> or <code>facet_na</code> arguments to FALSE.</p>
+<pre class="r"><code>gg_point_col_facet(penguins, bill_length_mm, body_mass_g, sex, species, col_na = F)</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-22-1.png" width="576" /></p>
+</div>
+<div id="expanding-the-scale" class="section level3">
+<h3>Expanding the scale</h3>
+<p>To expand the scale use <code>x_expand</code> and <code>y_expand</code> arguments with the <code>ggplot2::expansion</code> function, which allows to expand in either or both directions of both x and y in an additive or multiplative way.</p>
+<pre class="r"><code>plot_data &lt;- storms %&gt;%
+  group_by(year) %&gt;%
+  summarise(wind = mean(wind))
+
+gg_line(plot_data, year, wind, 
+        x_expand = ggplot2::expansion(add = c(0, 5)),
+        y_expand = ggplot2::expansion(mult = c(0, 0.025)))</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-23-1.png" width="576" /></p>
+</div>
+<div id="further-information" class="section level3">
+<h3>Further information</h3>
+<p>More blogs to come on <code>simplevis</code>. In the meantime, see the vignette and articles on the <a href="https://statisticsnz.github.io/simplevis/">simplevis website</a>.</p>
+<center>
+<p><img src="logo.png" style="width:25.0%" /></p>
+</div>
