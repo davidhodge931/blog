@@ -104,8 +104,7 @@ Transform numeric x and y scales.
 gg_point_col(penguins, bill_length_mm, body_mass_g, species, 
                x_trans = "sqrt", 
                x_zero = T,
-               y_trans = "log10", 
-               y_zero = T)
+               y_trans = "log10")
 ```
 
 Balance a numeric scale so that it has equivalence between positive and negative values.

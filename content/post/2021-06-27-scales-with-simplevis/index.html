@@ -74,8 +74,7 @@ library(palmerpenguins)</code></pre>
 <pre class="r"><code>gg_point_col(penguins, bill_length_mm, body_mass_g, species, 
                x_trans = &quot;sqrt&quot;, 
                x_zero = T,
-               y_trans = &quot;log10&quot;, 
-               y_zero = T)</code></pre>
+               y_trans = &quot;log10&quot;)</code></pre>
 <p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-7-1.png" width="576" /></p>
 <p>Balance a numeric scale so that it has equivalence between positive and negative values.</p>
 <pre class="r"><code>gg_point_col(penguins, bill_length_mm, body_mass_g, species, 
