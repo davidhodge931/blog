@@ -92,7 +92,7 @@ library(palmerpenguins)</code></pre>
 gg_hbar(plot_data, price, cut)</code></pre>
 <p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-10-1.png" width="576" /></p>
 <p>If there is an inherent order to the character variable that you want it to plot in, then you should convert the variable to a factor, and give it the appropriate levels.</p>
-<pre class="r"><code>cut_levels &lt;-  c(&quot;Fair&quot;, &quot;Good&quot;, &quot;Very Good&quot;, &quot;Premium&quot;, &quot;Ideal&quot;)
+<pre class="r"><code>cut_levels &lt;-  c(&quot;Ideal&quot;, &quot;Premium&quot;, &quot;Very Good&quot;, &quot;Good&quot;, &quot;Fair&quot;)
 
 plot_data &lt;- ggplot2::diamonds %&gt;%
   mutate(cut = as.character(cut)) %&gt;%
