@@ -71,14 +71,19 @@ library(palmerpenguins)</code></pre>
 <p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-6-1.png" width="576" /></p>
 <p>Transform numeric x and y scales.</p>
 <pre class="r"><code>gg_point_col(penguins, bill_length_mm, body_mass_g, species, 
-               x_trans = &quot;sqrt&quot;, x_zero = T,
-               y_trans = &quot;log10&quot;)</code></pre>
+               x_trans = &quot;sqrt&quot;, 
+               x_zero = T,
+               y_trans = &quot;log10&quot;, 
+               y_zero = T)</code></pre>
 <p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-7-1.png" width="576" /></p>
 <p>Balance a numeric scale so that it has equivalence between positive and negative values.</p>
-<pre class="r"><code>gg_point_col(penguins, bill_length_mm, body_mass_g, species, y_balance = T)</code></pre>
+<pre class="r"><code>gg_point_col(penguins, bill_length_mm, body_mass_g, species, 
+             y_balance = T)</code></pre>
 <p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-8-1.png" width="576" /></p>
 <p>Zero lines default on if a numeric scale includes positive and negative values, but can be turned off if desired.</p>
-<pre class="r"><code>gg_point_col(penguins, bill_length_mm, body_mass_g, species, y_balance = T, y_zero_line = F)</code></pre>
+<pre class="r"><code>gg_point_col(penguins, bill_length_mm, body_mass_g, species, 
+             y_balance = T, 
+             y_zero_line = F)</code></pre>
 <p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-9-1.png" width="576" /></p>
 </div>
 <div id="discrete-scales" class="section level3">
@@ -117,7 +122,8 @@ gg_hbar(plot_data, price, cut,
   group_by(cut) %&gt;%
   summarise(price = mean(price)) 
   
-gg_hbar(plot_data, price, cut, y_reorder = T)</code></pre>
+gg_hbar(plot_data, price, cut, 
+        y_reorder = T)</code></pre>
 <p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-13-1.png" width="576" /></p>
 </div>
 <div id="colour-scales" class="section level3">
@@ -172,7 +178,8 @@ gg_hbar_col(plot_data, average_price, cut, clarity,
 <div id="na-values" class="section level3">
 <h3>NA values</h3>
 <p>You can quickly remove NA values by setting <code>x_na</code>, <code>y_na</code>, <code>col_na</code> or <code>facet_na</code> arguments to FALSE.</p>
-<pre class="r"><code>gg_point_col_facet(penguins, bill_length_mm, body_mass_g, sex, species, col_na = F)</code></pre>
+<pre class="r"><code>gg_point_col_facet(penguins, bill_length_mm, body_mass_g, sex, species, 
+                   col_na = F)</code></pre>
 <p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-20-1.png" width="576" /></p>
 </div>
 <div id="expanding-the-scale" class="section level3">

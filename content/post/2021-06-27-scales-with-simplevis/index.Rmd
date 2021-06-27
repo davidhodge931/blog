@@ -101,20 +101,25 @@ Transform numeric x and y scales.
 
 ```{r}
 gg_point_col(penguins, bill_length_mm, body_mass_g, species, 
-               x_trans = "sqrt", x_zero = T,
-               y_trans = "log10")
+               x_trans = "sqrt", 
+               x_zero = T,
+               y_trans = "log10", 
+               y_zero = T)
 ```
 
 Balance a numeric scale so that it has equivalence between positive and negative values.
 
 ```{r}
-gg_point_col(penguins, bill_length_mm, body_mass_g, species, y_balance = T)
+gg_point_col(penguins, bill_length_mm, body_mass_g, species, 
+             y_balance = T)
 ```
 
 Zero lines default on if a numeric scale includes positive and negative values, but can be turned off if desired.
 
 ```{r}
-gg_point_col(penguins, bill_length_mm, body_mass_g, species, y_balance = T, y_zero_line = F)
+gg_point_col(penguins, bill_length_mm, body_mass_g, species, 
+             y_balance = T, 
+             y_zero_line = F)
 ```
 
 ### Discrete scales
@@ -165,7 +170,8 @@ plot_data <- ggplot2::diamonds %>%
   group_by(cut) %>%
   summarise(price = mean(price)) 
   
-gg_hbar(plot_data, price, cut, y_reorder = T)
+gg_hbar(plot_data, price, cut, 
+        y_reorder = T)
 ```
 
 ### Colour scales
@@ -242,7 +248,8 @@ gg_point_col_facet(penguins, bill_length_mm, body_mass_g, sex, sex,
 You can quickly remove NA values by setting `x_na`, `y_na`, `col_na` or `facet_na` arguments to FALSE.
 
 ```{r}
-gg_point_col_facet(penguins, bill_length_mm, body_mass_g, sex, species, col_na = F)
+gg_point_col_facet(penguins, bill_length_mm, body_mass_g, sex, species, 
+                   col_na = F)
 ```
 
 ### Expanding the scale
