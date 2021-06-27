@@ -62,11 +62,6 @@ gg_point_col(penguins, bill_length_mm, body_mass_g, species,
 
 If you want no x, y or colour title, you need to use `x_title = ""`, `y_title = ""` or `col_title = ""` as applicable.
 
-```{r}
-gg_point_col(penguins, bill_length_mm, body_mass_g, species, 
-             x_title = "")
-```
-
 ### Scales: consistent prefixes and the autocomplete
 
 `simplevis` uses consistent prefixes in arguments to help users narrow down what they are looking for and then enable the Rstudio auto-complete to provide options.
