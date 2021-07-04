@@ -1,5 +1,5 @@
 ---
-title: 'simplevis: making interactive plots with plotly::ggplotly'
+title: 'simplevis: interactive plots with plotly::ggplotly'
 author: 'David Hodge'
 date: '2021-07-04'
 slug: simplevis-making-interactive-plots-with-plotly-ggplotly

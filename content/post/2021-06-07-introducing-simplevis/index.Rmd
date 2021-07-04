@@ -1,5 +1,5 @@
 ---
-title: simplevis - simple ggplot2 visualisation with less brainpower and typing  
+title: 'simplevis: visualisation made easier'  
 author: 'David Hodge'
 date: '2021-06-07'
 slug: introducing-simplevis

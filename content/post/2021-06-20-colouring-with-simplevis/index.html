@@ -1,6 +1,6 @@
 ---
-title: simplevis - simple methods for adding colour to visualisations
-author: David Hodge
+title: 'simplevis: colouring visualisation'
+author: 'David Hodge'
 date: '2021-06-20'
 slug: colouring-with-simplevis
 categories:
@@ -52,16 +52,16 @@ plot_data
 #&gt; # A tibble: 539 x 10
 #&gt;    carat cut       color clarity depth table price     x     y     z
 #&gt;    &lt;dbl&gt; &lt;ord&gt;     &lt;ord&gt; &lt;ord&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-#&gt;  1  1.22 Ideal     E     VS1      62.4    54 10622  6.77  6.88  4.26
-#&gt;  2  0.56 Premium   D     SI1      61      60  1605  5.28  5.25  3.21
-#&gt;  3  0.33 Very Good E     VS1      58.3    62   886  4.49  4.57  2.64
-#&gt;  4  0.52 Premium   D     SI1      61.5    55  1651  5.21  5.19  3.2 
-#&gt;  5  1.02 Very Good F     VS1      62.8    58  7539  6.4   6.44  4.03
-#&gt;  6  1.52 Good      F     VS2      64.2    59 11696  7.16  7.2   4.61
-#&gt;  7  0.37 Ideal     F     VS1      61.1    56   846  4.64  4.65  2.84
-#&gt;  8  0.83 Ideal     G     VS1      62.1    55  4989  6.02  6.05  3.75
-#&gt;  9  0.32 Ideal     F     VS1      61.6    57   716  4.39  4.42  2.71
-#&gt; 10  1.06 Premium   D     SI2      61.6    61  4903  6.59  6.53  4.04
+#&gt;  1  0.72 Very Good H     SI1      60.3  55    2505  5.84  5.85  3.52
+#&gt;  2  0.3  Very Good F     VS2      62.8  58     605  4.24  4.29  2.68
+#&gt;  3  0.7  Ideal     G     VS1      60.6  57    2512  5.7   5.75  3.47
+#&gt;  4  1.54 Ideal     I     VS2      61.9  55.8  9998  7.38  7.43  4.58
+#&gt;  5  0.34 Ideal     H     VVS2     60.9  55     652  4.52  4.54  2.75
+#&gt;  6  0.33 Ideal     G     VVS2     61.7  55     752  4.42  4.46  2.74
+#&gt;  7  0.3  Ideal     F     VS2      62.8  56     776  4.31  4.29  2.7 
+#&gt;  8  1.21 Ideal     E     IF       61.8  56   17353  6.81  6.88  4.23
+#&gt;  9  0.56 Good      E     VS2      62.3  63    1920  5.22  5.27  3.27
+#&gt; 10  1.25 Premium   J     VS1      62    58    5500  6.89  6.92  4.28
 #&gt; # ... with 529 more rows
 
 gg_point_col(plot_data, 
