@@ -134,7 +134,8 @@ plot_data <- penguins %>%
 plot <- ggplot(plot_data) +
   geom_point(aes(x = bill_length_mm, 
                  y = body_mass_g, 
-                 col = species, text = text))
+                 col = species, 
+                 text = text))
 
 plotly::ggplotly(plot, tooltip = "text") %>% 
   plotly_camera()
