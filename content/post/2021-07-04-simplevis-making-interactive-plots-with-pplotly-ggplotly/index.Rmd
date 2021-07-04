@@ -123,6 +123,20 @@ plotly::ggplotly(plot, tooltip = "text") %>%
   plotly_camera()
 ```
 
+You can also use this method if you were using `ggplot2`.
+
+```{r}
+library(ggplot2)
+
+plot_data <- penguins %>% 
+  mutate_text()
+
+plot <- ggplot(plot_data) +
+  geom_point(aes(x = bill_length_mm, y = body_mass_g, col = species, text = text))
+
+plotly::ggplotly(plot, tooltip = "text") %>% 
+  plotly_camera()
+```
 
 ### Further information
 
