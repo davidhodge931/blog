@@ -1,5 +1,5 @@
 ---
-title: 'simplevis: colouring visualisation'
+title: 'simplevis: working with colour'
 author: 'David Hodge'
 date: '2021-06-20'
 slug: colouring-with-simplevis

@@ -1,12 +1,57 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on simpleblog</title>
+    <title>Posts on David Hodge</title>
     <link>https://davidhodge931.netlify.app/post/</link>
-    <description>Recent content in Posts on simpleblog</description>
+    <description>Recent content in Posts on David Hodge</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 18 May 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://davidhodge931.netlify.app/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 04 Jul 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://davidhodge931.netlify.app/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>simplevis: interactive plots with plotly::ggplotly</title>
+      <link>https://davidhodge931.netlify.app/2021/07/04/simplevis-making-interactive-plots-with-plotly-ggplotly/</link>
+      <pubDate>Sun, 04 Jul 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://davidhodge931.netlify.app/2021/07/04/simplevis-making-interactive-plots-with-plotly-ggplotly/</guid>
+      <description>library(simplevis)library(dplyr)library(palmerpenguins)Introductionsimplevis provides gglot2 (and leaflet) wrapper functions to make it easier to make beautiful visualisation with less brainpower required.
+In the first simplevis blog post, we discussed how simplevis provides families of functions for when the user is colouring or facetting by a variable or both or neither.
+In the 2nd simplevis blog post, we discussed how colouring works with simplevis.</description>
+    </item>
+    
+    <item>
+      <title>simplevis: adjusting titles and scales</title>
+      <link>https://davidhodge931.netlify.app/2021/06/27/scales-with-simplevis/</link>
+      <pubDate>Sun, 27 Jun 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://davidhodge931.netlify.app/2021/06/27/scales-with-simplevis/</guid>
+      <description>library(simplevis)library(dplyr)library(palmerpenguins)Overviewsimplevis provides gglot2 (and leaflet) wrapper functions with an objective to help users make beautiful visualisation with less brainpower and typing.
+In the first simplevis blog post, we discussed how simplevis provides families of functions for when the user is colouring or facetting by a variable or both or neither.
+If you haven’t read that post, please read that one before this one.
+In the 2nd simplevis blog post, we discussed how colouring works with simplevis.</description>
+    </item>
+    
+    <item>
+      <title>simplevis: colouring visualisation</title>
+      <link>https://davidhodge931.netlify.app/2021/06/20/colouring-with-simplevis/</link>
+      <pubDate>Sun, 20 Jun 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://davidhodge931.netlify.app/2021/06/20/colouring-with-simplevis/</guid>
+      <description>OverviewIn the first simplevis blog post about simplevis, we discussed how simplevis provides simple families of functions for when the user is colouring or facetting by a variable or both or neither. If you haven’t read that post, please read that one before this one. In the current post, we will discus the simplified and consistent method for colouring that simplevis has adopted.
+In simplevis, users adhere to the following rules for adjusting colour:</description>
+    </item>
+    
+    <item>
+      <title>simplevis: visualisation made easier</title>
+      <link>https://davidhodge931.netlify.app/2021/06/07/introducing-simplevis/</link>
+      <pubDate>Mon, 07 Jun 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://davidhodge931.netlify.app/2021/06/07/introducing-simplevis/</guid>
+      <description>Introductionsimplevis is a package of ggplot2 wrapper functions that aims to make beautiful ggplot2 visualisation with less brainpower and typing!
+This blog will provide an overview of:
+the visualisation family types that simplevis currently supportshow visualisation families support combinations of colouring (by a variable), facetting. both or neither.library(simplevis)library(dplyr)library(palmerpenguins)Visualisation family typesbar
+plot_data &amp;lt;- storms %&amp;gt;%group_by(year) %&amp;gt;%summarise(wind = mean(wind))gg_bar(plot_data, year, wind)point</description>
+    </item>
+    
     <item>
       <title>Statistics common notation</title>
       <link>https://davidhodge931.netlify.app/2021/05/18/statistics-common-notation/</link>
