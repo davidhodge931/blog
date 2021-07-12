@@ -1,0 +1,151 @@
+---
+title: 'simplevis: making leaflet sf maps'
+author: 'David Hodge'
+date: '2021-07-12'
+slug: simplevis-making-leaflet-sf-maps
+categories:
+  - R
+tags: []
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  message = FALSE,
+  warning = FALSE,
+  fig.height = 4.5, 
+  fig.width = 6
+)
+```
+
+### Introduction
+
+In addition to `gglot2` wrapper functions, `simplevis` also provides `leaflet` wrapper functions as a bonus.
+
+The way these functions have been designed is to follow the logic of the `ggplot2` wrapper functions. 
+
+```{r}
+library(simplevis)
+library(dplyr)
+library(palmerpenguins)
+```
+
+### sf objects
+
+The `sf` package makes it easy to work with vector data (e.g. points, lines or polygons).
+
+sf objects have a list column called `geometry` on the end of the dataset, as well as some meta data describing the coordinate reference system etc. 
+
+```{r}
+example_sf_point
+```
+### simplevis ggplot wrappers
+
+Note that to create `sf` `ggplot2` maps with `simplevis`:
+
+* Data must be an `sf` object 
+* Data must be of `POINT`/`MULTIPOINT`, `LINESTRING`/`MULTILINESTRING`, or `POLYGON`/`MULTIPOLYGON` geometry type
+* Data must have a coordinate reference system (CRS) defined
+* No `x_var` and `y_var` variables are required
+
+```{r, fig.height = 4}
+gg_sf_col(example_sf_point,  
+          col_var = trend_category, 
+          borders = nz)
+```
+
+These maps can be facetted or made interactive in the same way as other `ggplot2` objects  with `plotly::ggplotly`.
+
+The borders argument is any sf object of any sort of administrative or natural contextial borders and boundaries that you would like for your map. In the example above, a New Zealand coastline sf object has been provided to the `borders` argument.
+
+### simplevis leaflet wrappers
+
+The `simplevis` leaflet wrappers largely work in exactly the same way.
+
+```{r}
+leaflet_sf_col(example_sf_point, 
+               col_var = median, 
+               col_method = "quantile",
+               col_cuts = seq(0, 1, 0.25),
+               title = "Monitored medians, 2008-17")
+```
+
+
+```{r}
+leaflet_sf_col(example_sf_polygon, density,
+     col_method = "bin", 
+     col_cuts = c(0, 10, 50, 100, 150, 200, Inf),
+     title = "Modelled density, 2017")
+```
+
+The clickable popup will default to a `leafpop::popupTable` of all variables, but popups can be adjusted to a subset of column using the `popup_vars_vctr` argument.
+
+```{r}
+leaflet_sf_col(example_sf_point, 
+               col_var = trend_category, 
+               popup_vars_vctr = c("site_id", "median"))
+```
+
+The hover label will default to the colour variable, but can be adjusted using the `label_var` variable. 
+
+```{r}
+leaflet_sf_col(example_sf_point, 
+               col_var = trend_category, 
+               label_var = site_id)
+```
+
+Users have a `basemap` argument that defaults to "light", but there are other options.
+
+```{r}
+leaflet_sf(example_sf_point, 
+           basemap = "dark")
+```
+
+### Adding additional layers
+
+As a leaflet object is produced, you can add additional layers with leaflet - although this may effect popups and labels.
+
+```{r}
+leaflet_sf_col(example_sf_point, 
+               col_var = trend_category) %>% 
+  leaflet::addPolygons(data = nz, 
+                       color = "#35B779", 
+                       weight = 3, 
+                       fillOpacity = 0, 
+                       opacity = 1)
+```
+
+### leaflet basemap stack for shiny
+
+A leaflet basemap stack is available for use in shiny apps. It defaults to the top layer being "light". You can set the bounds by adding a vector or bbox of bounds.
+
+```{r}
+leaflet_basemap(bounds = c(166.70047,-34.45676, 178.52966,-47.06345))
+```
+
+You can also specify the top layer.
+
+```{r}
+library(sf)
+leaflet_basemap(bounds = c(166.70047,-34.45676, 178.52966,-47.06345), 
+                top_layer = "satellite") 
+```
+
+
+### Further information
+
+Other `simplevis` posts include:
+
+* [Families of functions](https://www.r-bloggers.com/2021/06/simplevis-simple-ggplot2-visualisation-with-less-brainpower-and-typing/) 
+* [Colouring](https://www.r-bloggers.com/2021/06/simplevis-simple-methods-for-adding-colour-to-visualisations/) 
+* [Adjusting titles and scales](https://www.r-bloggers.com/2021/06/simplevis-simple-methods-to-adjust-titles-and-scales/) 
+* [Interactive plots with ggplotly](https://www.r-bloggers.com/2021/07/simplevis-interactive-plots-with-plotlyggplotly/) 
+
+More blogs to come on `simplevis`. 
+
+In the meantime, see the vignette and articles on the [simplevis website](https://statisticsnz.github.io/simplevis/).
+
+<center>
+
+![](logo.png){width=25%}
