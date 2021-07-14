@@ -119,7 +119,7 @@ Data is generally plotted with a stat of `identity`, which means data is plotted
 
 ### Further information
 
-More blogs to come on `simplevis` methods for adjusting colours, titles and scales, filtering out NA values, and working with `ggplotly` and `leaflet`. In the meantime, see the vignette and articles on the [simplevis website](https://statisticsnz.github.io/simplevis/).
+For further information, see the vignette and articles on the [simplevis website](https://statisticsnz.github.io/simplevis/).
 
 <center>
 

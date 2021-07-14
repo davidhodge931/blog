@@ -31,8 +31,6 @@ library(palmerpenguins)
 
 In the current post, we discus how to make your`simplevis` ggplot2 plots interactive html widgets using `plotly::ggplotly`, including how to fine-tune your tooltips. 
 
-Make sure you have the latest version of `simplevis` from CRAN, so that everything runs smoothly (and also that you can access the `gg_density*` family, which has just been released).
-
 ### Turning a ggplot into an interactive html widget
 
 The `plotly::ggplotly` function provides the ability to convert the ggplot object to an interactive `plotly` html object. 
