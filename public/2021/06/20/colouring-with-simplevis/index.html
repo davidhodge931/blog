@@ -6,8 +6,8 @@
 <meta name="generator" content="Hugo 0.82.1" />
 
 
-<title>simplevis: colouring visualisation - David Hodge</title>
-<meta property="og:title" content="simplevis: colouring visualisation - David Hodge">
+<title>simplevis: working with colour - David Hodge</title>
+<meta property="og:title" content="simplevis: working with colour - David Hodge">
 
 
   <link href='https://davidhodge931.netlify.app/favicon.ico' rel='icon' type='image/x-icon'/>
@@ -65,7 +65,7 @@
     <span class="article-duration">3 min read</span>
     
 
-    <h1 class="article-title">simplevis: colouring visualisation</h1>
+    <h1 class="article-title">simplevis: working with colour</h1>
 
     
     <span class="article-date">2021-06-20</span>
@@ -75,9 +75,13 @@
       
 
 
+<div id="introduction" class="section level3">
+<h3>Introduction</h3>
+<p><code>simplevis</code> provides <code>gglot2</code> (and <code>leaflet</code>) wrapper functions with an objective to help users make beautiful visualisation with less brainpower.</p>
+<p>In the current post, we will discus the simplified and consistent method for colouring that simplevis has adopted.</p>
+</div>
 <div id="overview" class="section level3">
 <h3>Overview</h3>
-<p>In the <a href="https://www.r-bloggers.com/2021/06/simplevis-simple-ggplot2-visualisation-with-less-brainpower-and-typing/">first simplevis blog post</a> about simplevis, we discussed how simplevis provides simple families of functions for when the user is colouring or facetting by a variable or both or neither. If you haven’t read that post, please read that one before this one. In the current post, we will discus the simplified and consistent method for colouring that simplevis has adopted.</p>
 <p>In simplevis, users adhere to the following rules for adjusting colour:</p>
 <ol style="list-style-type: decimal">
 <li>Always define the colours to use via the <code>pal</code> argument (short for palette)</li>
@@ -115,18 +119,18 @@ library(palmerpenguins)</code></pre>
 
 plot_data
 #&gt; # A tibble: 539 x 10
-#&gt;    carat cut       color clarity depth table price     x     y     z
-#&gt;    &lt;dbl&gt; &lt;ord&gt;     &lt;ord&gt; &lt;ord&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-#&gt;  1  0.72 Very Good H     SI1      60.3  55    2505  5.84  5.85  3.52
-#&gt;  2  0.3  Very Good F     VS2      62.8  58     605  4.24  4.29  2.68
-#&gt;  3  0.7  Ideal     G     VS1      60.6  57    2512  5.7   5.75  3.47
-#&gt;  4  1.54 Ideal     I     VS2      61.9  55.8  9998  7.38  7.43  4.58
-#&gt;  5  0.34 Ideal     H     VVS2     60.9  55     652  4.52  4.54  2.75
-#&gt;  6  0.33 Ideal     G     VVS2     61.7  55     752  4.42  4.46  2.74
-#&gt;  7  0.3  Ideal     F     VS2      62.8  56     776  4.31  4.29  2.7 
-#&gt;  8  1.21 Ideal     E     IF       61.8  56   17353  6.81  6.88  4.23
-#&gt;  9  0.56 Good      E     VS2      62.3  63    1920  5.22  5.27  3.27
-#&gt; 10  1.25 Premium   J     VS1      62    58    5500  6.89  6.92  4.28
+#&gt;    carat cut     color clarity depth table price     x     y     z
+#&gt;    &lt;dbl&gt; &lt;ord&gt;   &lt;ord&gt; &lt;ord&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+#&gt;  1  0.26 Ideal   G     VVS2     62      56   545  4.12  4.15  2.56
+#&gt;  2  1.11 Premium J     VS2      59.9    60  4315  6.78  6.71  4.04
+#&gt;  3  1.16 Premium H     SI1      61.2    57  5554  6.84  6.76  4.16
+#&gt;  4  0.92 Premium H     VS1      61      62  4155  6.32  6.26  3.84
+#&gt;  5  0.31 Premium G     VS1      60.8    61   802  4.35  4.33  2.64
+#&gt;  6  0.5  Good    G     VS2      57.9    61  1316  5.2   5.23  3.02
+#&gt;  7  0.31 Good    E     SI1      63.4    55   544  4.29  4.32  2.73
+#&gt;  8  0.35 Ideal   H     SI1      61.5    56   523  4.56  4.58  2.81
+#&gt;  9  1.03 Fair    D     SI1      65.5    58  4441  6.18  6.13  4.03
+#&gt; 10  0.52 Premium F     SI2      61.7    58  1111  5.12  5.16  3.17
 #&gt; # ... with 529 more rows
 
 gg_point_col(plot_data, 
@@ -146,7 +150,7 @@ gg_point_col(plot_data,
 </div>
 <div id="further-information" class="section level3">
 <h3>Further information</h3>
-<p>More blogs to come on <code>simplevis</code>. In the meantime, see the vignette and articles on the <a href="https://statisticsnz.github.io/simplevis/">simplevis website</a>.</p>
+<p>For further information, see the vignette and articles on the <a href="https://statisticsnz.github.io/simplevis/">simplevis website</a>.</p>
 <center>
 <p><img src="logo.png" style="width:25.0%" /></p>
 </div>

@@ -25,13 +25,14 @@ tags: []
 <link href="{{< blogdown/postref >}}index_files/ionicons/ionicons.min.css" rel="stylesheet" />
 
 
-<div id="introduction" class="section level3">
-<h3>Introduction</h3>
-<p>In addition to <code>gglot2</code> wrapper functions, <code>simplevis</code> also provides <code>leaflet</code> wrapper functions as a bonus.</p>
-<p>The way these functions have been designed is to follow the logic of the <code>ggplot2</code> wrapper functions.</p>
 <pre class="r"><code>library(simplevis)
 library(dplyr)
 library(palmerpenguins)</code></pre>
+<div id="introduction" class="section level3">
+<h3>Introduction</h3>
+<p><code>simplevis</code> provides <code>gglot2</code> (and <code>leaflet</code>) wrapper functions with an objective to help users make beautiful visualisation with less brainpower.</p>
+<p>This post will discuss the leaflet wrappers that have been provided to make leaflet easier to work with.
+The way these functions have been designed is to follow the logic of the <code>ggplot2</code> wrapper functions.</p>
 </div>
 <div id="sf-objects" class="section level3">
 <h3>sf objects</h3>
@@ -134,15 +135,7 @@ leaflet_basemap(bounds = c(166.70047,-34.45676, 178.52966,-47.06345),
 </div>
 <div id="further-information" class="section level3">
 <h3>Further information</h3>
-<p>Other <code>simplevis</code> posts include:</p>
-<ul>
-<li><a href="https://www.r-bloggers.com/2021/06/simplevis-simple-ggplot2-visualisation-with-less-brainpower-and-typing/">Families of functions</a></li>
-<li><a href="https://www.r-bloggers.com/2021/06/simplevis-simple-methods-for-adding-colour-to-visualisations/">Colouring</a></li>
-<li><a href="https://www.r-bloggers.com/2021/06/simplevis-simple-methods-to-adjust-titles-and-scales/">Adjusting titles and scales</a></li>
-<li><a href="https://www.r-bloggers.com/2021/07/simplevis-interactive-plots-with-plotlyggplotly/">Interactive plots with ggplotly</a></li>
-</ul>
-<p>More blogs to come on <code>simplevis</code>.</p>
-<p>In the meantime, see the vignette and articles on the <a href="https://statisticsnz.github.io/simplevis/">simplevis website</a>.</p>
+<p>For further information, see the vignette and articles on the <a href="https://statisticsnz.github.io/simplevis/">simplevis website</a>.</p>
 <center>
 <p><img src="logo.png" style="width:25.0%" /></p>
 </div>

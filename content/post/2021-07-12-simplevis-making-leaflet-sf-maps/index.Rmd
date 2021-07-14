@@ -19,17 +19,18 @@ knitr::opts_chunk$set(
 )
 ```
 
-### Introduction
-
-In addition to `gglot2` wrapper functions, `simplevis` also provides `leaflet` wrapper functions as a bonus.
-
-The way these functions have been designed is to follow the logic of the `ggplot2` wrapper functions. 
-
 ```{r}
 library(simplevis)
 library(dplyr)
 library(palmerpenguins)
 ```
+
+### Introduction
+
+`simplevis` provides `gglot2` (and `leaflet`) wrapper functions with an objective to help users make beautiful visualisation with less brainpower.
+
+This post will discuss the leaflet wrappers that have been provided to make leaflet easier to work with.
+The way these functions have been designed is to follow the logic of the `ggplot2` wrapper functions. 
 
 ### sf objects
 
@@ -135,16 +136,7 @@ leaflet_basemap(bounds = c(166.70047,-34.45676, 178.52966,-47.06345),
 
 ### Further information
 
-Other `simplevis` posts include:
-
-* [Families of functions](https://www.r-bloggers.com/2021/06/simplevis-simple-ggplot2-visualisation-with-less-brainpower-and-typing/) 
-* [Colouring](https://www.r-bloggers.com/2021/06/simplevis-simple-methods-for-adding-colour-to-visualisations/) 
-* [Adjusting titles and scales](https://www.r-bloggers.com/2021/06/simplevis-simple-methods-to-adjust-titles-and-scales/) 
-* [Interactive plots with ggplotly](https://www.r-bloggers.com/2021/07/simplevis-interactive-plots-with-plotlyggplotly/) 
-
-More blogs to come on `simplevis`. 
-
-In the meantime, see the vignette and articles on the [simplevis website](https://statisticsnz.github.io/simplevis/).
+For further information, see the vignette and articles on the [simplevis website](https://statisticsnz.github.io/simplevis/).
 
 <center>
 

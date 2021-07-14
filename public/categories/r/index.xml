@@ -6,16 +6,27 @@
     <description>Recent content in R on David Hodge</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 04 Jul 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://davidhodge931.netlify.app/categories/r/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 12 Jul 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://davidhodge931.netlify.app/categories/r/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>simplevis: making leaflet sf maps</title>
+      <link>https://davidhodge931.netlify.app/2021/07/12/simplevis-making-leaflet-sf-maps/</link>
+      <pubDate>Mon, 12 Jul 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://davidhodge931.netlify.app/2021/07/12/simplevis-making-leaflet-sf-maps/</guid>
+      <description>library(simplevis)library(dplyr)library(palmerpenguins)Introductionsimplevis provides gglot2 (and leaflet) wrapper functions with an objective to help users make beautiful visualisation with less brainpower.
+This post will discuss the leaflet wrappers that have been provided to make leaflet easier to work with.The way these functions have been designed is to follow the logic of the ggplot2 wrapper functions.
+sf objectsThe sf package makes it easy to work with vector data (e.</description>
+    </item>
+    
     <item>
       <title>simplevis: interactive plots with plotly::ggplotly</title>
       <link>https://davidhodge931.netlify.app/2021/07/04/simplevis-making-interactive-plots-with-plotly-ggplotly/</link>
       <pubDate>Sun, 04 Jul 2021 00:00:00 +0000</pubDate>
       
       <guid>https://davidhodge931.netlify.app/2021/07/04/simplevis-making-interactive-plots-with-plotly-ggplotly/</guid>
-      <description>library(simplevis)library(dplyr)library(palmerpenguins)Introductionsimplevis provides gglot2 (and leaflet) wrapper functions to make it easier to make beautiful visualisation with less brainpower required.
-In the first simplevis blog post, we discussed how simplevis provides families of functions for when the user is colouring or facetting by a variable or both or neither.
-In the 2nd simplevis blog post, we discussed how colouring works with simplevis.</description>
+      <description>library(simplevis)library(dplyr)library(palmerpenguins)Introductionsimplevis provides gglot2 (and leaflet) wrapper functions with an objective to help users make beautiful visualisation with less brainpower.
+In the current post, we discus how to make yoursimplevis ggplot2 plots interactive html widgets using plotly::ggplotly, including how to fine-tune your tooltips.
+Make sure you have the latest version of simplevis from CRAN, so that everything runs smoothly (and also that you can access the gg_density* family, which has just been released).</description>
     </item>
     
     <item>
@@ -24,20 +35,22 @@ In the 2nd simplevis blog post, we discussed how colouring works with simplevis.
       <pubDate>Sun, 27 Jun 2021 00:00:00 +0000</pubDate>
       
       <guid>https://davidhodge931.netlify.app/2021/06/27/scales-with-simplevis/</guid>
-      <description>library(simplevis)library(dplyr)library(palmerpenguins)Overviewsimplevis provides gglot2 (and leaflet) wrapper functions with an objective to help users make beautiful visualisation with less brainpower and typing.
-In the first simplevis blog post, we discussed how simplevis provides families of functions for when the user is colouring or facetting by a variable or both or neither.
-If you haven’t read that post, please read that one before this one.
-In the 2nd simplevis blog post, we discussed how colouring works with simplevis.</description>
+      <description>library(simplevis)library(dplyr)library(palmerpenguins)Introductionsimplevis provides gglot2 (and leaflet) wrapper functions with an objective to help users make beautiful visualisation with less brainpower.
+In the current post, we discus how to adjust titles and scales within simplevis.
+TitlesDefault titles in simplevis try to provide a polished quick graph with minimal code by:
+having no title, subtitle or captionconverting x, y and colour titles to sentence case using the snakecase::to_sentence_case function.</description>
     </item>
     
     <item>
-      <title>simplevis: colouring visualisation</title>
+      <title>simplevis: working with colour</title>
       <link>https://davidhodge931.netlify.app/2021/06/20/colouring-with-simplevis/</link>
       <pubDate>Sun, 20 Jun 2021 00:00:00 +0000</pubDate>
       
       <guid>https://davidhodge931.netlify.app/2021/06/20/colouring-with-simplevis/</guid>
-      <description>OverviewIn the first simplevis blog post about simplevis, we discussed how simplevis provides simple families of functions for when the user is colouring or facetting by a variable or both or neither. If you haven’t read that post, please read that one before this one. In the current post, we will discus the simplified and consistent method for colouring that simplevis has adopted.
-In simplevis, users adhere to the following rules for adjusting colour:</description>
+      <description>Introductionsimplevis provides gglot2 (and leaflet) wrapper functions with an objective to help users make beautiful visualisation with less brainpower.
+In the current post, we will discus the simplified and consistent method for colouring that simplevis has adopted.
+OverviewIn simplevis, users adhere to the following rules for adjusting colour:
+Always define the colours to use via the pal argument (short for palette)If colouring by a variable, use a *_col() or *_col_facet() function, and define the col_varFor gg_sf_col*() and gg_point_col*() functions where the col_var is numeric, also define the col_method of bin or quantile, and the col_cuts to use.</description>
     </item>
     
     <item>

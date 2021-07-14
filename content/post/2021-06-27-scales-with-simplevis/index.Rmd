@@ -25,15 +25,9 @@ library(dplyr)
 library(palmerpenguins)
 ```
 
-### Overview
+### Introduction
 
-`simplevis` provides `gglot2` (and `leaflet`) wrapper functions with an objective to help users make beautiful visualisation with less brainpower and typing.
-
-In the [first simplevis blog post](https://www.r-bloggers.com/2021/06/simplevis-simple-ggplot2-visualisation-with-less-brainpower-and-typing/), we discussed how `simplevis` provides families of functions for when the user is colouring or facetting by a variable or both or neither. 
-
-If you haven't read that post, please read that one before this one. 
-
-In the [2nd simplevis blog post](https://www.r-bloggers.com/2021/06/simplevis-simple-methods-for-adding-colour-to-visualisations/), we discussed how colouring works with `simplevis`. 
+`simplevis` provides `gglot2` (and `leaflet`) wrapper functions with an objective to help users make beautiful visualisation with less brainpower.
 
 In the current post, we discus how to adjust titles and scales within `simplevis`. 
 

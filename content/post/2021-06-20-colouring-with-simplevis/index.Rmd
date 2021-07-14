@@ -20,9 +20,13 @@ knitr::opts_chunk$set(
 ```
 
 
-### Overview
+### Introduction
 
-In the [first simplevis blog post](https://www.r-bloggers.com/2021/06/simplevis-simple-ggplot2-visualisation-with-less-brainpower-and-typing/) about simplevis, we discussed how simplevis provides simple families of functions for when the user is colouring or facetting by a variable or both or neither. If you haven't read that post, please read that one before this one. In the current post, we will discus the simplified and consistent method for colouring that simplevis has adopted.  
+`simplevis` provides `gglot2` (and `leaflet`) wrapper functions with an objective to help users make beautiful visualisation with less brainpower.
+
+In the current post, we will discus the simplified and consistent method for colouring that simplevis has adopted.  
+
+### Overview
 
 In simplevis, users adhere to the following rules for adjusting colour:
 
@@ -92,7 +96,7 @@ gg_point_col(plot_data,
 
 ### Further information
 
-More blogs to come on `simplevis`. In the meantime, see the vignette and articles on the [simplevis website](https://statisticsnz.github.io/simplevis/).
+For further information, see the vignette and articles on the [simplevis website](https://statisticsnz.github.io/simplevis/).
 
 <center>
 
