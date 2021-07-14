@@ -27,14 +27,6 @@ library(palmerpenguins)
 
 ### Introduction
 
-`simplevis` provides `gglot2` (and `leaflet`) wrapper functions to make it easier to make beautiful visualisation with less brainpower required.
-
-In the [first simplevis blog post](https://www.r-bloggers.com/2021/06/simplevis-simple-ggplot2-visualisation-with-less-brainpower-and-typing/), we discussed how `simplevis` provides families of functions for when the user is colouring or facetting by a variable or both or neither. 
-
-In the [2nd simplevis blog post](https://www.r-bloggers.com/2021/06/simplevis-simple-methods-for-adding-colour-to-visualisations/), we discussed how colouring works with `simplevis`. 
-
-In the [3rd simplevis blog post](https://www.r-bloggers.com/2021/06/simplevis-simple-methods-to-adjust-titles-and-scales/), we discussed how titles and scales can be manipulated in `simplevis`. 
-
 In the current post, we discus how to make your`simplevis` ggplot2 plots interactive html widgets using `plotly::ggplotly`, including how to fine-tune your tooltips. 
 
 Make sure you have the latest version of `simplevis` from CRAN, so that everything runs smoothly (and also that you can access the `gg_density*` family, which has just been released).
@@ -143,6 +135,7 @@ plotly::ggplotly(plot, tooltip = "text") %>%
 
 ### Further information
 
+For further information, see the vignette and articles on the [simplevis website](https://statisticsnz.github.io/simplevis/)
 More blogs to come on `simplevis`. In the meantime, see the vignette and articles on the [simplevis website](https://statisticsnz.github.io/simplevis/).
 
 <center>
