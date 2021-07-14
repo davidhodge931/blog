@@ -26,7 +26,7 @@ This post will discuss the leaflet wrappers that have been provided to make leaf
       <guid>https://davidhodge931.netlify.app/2021/07/04/simplevis-making-interactive-plots-with-plotly-ggplotly/</guid>
       <description>library(simplevis)library(dplyr)library(palmerpenguins)Introductionsimplevis provides gglot2 (and leaflet) wrapper functions with an objective to help users make beautiful visualisation with less brainpower.
 In the current post, we discus how to make yoursimplevis ggplot2 plots interactive html widgets using plotly::ggplotly, including how to fine-tune your tooltips.
-Make sure you have the latest version of simplevis from CRAN, so that everything runs smoothly (and also that you can access the gg_density* family, which has just been released).</description>
+Turning a ggplot into an interactive html widgetThe plotly::ggplotly function provides the ability to convert the ggplot object to an interactive plotly html object.</description>
     </item>
     
     <item>
@@ -63,48 +63,6 @@ Always define the colours to use via the pal argument (short for palette)If col
 This blog will provide an overview of:
 the visualisation family types that simplevis currently supportshow visualisation families support combinations of colouring (by a variable), facetting. both or neither.library(simplevis)library(dplyr)library(palmerpenguins)Visualisation family typesbar
 plot_data &amp;lt;- storms %&amp;gt;%group_by(year) %&amp;gt;%summarise(wind = mean(wind))gg_bar(plot_data, year, wind)point</description>
-    </item>
-    
-    <item>
-      <title>Statistics common notation</title>
-      <link>https://davidhodge931.netlify.app/2021/05/18/statistics-common-notation/</link>
-      <pubDate>Tue, 18 May 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://davidhodge931.netlify.app/2021/05/18/statistics-common-notation/</guid>
-      <description>Statistics notation is very easy in Rmarkdown.
-Below a list of common components of statistics notation for reference.
-Greek parameters
-\(\mu\)
-$\mu$ \(\alpha\)
-$\alpha$ \(\beta\)
-$\beta$ \(\gamma\)
-$\gamma$ \(\tau\)
-$\tau$ \(\sigma\)
-$\sigma$ Subscript
-\(H_0\)
-$H_0$ \(Y_{ij}\)
-$Y_{ij}$ Superscript
-\(\sigma^2\)
-$\sigma^2$ Hats and bars
-\(\hat{Y}\)
-$\hat{Y}$ \(\bar{Y}\)
-$\bar{Y}$ \(\hat{f}_i\)
-$\hat{f}_i$ Operators
-\(\ge\)
-$\ge$ \(\le\)
-$\le$ \(\neq\)</description>
-    </item>
-    
-    <item>
-      <title>One-way ANOVA by hand</title>
-      <link>https://davidhodge931.netlify.app/2021/05/08/one-way-anova-by-hand/</link>
-      <pubDate>Sat, 08 May 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://davidhodge931.netlify.app/2021/05/08/one-way-anova-by-hand/</guid>
-      <description>One-way ANOVA is a test used to assess whether there is a statistically significant difference between the mean of groups.
-There is 1 response numeric variable and 1 explanatory categorical variable with more than 1 level.
-ANOVA considers the probability of observing the sample ratio of explained variance to unexplained variance (i.e. the F statistic)&amp;hellip; if the null hypothesis is true that all population means are equal.
-The higher this ratio of explained to unexplained variance is (i.</description>
     </item>
     
   </channel>
