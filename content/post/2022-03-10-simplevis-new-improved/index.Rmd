@@ -21,11 +21,9 @@ knitr::opts_chunk$set(
 
 simplevis version 6.2.0 has arrived with tonnes of new features.
 
-I am very happy with the functions now, and so will aim to maintain it with no breaking changes from here on in.
+So, simplevis, if you haven't heard of it, is a package of ggplot2 and leaflet wrapper functions.
 
-simplevis is a package of ggplot2 and leaflet wrapper functions to make visualisation easier on the brain. 
-
-So you can save your thinking for other stuff! 
+It aims to make visualisation easier on the brain, so can save your thinking for other stuff. 
 
 See the simplevis [website](https://statisticsnz.github.io/simplevis/) for further information. 
 
