@@ -23,9 +23,9 @@ simplevis version 6.2.0 has arrived with tonnes of new features.
 
 I am very happy with the functions now, and so will aim to maintain it with no breaking changes from here on in.
 
-simplevis is a package of ggplot2 and leaflet wrapper functions to make visualisation easier.
+simplevis is a package of ggplot2 and leaflet wrapper functions to make visualisation easier on the brain. 
 
-It aims to make visualisation easier on the brain. 
+So you can save your thinking for other stuff! 
 
 See the simplevis [website](https://statisticsnz.github.io/simplevis/) for further information. 
 
@@ -36,7 +36,6 @@ library(palmerpenguins)
 library(ggplot2)
 library(patchwork)
 set.seed(123456789)
-
 
 plot_data <- penguins %>%
   group_by(species, sex) %>%
