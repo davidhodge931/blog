@@ -96,7 +96,7 @@ gg_point_col(plot_data,
 
 ### Further information
 
-For further information, see the vignette and articles on the [simplevis website](https://statisticsnz.github.io/simplevis/).
+For further information, see the [simplevis website](https://statisticsnz.github.io/simplevis/).
 
 <center>
 

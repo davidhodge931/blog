@@ -65,7 +65,7 @@ gg_line(plot_data, year, wind)
 boxplot
 
 ```{r}
-gg_boxplot(storms, year, wind)
+gg_boxplot(penguins, species, body_mass_g)
 ```
 
 hbar (i.e horizontal bar)
@@ -81,7 +81,7 @@ gg_hbar(plot_data, price, cut)
 sf (short for simple features map)
 
 ```{r}
-gg_sf(example_sf_point, borders = nz)
+gg_sf(example_point, borders = example_borders)
 ```
 
 ### Colouring, facetting, neither or both
@@ -116,10 +116,9 @@ gg_point_col_facet(penguins, bill_length_mm, body_mass_g, sex, species)
 ```
 
 Data is generally plotted with a stat of `identity`, which means data is plotted as is. Only for boxplot, there is a different default stat of boxplot, which means data will be transformed to boxplot statistics. 
-
 ### Further information
 
-For further information, see the vignette and articles on the [simplevis website](https://statisticsnz.github.io/simplevis/).
+For further information, see the [simplevis website](https://statisticsnz.github.io/simplevis/).
 
 <center>
 

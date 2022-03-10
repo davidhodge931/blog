@@ -43,8 +43,7 @@ This is pretty magical, as it is just so easy - thanks `plotly`!
 plot <- gg_point_col(penguins, 
                      x_var = bill_length_mm, 
                      y_var = body_mass_g, 
-                     col_var = species, 
-                     font_family = "Helvetica")
+                     col_var = species)
 
 plotly::ggplotly(plot) 
 ```
@@ -59,8 +58,7 @@ Therefore, `simplevis` provides a `plotly_camera` function to turn off all widge
 plot <- gg_point_col(penguins, 
                      x_var = bill_length_mm, 
                      y_var = body_mass_g, 
-                     col_var = species, 
-                     font_family = "Helvetica")
+                     col_var = species)
 
 plotly::ggplotly(plot) %>% 
   plotly_camera()
@@ -91,8 +89,7 @@ plot <- gg_point_col(plot_data,
                      x_var = bill_length_mm, 
                      y_var = body_mass_g, 
                      col_var = species, 
-                     text_var = text, 
-                     font_family = "Helvetica")
+                     text_var = text)
 
 plotly::ggplotly(plot, tooltip = "text") %>% 
   plotly_camera()
@@ -108,8 +105,7 @@ plot <- gg_point_col(plot_data,
                      x_var = bill_length_mm, 
                      y_var = body_mass_g, 
                      col_var = species, 
-                     text_var = text, 
-                     font_family = "Helvetica")
+                     text_var = text)
 
 plotly::ggplotly(plot, tooltip = "text") %>% 
   plotly_camera()
@@ -135,7 +131,7 @@ plotly::ggplotly(plot, tooltip = "text") %>%
 
 ### Further information
 
-For further information, see the vignette and articles on the [simplevis website](https://statisticsnz.github.io/simplevis/).
+For further information, see the [simplevis website](https://statisticsnz.github.io/simplevis/).
 
 <center>
 

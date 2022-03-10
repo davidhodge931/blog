@@ -88,17 +88,8 @@ Adjust the number of breaks for numeric x and/or y scales.
 
 ```{r}
 gg_point_col(penguins, bill_length_mm, body_mass_g, species, 
-               y_pretty_n = 10,
-               x_pretty_n = 6)
-```
-
-Transform numeric x and y scales.
-
-```{r}
-gg_point_col(penguins, bill_length_mm, body_mass_g, species, 
-               x_trans = "sqrt", 
-               x_zero = T,
-               y_trans = "log10")
+               y_breaks_n = 10,
+               x_breaks_n = 6)
 ```
 
 Balance a numeric scale so that it has equivalence between positive and negative values.
@@ -170,7 +161,7 @@ gg_hbar(plot_data, price, cut,
 
 ### Colour scales
 
-Customise the colour title. Note that because colour labels will be converted to sentence case by default in simplevis, but we can turn this off when we do not want this to occur using `ggplot2::waiver()`
+Customise the colour title. Note that because colour labels will be converted to sentence case by default in simplevis, but we can turn this off when we do not want this to occur using `function(x) x`
 
 ```{r}
 plot_data <- ggplot2::diamonds %>%
@@ -178,7 +169,7 @@ plot_data <- ggplot2::diamonds %>%
   summarise(average_price = mean(price))
 
 gg_hbar_col(plot_data, average_price, cut, clarity,
-            col_labels = ggplot2::waiver(), 
+            col_labels = function(x) x,  
             pal_rev = TRUE)
 ```
 
@@ -190,7 +181,7 @@ plot_data <- ggplot2::diamonds %>%
   summarise(average_price = mean(price))
 
 gg_hbar_col(plot_data, average_price, cut, clarity,
-            col_labels = ggplot2::waiver(), 
+            col_labels = function(x) x, 
             pal_rev = TRUE)
 
 ```
@@ -203,7 +194,7 @@ plot_data <- ggplot2::diamonds %>%
   summarise(average_price = mean(price))
 
 gg_hbar_col(plot_data, average_price, cut, clarity,
-            col_labels = ggplot2::waiver(), 
+            col_labels = function(x) x, 
             col_rev = TRUE)
 ```
 
@@ -213,8 +204,8 @@ You can adjust x, y or colour scale labels using `x_labels`, `y_labels` or `col_
 
 ```{r}
 gg_point_col(penguins, bill_length_mm, body_mass_g, species, 
-                   y_labels = scales::comma_format(), 
-                   x_labels = scales::number_format(accuracy = 0.1))
+                   y_labels = scales::label_comma(), 
+                   x_labels = scales::label_number(accuracy = 0.1))
 ```
 
 Or via a function.
@@ -224,26 +215,23 @@ gg_point_col(penguins, bill_length_mm, body_mass_g, species,
                    x_labels = function(x) glue::glue("{x} mm"))
 ```
 
-Note there is a default sentence case transformation for categorical x, y or col variables. But you can use `ggplot2::waiver()` to turn this off. 
-
-The `facet_labels` argument works slightly differently in that it provides access to the ggplot2 `labeller` argument within the ggplot `facet_wrap` function. Therefore you need to use ggplot labeller functions to modify them.
+Note there is a default sentence case transformation for categorical x, y or col variables. But you can use `function(x) x` to turn this off. 
 
 Notice with the default transformation turned off, the `sex` variable returns to being lower case as it is in the `penguins` dataset.
 
 ```{r}
 gg_point_col_facet(penguins, bill_length_mm, body_mass_g, sex, sex, 
-  col_labels = ggplot2::waiver(),
-  facet_labels = ggplot2::label_value) 
+  col_labels = function(x) x,
+  facet_labels = function(x) stringr::str_to_upper(x)) 
 
 ```
 
 ### NA values
 
-You can quickly remove NA values by setting `x_na`, `y_na`, `col_na` or `facet_na` arguments to `FALSE`.
+You can quickly remove NA values by setting `x_na_rm`, `y_na_rm`, `col_na_rm` or `facet_na_rm` arguments to `TRUE`.
 
 ```{r}
-gg_point_col_facet(penguins, bill_length_mm, body_mass_g, sex, species, 
-                   col_na = F)
+gg_point_col_facet(penguins, bill_length_mm, body_mass_g, sex, species,                    col_na_rm = T)
 ```
 
 ### Expanding the scale
@@ -262,7 +250,7 @@ gg_line(plot_data, year, wind,
 
 ### Further information
 
-More blogs to come on `simplevis`. In the meantime, see the vignette and articles on the [simplevis website](https://statisticsnz.github.io/simplevis/).
+For further information, see the [simplevis website](https://statisticsnz.github.io/simplevis/).
 
 <center>
 
