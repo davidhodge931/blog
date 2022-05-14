@@ -1,11 +1,10 @@
 ---
 title: 'ggblanket: making beautiful ggplot2 visualisation simpler'
-author: 'David Hodge'
+author: "David Hodge"
 date: '2022-05-14'
 slug: ggblanket-making-beautiful-ggplot2-visualisation-simpler
 categories: []
-tags:
-  - R
+tags: R
 ---
 
 ```{r, include = FALSE}
@@ -37,6 +36,8 @@ With this objective in mind, the {ggblanket} package:
 * provides arguments for scale adjustment and legend placement
 * allows users to access all other non-aesthetic geom functionality 
 * changes default colours, alphas, widths and themes
+
+![](logo.png){width=25%}
 
 ```{r}
 library(dplyr)
@@ -162,7 +163,4 @@ gg_blank(df, x = resp, xmin = lower, xmax = upper, y = trt, col = group) +
 
 For further information, see the [ggblanket website](https://davidhodge931.github.io/ggblanket/).
 
-<center>
-
-![](logo.png){width=25%}
 
