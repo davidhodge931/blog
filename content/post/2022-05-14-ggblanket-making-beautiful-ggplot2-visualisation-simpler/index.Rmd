@@ -18,6 +18,8 @@ knitr::opts_chunk$set(
 )
 ```
 
+![](logo.png){width=20%}
+
 A few days ago, I released {ggblanket} onto CRAN. 
 
 This package took over my brain for 1.5 months, and I worked obsessively on it. I hope people find it useful.
@@ -36,8 +38,6 @@ With this objective in mind, the {ggblanket} package:
 * provides arguments for scale adjustment and legend placement
 * allows users to access all other non-aesthetic geom functionality 
 * changes default colours, alphas, widths and themes
-
-![](logo.png){width=25%}
 
 ```{r}
 library(dplyr)
