@@ -20,9 +20,11 @@ knitr::opts_chunk$set(
 
 ![](logo.png){width="20%"}
 
-I was mucking around with some scale adjustments with my {ggblanket} package, and thought I'd share this as a post.
+I was messing around with some scale adjustments with my {ggblanket} package, and thought I'd share this as a post.
 
-It's by no means a complete demonstration of the functionality available, but it demonstrates a bit of how and x and y scales can be adjusted.
+It's by no means a complete demonstration of the functionality available. 
+
+But it demonstrates a bit of how x and y scales can be adjusted.. as well as some other stuff randomly thrown in.
 
 ```{r}
 library(palmerpenguins)
