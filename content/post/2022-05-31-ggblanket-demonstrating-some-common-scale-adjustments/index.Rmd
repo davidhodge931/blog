@@ -18,7 +18,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-![](../logo.png){width="20%"}
+![](logo.png){width="20%"}
 
 I was mucking around with some scale adjustments with my {ggblanket} package, and thought I'd share this as a post.
 
