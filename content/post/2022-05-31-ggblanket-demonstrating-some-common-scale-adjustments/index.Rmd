@@ -36,7 +36,14 @@ Note x scale default limits of min/max breaks and zero expanding
 ```{r}
 economics %>% 
   slice_head(n = 100) %>% 
-  gg_line(date, unemploy, 
+  gg_col(date, unemploy)
+```
+
+Make the theme horizontal lines only
+```{r}
+economics %>% 
+  slice_head(n = 100) %>% 
+  gg_col(x = date, y = unemploy, 
           theme = gg_theme(y_grid = TRUE))
 ```
 
@@ -45,9 +52,8 @@ Adjust limits of an x date variable
 ```{r}
 economics %>%
   slice_head(n = 100) %>% 
-  gg_line(date, unemploy, 
-          x_limits = c(NA_Date_, NA_Date_),
-          theme = gg_theme(y_grid = TRUE))
+  gg_col(x = date, y = unemploy, 
+          x_limits = c(NA_Date_, NA_Date_))
 ```
 
 Add expand of 0.05
@@ -55,63 +61,9 @@ Add expand of 0.05
 ```{r}
 economics %>% 
   slice_head(n = 100) %>% 
-  gg_line(date, unemploy, 
+  gg_col(x = date, y = unemploy, 
           x_limits = c(NA_Date_, NA_Date_),
-          x_expand = c(0.05, 0.05),
-          theme = gg_theme(y_grid = TRUE))
-```
-
-Make the y axis start at zero
-
-```{r}
-economics %>% 
-  slice_head(n = 100) %>% 
-  gg_line(date, unemploy, 
-          x_limits = c(NA_Date_, NA_Date_),
-          x_expand = c(0.05, 0.05),
-          theme = gg_theme(y_grid = TRUE), 
-          y_zero = TRUE)
-```
-
-Change the y title
-
-```{r}
-economics %>% 
-  slice_head(n = 100) %>% 
-  gg_line(date, unemploy, 
-          x_limits = c(NA_Date_, NA_Date_),
-          x_expand = c(0.05, 0.05),
-          theme = gg_theme(y_grid = TRUE), 
-          y_zero = TRUE, 
-          y_title = "Unemployment")
-```
-
-Remove the x title
-
-```{r}
-economics %>% 
-  slice_head(n = 100) %>% 
-  gg_line(date, unemploy, 
-          x_limits = c(NA_Date_, NA_Date_),
-          x_expand = c(0.05, 0.05),
-          theme = gg_theme(y_grid = TRUE), 
-          y_title = "Unemployment",
-          y_zero = TRUE, 
-          x_title = "")
-```
-
-Alternative way to remove the x title
-
-```{r}
-economics %>% 
-  slice_head(n = 100) %>% 
-  gg_line(date, unemploy, 
-          x_limits = c(NA_Date_, NA_Date_),
-          x_expand = c(0.05, 0.05),
-          theme = gg_theme(y_grid = TRUE), 
-          y_zero = TRUE,
-          y_title = "Unemployment") +
-  ggplot2::labs(x = NULL)
+          x_expand = c(0.05, 0.05))
 ```
 
 Use ggplot2's default breaks, limits, labels and expand
@@ -119,37 +71,34 @@ Use ggplot2's default breaks, limits, labels and expand
 ```{r}
 economics %>% 
   slice_head(n = 100) %>% 
-  gg_line(date, unemploy, 
-          theme = gg_theme(y_grid = TRUE), 
-          y_zero = TRUE,
-          y_title = "Unemployment") +
-  ggplot2::labs(x = NULL) +
+  gg_col(date, unemploy) +
   scale_x_date()
 ```
 
-Convert to a column graph
+Convert to an area graph
 
 ```{r}
 economics %>% 
   slice_head(n = 100) %>% 
-  gg_col(date, unemploy, 
-           x_limits = c(NA_Date_, NA_Date_),
-           x_expand = c(0.05, 0.05),
-           theme = gg_theme(y_grid = TRUE), 
-           y_zero = TRUE,
-           y_title = "Unemployment") +
-  ggplot2::labs(x = NULL)
+  gg_area(date, unemploy)
 ```
 
-Convert to a step graph
+Convert to a line graph
 
 ```{r}
 economics %>% 
   slice_head(n = 100) %>% 
-  gg_step(date, unemploy, 
-          x_limits = c(NA_Date_, NA_Date_),
-          x_expand = c(0.05, 0.05),
-          theme = gg_theme(y_grid = TRUE), 
+  gg_line(x = date, y = unemploy,
+          size = 1)
+```
+
+Add zero in the y scale
+
+```{r}
+economics %>% 
+  slice_head(n = 100) %>% 
+  gg_line(date, unemploy, 
+          size = 1,
           y_zero = TRUE)
 ```
 
@@ -158,11 +107,7 @@ Convert to a point graph
 ```{r}
 economics %>% 
   slice_head(n = 100) %>% 
-  gg_step(date, unemploy, 
-          x_limits = c(NA_Date_, NA_Date_),
-          x_expand = c(0.05, 0.05),
-          theme = gg_theme(y_grid = TRUE), 
-          y_zero = TRUE)
+  gg_point(date, unemploy)
 ```
 
 Convert to a ribbon to show uncertainty
@@ -170,10 +115,7 @@ Convert to a ribbon to show uncertainty
 ```{r}
 economics %>% 
   slice_head(n = 100) %>% 
-  gg_ribbon(date, y = unemploy, ymin = unemploy - 500, ymax = unemploy + 500,           x_limits = c(NA_Date_, NA_Date_),
-          x_expand = c(0.05, 0.05),
-          theme = gg_theme(y_grid = TRUE), 
-          y_zero = TRUE) +
+  gg_ribbon(date, y = unemploy, ymin = unemploy - 500, ymax = unemploy + 500, y_zero = TRUE) +
   geom_line()
 
 ```
@@ -183,105 +125,36 @@ Remove the outer lines
 ```{r}
 economics %>% 
   slice_head(n = 100) %>% 
-  gg_ribbon(date, y = unemploy, ymin = unemploy - 500, ymax = unemploy + 500,             x_limits = c(NA_Date_, NA_Date_),
-            x_expand = c(0.05, 0.05),
-            theme = gg_theme(y_grid = TRUE), 
-            y_zero = TRUE,
+  gg_ribbon(date, y = unemploy, ymin = unemploy - 500, ymax = unemploy + 500, y_zero = TRUE,
             pal = scales::alpha(pal_viridis_mix(1), 0)) +
   geom_line(col = scales::alpha(pal_viridis_mix(1), 1))
 ```
 
-Make a line graph of penguin body mass by year
+Change the y title
 
 ```{r}
-penguins %>% 
-  group_by(year, species) %>% 
-  summarise(body_mass_g = mean(body_mass_g, na.rm = TRUE)) %>% 
-  gg_line(year, body_mass_g, col = species) +
-  ggplot2::geom_point()
+economics %>% 
+  slice_head(n = 100) %>% 
+  gg_col(x = date, y = unemploy, 
+          y_title = "Unemployment")
 ```
 
-Specify breaks and make the theme only have horizontal gridlines
+Remove the x title
 
 ```{r}
-penguins %>% 
-  group_by(year, species) %>% 
-  summarise(body_mass_g = mean(body_mass_g, na.rm = TRUE)) %>% 
-  gg_line(year, body_mass_g, col = species, 
-          x_breaks = 2007:2009,
-          theme = gg_theme(y_grid = TRUE)
-  ) +
-  ggplot2::geom_point()
+economics %>% 
+  slice_head(n = 100) %>% 
+  gg_col(x = date, y = unemploy, 
+          x_title = "")
 ```
 
-Remove comma default transformation
+Alternative way to remove the x title
 
 ```{r}
-penguins %>% 
-  group_by(year, species) %>% 
-  summarise(body_mass_g = mean(body_mass_g, na.rm = TRUE)) %>% 
-  gg_line(year, body_mass_g, col = species, 
-          x_breaks = 2007:2009,
-          theme = gg_theme(y_grid = TRUE),
-          x_labels = ~.x
-  ) +
-  ggplot2::geom_point()
-```
-
-Alternatively, express explicitly the required labels
-
-```{r}
-penguins %>% 
-  group_by(year, species) %>% 
-  summarise(body_mass_g = mean(body_mass_g, na.rm = TRUE)) %>% 
-  gg_line(year, body_mass_g, col = species, 
-          x_breaks = 2007:2009,
-          theme = gg_theme(y_grid = TRUE),
-          x_labels = scales::label_number(accuracy = 1, big.mark = "")
-  ) +
-  ggplot2::geom_point()
-```
-
-Add ggblanket theme with only horizontal gridlines
-
-```{r}
-penguins %>% 
-  group_by(year, species) %>% 
-  summarise(body_mass_g = mean(body_mass_g, na.rm = TRUE)) %>% 
-  gg_line(year, body_mass_g, col = species, 
-          x_breaks = 2007:2009,
-          theme = gg_theme(y_grid = TRUE), 
-          x_labels = ~.x
-  ) +
-  ggplot2::geom_point()
-```
-
-Add some expansion on the x
-
-```{r}
-penguins %>% 
-  group_by(year, species) %>% 
-  summarise(body_mass_g = mean(body_mass_g, na.rm = TRUE)) %>% 
-  gg_line(year, body_mass_g, col = species, 
-          x_breaks = 2007:2009,
-          x_labels = ~.x,
-          theme = gg_theme(y_grid = TRUE), 
-          x_expand = c(0.05, 0.05)
-  ) +
-  ggplot2::geom_point()
-```
-
-Convert year variable to date class
-
-```{r}
-penguins %>% 
-  group_by(year, species) %>% 
-  summarise(body_mass_g = mean(body_mass_g, na.rm = TRUE)) %>% 
-  mutate(year = lubridate::ymd(glue::glue("{year}-01-01"))) %>% 
-  gg_line(year, body_mass_g, col = species, 
-          theme = gg_theme(y_grid = TRUE) 
-  ) +
-  ggplot2::geom_point()
+economics %>% 
+  slice_head(n = 100) %>% 
+  gg_col(x = date, y = unemploy) +
+  ggplot2::labs(x = NULL)
 ```
 
 For further information, see the [ggblanket website](https://davidhodge931.github.io/ggblanket/).
