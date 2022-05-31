@@ -98,10 +98,12 @@ economics %&gt;%
           size = 1,
           y_zero = TRUE)</code></pre>
 <p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-13-1.png" width="576" /></p>
-<p>Convert to a point graph</p>
+<p>Convert to a step graph. And colour by the y variable. Note no legend is provided, as it is the values can be read off the y scale.</p>
 <pre class="r"><code>economics %&gt;% 
   slice_head(n = 100) %&gt;% 
-  gg_point(date, unemploy)</code></pre>
+  gg_step(x = date, 
+          y = unemploy, 
+          col = unemploy)</code></pre>
 <p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-14-1.png" width="576" /></p>
 <p>Convert to a ribbon to show uncertainty</p>
 <pre class="r"><code>economics %&gt;% 

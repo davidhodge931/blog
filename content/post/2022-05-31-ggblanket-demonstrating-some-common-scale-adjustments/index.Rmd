@@ -147,12 +147,14 @@ economics %>%
           y_zero = TRUE)
 ```
 
-Convert to a point graph
+Convert to a step graph. And colour by the y variable. Note no legend is provided, as it is the values can be read off the y scale. 
 
 ```{r}
 economics %>% 
   slice_head(n = 100) %>% 
-  gg_point(date, unemploy)
+  gg_step(x = date, 
+          y = unemploy, 
+          col = unemploy)
 ```
 
 Convert to a ribbon to show uncertainty
