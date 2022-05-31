@@ -1,8 +1,8 @@
 ---
-title: '{ggblanket}: demonstrating some common scale adjustments'
+title: '{ggblanket}: common x and y scale adjustments'
 author: "David Hodge"
 date: '2022-05-31'
-slug: ggblanket-demonstrating-some-common-scale-adjustments
+slug: ggblanket-showing-common-x-and-y-scale-adjustments
 categories: []
 tags: R
 ---

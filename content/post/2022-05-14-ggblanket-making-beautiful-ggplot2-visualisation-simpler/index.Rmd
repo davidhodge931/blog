@@ -1,5 +1,5 @@
 ---
-title: '{ggblanket}: making beautiful ggplot2 visualisation simpler'
+title: '{ggblanket}: simplify beautiful ggplot2 visualisation'
 author: "David Hodge"
 date: '2022-05-14'
 slug: ggblanket-making-beautiful-ggplot2-visualisation-simpler
