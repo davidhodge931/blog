@@ -36,16 +36,34 @@ Note x scale default limits of min/max breaks and zero expanding
 ```{r}
 economics %>% 
   slice_head(n = 100) %>% 
-  gg_col(date, unemploy)
+  gg_col(x = date, y = unemploy)
 ```
 
 Make the theme horizontal lines only
+
 ```{r}
 economics %>% 
   slice_head(n = 100) %>% 
   gg_col(x = date, y = unemploy, 
           theme = gg_theme(y_grid = TRUE))
 ```
+
+Make more breaks using the pretty algorithm with the x_breaks_n argument.
+
+```{r}
+economics %>% 
+  slice_head(n = 100) %>% 
+  gg_col(x = date, y = unemploy, x_breaks_n = 10)
+```
+
+Make breaks using the scales::fullseq algorithm using the x_breaks_width argument.
+
+```{r}
+economics %>% 
+  slice_head(n = 100) %>% 
+  gg_col(x = date, y = unemploy, x_breaks_width = "3 years")
+```
+
 
 Adjust limits of an x date variable
 
@@ -71,7 +89,7 @@ Use ggplot2's default breaks, limits, labels and expand
 ```{r}
 economics %>% 
   slice_head(n = 100) %>% 
-  gg_col(date, unemploy) +
+  gg_col(x = date, y = unemploy) +
   scale_x_date()
 ```
 
