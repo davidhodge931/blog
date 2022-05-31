@@ -60,8 +60,8 @@ library(ggblanket)</code></pre>
          x_breaks_width = &quot;3 years&quot;)</code></pre>
 <p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-8-1.png" width="576" /></p>
 <p>Specify your own specific breaks. In this case, we are using the seq function and working backwards to ensure our last break is the maximum of the data. Note that if your breaks do not cover all of the data, you will need to specify limits of <code>c(NA, NA)</code> or <code>c(NA_Data_, NA_Data_)</code> to include all of the data.</p>
-<pre class="r"><code>x &lt;- economics %&gt;% slice_head(n = 100) %&gt;% pull(date)
-x_breaks &lt;- seq(from = max(x), to = min(x), by = &quot;-20 months&quot;)
+<pre class="r"><code>x_vctr &lt;- economics %&gt;% slice_head(n = 100) %&gt;% pull(date)
+x_breaks &lt;- seq(from = max(x_vctr), to = min(x_vctr), by = &quot;-19 months&quot;)
 
 economics %&gt;% 
   slice_head(n = 100) %&gt;% 

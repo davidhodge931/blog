@@ -96,8 +96,8 @@ economics %>%
 Specify your own specific breaks. In this case, we are using the seq function and working backwards to ensure our last break is the maximum of the data. Note that if your breaks do not cover all of the data, you will need to specify limits of `c(NA, NA)` or `c(NA_Data_, NA_Data_)` to include all of the data. 
 
 ```{r}
-x <- economics %>% slice_head(n = 100) %>% pull(date)
-x_breaks <- seq(from = max(x), to = min(x), by = "-20 months")
+x_vctr <- economics %>% slice_head(n = 100) %>% pull(date)
+x_breaks <- seq(from = max(x_vctr), to = min(x_vctr), by = "-19 months")
 
 economics %>% 
   slice_head(n = 100) %>% 
