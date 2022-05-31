@@ -1,5 +1,5 @@
 ---
-title: 'ggblanket: making beautiful ggplot2 visualisation simpler'
+title: '{ggblanket}: making beautiful ggplot2 visualisation simpler'
 author: "David Hodge"
 date: '2022-05-14'
 slug: ggblanket-making-beautiful-ggplot2-visualisation-simpler
@@ -18,7 +18,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-![](logo.png){width=20%}
+![](../logo.png){width=20%}
 
 A few days ago, I released {ggblanket} onto CRAN. 
 

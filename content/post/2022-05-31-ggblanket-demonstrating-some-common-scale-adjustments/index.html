@@ -1,0 +1,221 @@
+---
+title: '{ggblanket}: demonstrating some common scale adjustments'
+author: "David Hodge"
+date: '2022-05-31'
+slug: ggblanket-demonstrating-some-common-scale-adjustments
+categories: []
+tags: R
+---
+
+
+
+<p><img src="../logo.png" style="width:20.0%" /></p>
+<p>I was mucking around with some scale adjustments with my {ggblanket} package, and thought I’d share this as a post.</p>
+<p>It’s by no means a complete demonstration of the functionality available, but it demonstrates a bit of how and x and y scales can be adjusted.</p>
+<pre class="r"><code>library(palmerpenguins)
+library(tidyverse)
+library(lubridate)
+library(ggblanket)</code></pre>
+<p>Note x scale default limits of min/max breaks and zero expanding</p>
+<pre class="r"><code>economics %&gt;% 
+  slice_head(n = 100) %&gt;% 
+  gg_line(date, unemploy, 
+          theme = gg_theme(y_grid = TRUE))</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-3-1.png" width="576" /></p>
+<p>Adjust limits</p>
+<pre class="r"><code>economics %&gt;%
+  slice_head(n = 100) %&gt;% 
+  gg_line(date, unemploy, 
+          x_limits = c(NA_Date_, NA_Date_),
+          theme = gg_theme(y_grid = TRUE))</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-4-1.png" width="576" /></p>
+<p>Add expand of 0.05</p>
+<pre class="r"><code>economics %&gt;% 
+  slice_head(n = 100) %&gt;% 
+  gg_line(date, unemploy, 
+          x_limits = c(NA_Date_, NA_Date_),
+          x_expand = c(0.05, 0.05),
+          theme = gg_theme(y_grid = TRUE))</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-5-1.png" width="576" /></p>
+<p>Make the y axis start at zero</p>
+<pre class="r"><code>economics %&gt;% 
+  slice_head(n = 100) %&gt;% 
+  gg_line(date, unemploy, 
+          x_limits = c(NA_Date_, NA_Date_),
+          x_expand = c(0.05, 0.05),
+          theme = gg_theme(y_grid = TRUE), 
+          y_zero = TRUE)</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-6-1.png" width="576" /></p>
+<p>Change the y title</p>
+<pre class="r"><code>economics %&gt;% 
+  slice_head(n = 100) %&gt;% 
+  gg_line(date, unemploy, 
+          x_limits = c(NA_Date_, NA_Date_),
+          x_expand = c(0.05, 0.05),
+          theme = gg_theme(y_grid = TRUE), 
+          y_zero = TRUE, 
+          y_title = &quot;Unemployment&quot;)</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-7-1.png" width="576" /></p>
+<p>Change the y title</p>
+<pre class="r"><code>economics %&gt;% 
+  slice_head(n = 100) %&gt;% 
+  gg_line(date, unemploy, 
+          x_limits = c(NA_Date_, NA_Date_),
+          x_expand = c(0.05, 0.05),
+          theme = gg_theme(y_grid = TRUE), 
+          y_zero = TRUE, 
+          y_title = &quot;Unemployment&quot;)</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-8-1.png" width="576" /></p>
+<p>Remove the x title</p>
+<pre class="r"><code>economics %&gt;% 
+  slice_head(n = 100) %&gt;% 
+  gg_line(date, unemploy, 
+          x_limits = c(NA_Date_, NA_Date_),
+          x_expand = c(0.05, 0.05),
+          theme = gg_theme(y_grid = TRUE), 
+          y_title = &quot;Unemployment&quot;,
+          y_zero = TRUE, 
+          x_title = &quot;&quot;)</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-9-1.png" width="576" /></p>
+<p>Alternative way to remove the x title</p>
+<pre class="r"><code>economics %&gt;% 
+  slice_head(n = 100) %&gt;% 
+  gg_line(date, unemploy, 
+          x_limits = c(NA_Date_, NA_Date_),
+          x_expand = c(0.05, 0.05),
+          theme = gg_theme(y_grid = TRUE), 
+          y_zero = TRUE,
+          y_title = &quot;Unemployment&quot;) +
+  ggplot2::labs(x = NULL)</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-10-1.png" width="576" /></p>
+<p>Use ggplot2’s default breaks, limits, labels and expand</p>
+<pre class="r"><code>economics %&gt;% 
+  slice_head(n = 100) %&gt;% 
+  gg_line(date, unemploy, 
+          theme = gg_theme(y_grid = TRUE), 
+          y_zero = TRUE,
+          y_title = &quot;Unemployment&quot;) +
+  ggplot2::labs(x = NULL) +
+  scale_x_date()</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-11-1.png" width="576" /></p>
+<p>Convert to a column graph</p>
+<pre class="r"><code>economics %&gt;% 
+  slice_head(n = 100) %&gt;% 
+  gg_col(date, unemploy, 
+           x_limits = c(NA_Date_, NA_Date_),
+           x_expand = c(0.05, 0.05),
+           theme = gg_theme(y_grid = TRUE), 
+           y_zero = TRUE,
+           y_title = &quot;Unemployment&quot;) +
+  ggplot2::labs(x = NULL)</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-12-1.png" width="576" /></p>
+<p>Convert to a step graph</p>
+<pre class="r"><code>economics %&gt;% 
+  slice_head(n = 100) %&gt;% 
+  gg_step(date, unemploy, 
+          x_limits = c(NA_Date_, NA_Date_),
+          x_expand = c(0.05, 0.05),
+          theme = gg_theme(y_grid = TRUE), 
+          y_zero = TRUE)</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-13-1.png" width="576" /></p>
+<p>Convert to a point graph</p>
+<pre class="r"><code>economics %&gt;% 
+  slice_head(n = 100) %&gt;% 
+  gg_step(date, unemploy, 
+          x_limits = c(NA_Date_, NA_Date_),
+          x_expand = c(0.05, 0.05),
+          theme = gg_theme(y_grid = TRUE), 
+          y_zero = TRUE)</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-14-1.png" width="576" /></p>
+<p>Convert to a ribbon to show uncertainty</p>
+<pre class="r"><code>economics %&gt;% 
+  slice_head(n = 100) %&gt;% 
+  gg_ribbon(date, y = unemploy, ymin = unemploy - 500, ymax = unemploy + 500,           x_limits = c(NA_Date_, NA_Date_),
+          x_expand = c(0.05, 0.05),
+          theme = gg_theme(y_grid = TRUE), 
+          y_zero = TRUE) +
+  geom_line()</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-15-1.png" width="576" /></p>
+<p>Remove the outer lines</p>
+<pre class="r"><code>economics %&gt;% 
+  slice_head(n = 100) %&gt;% 
+  gg_ribbon(date, y = unemploy, ymin = unemploy - 500, ymax = unemploy + 500,             x_limits = c(NA_Date_, NA_Date_),
+            x_expand = c(0.05, 0.05),
+            theme = gg_theme(y_grid = TRUE), 
+            y_zero = TRUE,
+            pal = scales::alpha(pal_viridis_mix(1), 0)) +
+  geom_line(col = scales::alpha(pal_viridis_mix(1), 1))</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-16-1.png" width="576" /></p>
+<p>Make a line graph of penguin body mass by year</p>
+<pre class="r"><code>penguins %&gt;% 
+  group_by(year, species) %&gt;% 
+  summarise(body_mass_g = mean(body_mass_g, na.rm = TRUE)) %&gt;% 
+  gg_line(year, body_mass_g, col = species) +
+  ggplot2::geom_point()</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-17-1.png" width="576" /></p>
+<p>Specify breaks and make the theme only have horizontal gridlines</p>
+<pre class="r"><code>penguins %&gt;% 
+  group_by(year, species) %&gt;% 
+  summarise(body_mass_g = mean(body_mass_g, na.rm = TRUE)) %&gt;% 
+  gg_line(year, body_mass_g, col = species, 
+          x_breaks = 2007:2009,
+          theme = gg_theme(y_grid = TRUE)
+  ) +
+  ggplot2::geom_point()</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-18-1.png" width="576" /></p>
+<p>Remove comma default transformation</p>
+<pre class="r"><code>penguins %&gt;% 
+  group_by(year, species) %&gt;% 
+  summarise(body_mass_g = mean(body_mass_g, na.rm = TRUE)) %&gt;% 
+  gg_line(year, body_mass_g, col = species, 
+          x_breaks = 2007:2009,
+          theme = gg_theme(y_grid = TRUE),
+          x_labels = ~.x
+  ) +
+  ggplot2::geom_point()</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-19-1.png" width="576" /></p>
+<p>Alternatively, express explicitly the required labels</p>
+<pre class="r"><code>penguins %&gt;% 
+  group_by(year, species) %&gt;% 
+  summarise(body_mass_g = mean(body_mass_g, na.rm = TRUE)) %&gt;% 
+  gg_line(year, body_mass_g, col = species, 
+          x_breaks = 2007:2009,
+          theme = gg_theme(y_grid = TRUE),
+          x_labels = scales::label_number(accuracy = 1, big.mark = &quot;&quot;)
+  ) +
+  ggplot2::geom_point()</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-20-1.png" width="576" /></p>
+<p>Add ggblanket theme with only horizontal gridlines</p>
+<pre class="r"><code>penguins %&gt;% 
+  group_by(year, species) %&gt;% 
+  summarise(body_mass_g = mean(body_mass_g, na.rm = TRUE)) %&gt;% 
+  gg_line(year, body_mass_g, col = species, 
+          x_breaks = 2007:2009,
+          theme = gg_theme(y_grid = TRUE), 
+          x_labels = ~.x
+  ) +
+  ggplot2::geom_point()</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-21-1.png" width="576" /></p>
+<p>Add some expansion on the x</p>
+<pre class="r"><code>penguins %&gt;% 
+  group_by(year, species) %&gt;% 
+  summarise(body_mass_g = mean(body_mass_g, na.rm = TRUE)) %&gt;% 
+  gg_line(year, body_mass_g, col = species, 
+          x_breaks = 2007:2009,
+          x_labels = ~.x,
+          theme = gg_theme(y_grid = TRUE), 
+          x_expand = c(0.05, 0.05)
+  ) +
+  ggplot2::geom_point()</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-22-1.png" width="576" /></p>
+<p>Convert year variable to date class</p>
+<pre class="r"><code>penguins %&gt;% 
+  group_by(year, species) %&gt;% 
+  summarise(body_mass_g = mean(body_mass_g, na.rm = TRUE)) %&gt;% 
+  mutate(year = lubridate::ymd(glue::glue(&quot;{year}-01-01&quot;))) %&gt;% 
+  gg_line(year, body_mass_g, col = species, 
+          theme = gg_theme(y_grid = TRUE) 
+  ) +
+  ggplot2::geom_point()</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-23-1.png" width="576" /></p>
+<p>For further information, see the <a href="https://davidhodge931.github.io/ggblanket/">ggblanket website</a>.</p>
