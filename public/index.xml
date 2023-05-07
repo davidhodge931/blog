@@ -8,7 +8,7 @@
     <language>en-us</language>
     <lastBuildDate>Wed, 03 May 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://davidhodge931.netlify.app/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>ggblanket-basics</title>
+      <title>ggblanket: some basics</title>
       <link>https://davidhodge931.netlify.app/2023/05/03/ggblanket-why/</link>
       <pubDate>Wed, 03 May 2023 00:00:00 +0000</pubDate>
       
@@ -17,6 +17,7 @@
 
 
 &lt;p&gt;ggblanket seeks to simplify ggplot2 visualisation.&lt;/p&gt;
+&lt;p&gt;The below article outlines the basics of how the package works.&lt;/p&gt;
 &lt;p&gt;How?&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(tidyverse)
 library(ggblanket)
@@ -27,102 +28,147 @@ penguins &amp;lt;- penguins |&amp;gt;
   mutate(sex = stringr::str_to_sentence(sex)) |&amp;gt;
   tidyr::drop_na(sex)&lt;/code&gt;&lt;/pre&gt;
 &lt;ol style=&#34;list-style-type: decimal&#34;&gt;
-&lt;li&gt;One-function approach. I.e. No +’s&lt;/li&gt;
+&lt;li&gt;Over thirty gg_* wrapper functions to plot a single geom&lt;/li&gt;
 &lt;/ol&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;p1 &amp;lt;- penguins |&amp;gt; #pipe in
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;penguins |&amp;gt; 
   ggplot() + #now plus&amp;#39;s
-  geom_point(aes(x = flipper_length_mm, y = body_mass_g, col = species))
-
-p2 &amp;lt;- penguins |&amp;gt;
+  geom_point(aes(x = flipper_length_mm, y = body_mass_g))&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://davidhodge931.netlify.app/2023/05/03/ggblanket-why/index_files/figure-html/unnamed-chunk-3-1.png&#34; width=&#34;576&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;
+penguins |&amp;gt;
   gg_point(
     x = flipper_length_mm,
-    y = body_mass_g,
-    col = species
-  )
-
-
-p1 / p2&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://davidhodge931.netlify.app/2023/05/03/ggblanket-why/index_files/figure-html/unnamed-chunk-3-1.png&#34; width=&#34;576&#34; /&gt;&lt;/p&gt;
+    y = body_mass_g)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://davidhodge931.netlify.app/2023/05/03/ggblanket-why/index_files/figure-html/unnamed-chunk-3-2.png&#34; width=&#34;576&#34; /&gt;&lt;/p&gt;
 &lt;ol start=&#34;2&#34; style=&#34;list-style-type: decimal&#34;&gt;
-&lt;li&gt;col and fill as a unified col aesthetic&lt;/li&gt;
+&lt;li&gt;A single col argument to colour and fill by a variable&lt;/li&gt;
 &lt;/ol&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;p1 &amp;lt;- penguins |&amp;gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;penguins |&amp;gt;
   ggplot() +
-  geom_density(aes(x = body_mass_g, fill = species))
-
-p2 &amp;lt;- penguins |&amp;gt;
+  geom_density(aes(x = body_mass_g, fill = species))&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://davidhodge931.netlify.app/2023/05/03/ggblanket-why/index_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;576&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;
+penguins |&amp;gt;
   gg_density(
     x = body_mass_g, 
-    col = species
-  )
-
-p1 / p2&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://davidhodge931.netlify.app/2023/05/03/ggblanket-why/index_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;576&#34; /&gt;&lt;/p&gt;
+    col = species)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://davidhodge931.netlify.app/2023/05/03/ggblanket-why/index_files/figure-html/unnamed-chunk-4-2.png&#34; width=&#34;576&#34; /&gt;&lt;/p&gt;
 &lt;ol start=&#34;3&#34; style=&#34;list-style-type: decimal&#34;&gt;
 &lt;li&gt;unifed approach to changing colours via a pal argument&lt;/li&gt;
 &lt;/ol&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;p1 &amp;lt;- penguins |&amp;gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;penguins |&amp;gt;
   ggplot() +
   geom_histogram(
     aes(x = body_mass_g),
-    fill = &amp;quot;#794044&amp;quot;)
-
-p2 &amp;lt;- penguins |&amp;gt;
+    fill = &amp;quot;#800000&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://davidhodge931.netlify.app/2023/05/03/ggblanket-why/index_files/figure-html/unnamed-chunk-5-1.png&#34; width=&#34;576&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;
+penguins |&amp;gt;
   gg_histogram(
     x = body_mass_g, 
-    pal = &amp;quot;#794044&amp;quot;
-  )
-
-p1 / p2&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://davidhodge931.netlify.app/2023/05/03/ggblanket-why/index_files/figure-html/unnamed-chunk-5-1.png&#34; width=&#34;576&#34; /&gt;&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;p1 &amp;lt;- penguins |&amp;gt;
+    pal = &amp;quot;#800000&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://davidhodge931.netlify.app/2023/05/03/ggblanket-why/index_files/figure-html/unnamed-chunk-5-2.png&#34; width=&#34;576&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;penguins |&amp;gt;
   ggplot() +
   geom_jitter(aes(x = species, y = body_mass_g, col = sex)) +
-  scale_color_manual(values = c(&amp;quot;#fa8072&amp;quot;, &amp;quot;#468499&amp;quot;))
-
-p2 &amp;lt;- penguins |&amp;gt;
+  scale_color_manual(values = c(&amp;quot;#fa8072&amp;quot;, &amp;quot;#468499&amp;quot;))&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://davidhodge931.netlify.app/2023/05/03/ggblanket-why/index_files/figure-html/unnamed-chunk-6-1.png&#34; width=&#34;576&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;
+penguins |&amp;gt;
   gg_jitter(
     x = species, 
     y = body_mass_g, 
     col = sex, 
-    pal = c(&amp;quot;#fa8072&amp;quot;, &amp;quot;#468499&amp;quot;))
-
-p1 / p2&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://davidhodge931.netlify.app/2023/05/03/ggblanket-why/index_files/figure-html/unnamed-chunk-6-1.png&#34; width=&#34;576&#34; /&gt;&lt;/p&gt;
+    pal = c(&amp;quot;#fa8072&amp;quot;, &amp;quot;#468499&amp;quot;))&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://davidhodge931.netlify.app/2023/05/03/ggblanket-why/index_files/figure-html/unnamed-chunk-6-2.png&#34; width=&#34;576&#34; /&gt;&lt;/p&gt;
 &lt;ol start=&#34;4&#34; style=&#34;list-style-type: decimal&#34;&gt;
-&lt;li&gt;facetting as an aesthetic&lt;/li&gt;
+&lt;li&gt;A facet argument to facet by a variable&lt;/li&gt;
 &lt;/ol&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;p1 &amp;lt;- penguins |&amp;gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;penguins |&amp;gt;
   ggplot() +
-  geom_density(aes(x = flipper_length_mm, fill = sex)) +
-  facet_wrap(~species)
-
-p2 &amp;lt;- penguins |&amp;gt;
-  gg_density(
-    x = flipper_length_mm,
-    col = sex,
-    facet = species)
-
-
-p1 / p2&lt;/code&gt;&lt;/pre&gt;
+  geom_violin(aes(x = sex, y = body_mass_g)) +
+  facet_wrap(~species) &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;img src=&#34;https://davidhodge931.netlify.app/2023/05/03/ggblanket-why/index_files/figure-html/unnamed-chunk-7-1.png&#34; width=&#34;576&#34; /&gt;&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;p1 &amp;lt;- penguins |&amp;gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;
+penguins |&amp;gt;
+  gg_violin(
+    x = sex,
+    y = body_mass_g,
+    facet = species)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://davidhodge931.netlify.app/2023/05/03/ggblanket-why/index_files/figure-html/unnamed-chunk-7-2.png&#34; width=&#34;576&#34; /&gt;&lt;/p&gt;
+&lt;ol start=&#34;5&#34; style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;An additional facet2 argument to for grid faceting&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;penguins |&amp;gt;
   ggplot() +
   geom_histogram(aes(x = flipper_length_mm)) +
-  facet_grid(rows = vars(species), cols = vars(sex))
-
-p2 &amp;lt;- penguins |&amp;gt;
+  facet_grid(rows = vars(species), cols = vars(sex))&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://davidhodge931.netlify.app/2023/05/03/ggblanket-why/index_files/figure-html/unnamed-chunk-8-1.png&#34; width=&#34;576&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;
+penguins |&amp;gt;
   gg_histogram(
     x = flipper_length_mm,
     facet = sex,
-    facet2 = species)
-
-p1 / p2&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://davidhodge931.netlify.app/2023/05/03/ggblanket-why/index_files/figure-html/unnamed-chunk-8-1.png&#34; width=&#34;576&#34; /&gt;&lt;/p&gt;
-&lt;ol start=&#34;5&#34; style=&#34;list-style-type: decimal&#34;&gt;
-&lt;li&gt;&lt;p&gt;prefixed arguments easy to find with autotab&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;numeric scales working in ‘pretty’ ways&lt;/p&gt;&lt;/li&gt;
+    facet2 = species)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://davidhodge931.netlify.app/2023/05/03/ggblanket-why/index_files/figure-html/unnamed-chunk-8-2.png&#34; width=&#34;576&#34; /&gt;&lt;/p&gt;
+&lt;ol start=&#34;6&#34; style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;prefixed arguments easy to find with autotab&lt;/li&gt;
 &lt;/ol&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;penguins |&amp;gt;
+  ggplot() +
+  geom_boxplot(aes(x = sex, y = body_mass_g, fill = sex), 
+               show.legend = F) +
+  facet_wrap(~species) +
+  expand_limits(y = 0) +
+  scale_x_discrete(labels = \(x) stringr::str_sub(x, 1, 1)) +
+  scale_y_continuous(breaks = scales::breaks_width(500))&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://davidhodge931.netlify.app/2023/05/03/ggblanket-why/index_files/figure-html/unnamed-chunk-9-1.png&#34; width=&#34;576&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;
+penguins |&amp;gt;
+  gg_boxplot(
+    x = sex,
+    y = body_mass_g,
+    col = sex,
+    facet = species, 
+    x_labels = \(x) stringr::str_sub(x, 1, 1),
+    y_include = 0, 
+    y_breaks = scales::breaks_width(500))&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://davidhodge931.netlify.app/2023/05/03/ggblanket-why/index_files/figure-html/unnamed-chunk-9-2.png&#34; width=&#34;576&#34; /&gt;&lt;/p&gt;
+&lt;ol start=&#34;7&#34; style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;Default titles converted to sentence case&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;penguins |&amp;gt; 
+  group_by(species, sex) |&amp;gt; 
+  summarise(body_mass_g = mean(body_mass_g, na.rm = TRUE)) |&amp;gt; 
+  ggplot() +
+  geom_col(aes(x = body_mass_g, y = species, fill = sex),
+           position = &amp;quot;dodge&amp;quot;,
+           width = 0.75) +
+  labs(y = &amp;quot;Penguin species&amp;quot;)  &lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://davidhodge931.netlify.app/2023/05/03/ggblanket-why/index_files/figure-html/unnamed-chunk-10-1.png&#34; width=&#34;576&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;
+penguins |&amp;gt; 
+  group_by(species, sex) |&amp;gt; 
+  summarise(body_mass_g = mean(body_mass_g, na.rm = TRUE)) |&amp;gt; 
+  gg_col(
+    x = body_mass_g, 
+    y = species, 
+    col = sex, 
+    position = &amp;quot;dodge&amp;quot;,
+    width = 0.75,
+    y_title = &amp;quot;Penguin species&amp;quot;)  &lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://davidhodge931.netlify.app/2023/05/03/ggblanket-why/index_files/figure-html/unnamed-chunk-10-2.png&#34; width=&#34;576&#34; /&gt;&lt;/p&gt;
+&lt;ol start=&#34;8&#34; style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;default numeric scales working in pretty ways&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Where the orientation is normal (i.e. vertical):&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Default x scale limits and expanding are as per ggplot2 defaults&lt;/li&gt;
+&lt;li&gt;Default numeric y scale limits start and end on a break with zero expanding&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;It does the opposite where the orientation is horizontal.&lt;/p&gt;
+&lt;p&gt;This looks nice and symmetrical.&lt;/p&gt;
+&lt;p&gt;For further information, see the &lt;a href=&#34;https://davidhodge931.github.io/ggblanket/&#34;&gt;ggblanket website&lt;/a&gt;.&lt;/p&gt;
 </description>
     </item>
     
