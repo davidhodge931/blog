@@ -73,6 +73,7 @@
 
     <div class="article-content">
       
+<script src="https://davidhodge931.netlify.app/2021/06/27/scales-with-simplevis/index_files/header-attrs/header-attrs.js"></script>
 
 
 <pre class="r"><code>library(simplevis)
@@ -129,24 +130,18 @@ library(palmerpenguins)</code></pre>
 <p><img src="https://davidhodge931.netlify.app/2021/06/27/scales-with-simplevis/index_files/figure-html/unnamed-chunk-5-1.png" width="576" /></p>
 <p>Adjust the number of breaks for numeric x and/or y scales.</p>
 <pre class="r"><code>gg_point_col(penguins, bill_length_mm, body_mass_g, species, 
-               y_pretty_n = 10,
-               x_pretty_n = 6)</code></pre>
+               y_breaks_n = 10,
+               x_breaks_n = 6)</code></pre>
 <p><img src="https://davidhodge931.netlify.app/2021/06/27/scales-with-simplevis/index_files/figure-html/unnamed-chunk-6-1.png" width="576" /></p>
-<p>Transform numeric x and y scales.</p>
-<pre class="r"><code>gg_point_col(penguins, bill_length_mm, body_mass_g, species, 
-               x_trans = &quot;sqrt&quot;, 
-               x_zero = T,
-               y_trans = &quot;log10&quot;)</code></pre>
-<p><img src="https://davidhodge931.netlify.app/2021/06/27/scales-with-simplevis/index_files/figure-html/unnamed-chunk-7-1.png" width="576" /></p>
 <p>Balance a numeric scale so that it has equivalence between positive and negative values.</p>
 <pre class="r"><code>gg_point_col(penguins, bill_length_mm, body_mass_g, species, 
              y_balance = T)</code></pre>
-<p><img src="https://davidhodge931.netlify.app/2021/06/27/scales-with-simplevis/index_files/figure-html/unnamed-chunk-8-1.png" width="576" /></p>
+<p><img src="https://davidhodge931.netlify.app/2021/06/27/scales-with-simplevis/index_files/figure-html/unnamed-chunk-7-1.png" width="576" /></p>
 <p>Zero lines default on if a numeric scale includes positive and negative values, but can be turned off if desired.</p>
 <pre class="r"><code>gg_point_col(penguins, bill_length_mm, body_mass_g, species, 
              y_balance = T, 
              y_zero_line = F)</code></pre>
-<p><img src="https://davidhodge931.netlify.app/2021/06/27/scales-with-simplevis/index_files/figure-html/unnamed-chunk-9-1.png" width="576" /></p>
+<p><img src="https://davidhodge931.netlify.app/2021/06/27/scales-with-simplevis/index_files/figure-html/unnamed-chunk-8-1.png" width="576" /></p>
 </div>
 <div id="discrete-scales" class="section level3">
 <h3>Discrete scales</h3>
@@ -157,7 +152,7 @@ library(palmerpenguins)</code></pre>
   summarise(price = mean(price)) 
   
 gg_hbar(plot_data, price, cut)</code></pre>
-<p><img src="https://davidhodge931.netlify.app/2021/06/27/scales-with-simplevis/index_files/figure-html/unnamed-chunk-10-1.png" width="576" /></p>
+<p><img src="https://davidhodge931.netlify.app/2021/06/27/scales-with-simplevis/index_files/figure-html/unnamed-chunk-9-1.png" width="576" /></p>
 <p>If there is an inherent order to the character variable that you want it to plot in, then you should convert the variable to a factor, and give it the appropriate levels.</p>
 <pre class="r"><code>cut_levels &lt;-  c(&quot;Ideal&quot;, &quot;Premium&quot;, &quot;Very Good&quot;, &quot;Good&quot;, &quot;Fair&quot;)
 
@@ -168,7 +163,7 @@ plot_data &lt;- ggplot2::diamonds %&gt;%
   summarise(price = mean(price)) 
 
 gg_hbar(plot_data, price, cut)</code></pre>
-<p><img src="https://davidhodge931.netlify.app/2021/06/27/scales-with-simplevis/index_files/figure-html/unnamed-chunk-11-1.png" width="576" /></p>
+<p><img src="https://davidhodge931.netlify.app/2021/06/27/scales-with-simplevis/index_files/figure-html/unnamed-chunk-10-1.png" width="576" /></p>
 <p>Discrete scales can be reversed easily using the relevant <code>y_rev</code> or <code>x_rev</code> argument.</p>
 <pre class="r"><code>plot_data &lt;- ggplot2::diamonds %&gt;%
   mutate(cut = as.character(cut)) %&gt;% 
@@ -177,7 +172,7 @@ gg_hbar(plot_data, price, cut)</code></pre>
 
 gg_hbar(plot_data, price, cut,
             y_rev = TRUE)</code></pre>
-<p><img src="https://davidhodge931.netlify.app/2021/06/27/scales-with-simplevis/index_files/figure-html/unnamed-chunk-12-1.png" width="576" /></p>
+<p><img src="https://davidhodge931.netlify.app/2021/06/27/scales-with-simplevis/index_files/figure-html/unnamed-chunk-11-1.png" width="576" /></p>
 <p>Simple hbar and vbar plots made with <code>gg_bar()</code> or <code>gg_hbar</code> can be ordered by size using y_reorder or x_reorder. For other functions, you will need to reorder variables in the data as you wish them to be ordered.</p>
 <pre class="r"><code>plot_data &lt;- ggplot2::diamonds %&gt;%
   mutate(cut = as.character(cut)) %&gt;% 
@@ -186,63 +181,61 @@ gg_hbar(plot_data, price, cut,
   
 gg_hbar(plot_data, price, cut, 
         y_reorder = T)</code></pre>
-<p><img src="https://davidhodge931.netlify.app/2021/06/27/scales-with-simplevis/index_files/figure-html/unnamed-chunk-13-1.png" width="576" /></p>
+<p><img src="https://davidhodge931.netlify.app/2021/06/27/scales-with-simplevis/index_files/figure-html/unnamed-chunk-12-1.png" width="576" /></p>
 </div>
 <div id="colour-scales" class="section level3">
 <h3>Colour scales</h3>
-<p>Customise the colour title. Note that because colour labels will be converted to sentence case by default in simplevis, but we can turn this off when we do not want this to occur using <code>ggplot2::waiver()</code></p>
+<p>Customise the colour title. Note that because colour labels will be converted to sentence case by default in simplevis, but we can turn this off when we do not want this to occur using <code>function(x) x</code></p>
 <pre class="r"><code>plot_data &lt;- ggplot2::diamonds %&gt;%
   group_by(cut, clarity) %&gt;%
   summarise(average_price = mean(price))
 
 gg_hbar_col(plot_data, average_price, cut, clarity,
-            col_labels = ggplot2::waiver(), 
+            col_labels = function(x) x,  
             pal_rev = TRUE)</code></pre>
-<p><img src="https://davidhodge931.netlify.app/2021/06/27/scales-with-simplevis/index_files/figure-html/unnamed-chunk-14-1.png" width="576" /></p>
+<p><img src="https://davidhodge931.netlify.app/2021/06/27/scales-with-simplevis/index_files/figure-html/unnamed-chunk-13-1.png" width="576" /></p>
 <p>Reverse the palette.</p>
 <pre class="r"><code>plot_data &lt;- ggplot2::diamonds %&gt;%
   group_by(cut, clarity) %&gt;%
   summarise(average_price = mean(price))
 
 gg_hbar_col(plot_data, average_price, cut, clarity,
-            col_labels = ggplot2::waiver(), 
+            col_labels = function(x) x, 
             pal_rev = TRUE)</code></pre>
-<p><img src="https://davidhodge931.netlify.app/2021/06/27/scales-with-simplevis/index_files/figure-html/unnamed-chunk-15-1.png" width="576" /></p>
+<p><img src="https://davidhodge931.netlify.app/2021/06/27/scales-with-simplevis/index_files/figure-html/unnamed-chunk-14-1.png" width="576" /></p>
 <p>Reverse the order of coloured bars.</p>
 <pre class="r"><code>plot_data &lt;- ggplot2::diamonds %&gt;%
   group_by(cut, clarity) %&gt;%
   summarise(average_price = mean(price))
 
 gg_hbar_col(plot_data, average_price, cut, clarity,
-            col_labels = ggplot2::waiver(), 
+            col_labels = function(x) x, 
             col_rev = TRUE)</code></pre>
-<p><img src="https://davidhodge931.netlify.app/2021/06/27/scales-with-simplevis/index_files/figure-html/unnamed-chunk-16-1.png" width="576" /></p>
+<p><img src="https://davidhodge931.netlify.app/2021/06/27/scales-with-simplevis/index_files/figure-html/unnamed-chunk-15-1.png" width="576" /></p>
 </div>
 <div id="labels" class="section level3">
 <h3>Labels</h3>
 <p>You can adjust x, y or colour scale labels using <code>x_labels</code>, <code>y_labels</code> or <code>col_labels</code> arguments, and functions from the <code>scales</code> package.</p>
 <pre class="r"><code>gg_point_col(penguins, bill_length_mm, body_mass_g, species, 
-                   y_labels = scales::comma_format(), 
-                   x_labels = scales::number_format(accuracy = 0.1))</code></pre>
-<p><img src="https://davidhodge931.netlify.app/2021/06/27/scales-with-simplevis/index_files/figure-html/unnamed-chunk-17-1.png" width="576" /></p>
+                   y_labels = scales::label_comma(), 
+                   x_labels = scales::label_number(accuracy = 0.1))</code></pre>
+<p><img src="https://davidhodge931.netlify.app/2021/06/27/scales-with-simplevis/index_files/figure-html/unnamed-chunk-16-1.png" width="576" /></p>
 <p>Or via a function.</p>
 <pre class="r"><code>gg_point_col(penguins, bill_length_mm, body_mass_g, species, 
                    x_labels = function(x) glue::glue(&quot;{x} mm&quot;))</code></pre>
-<p><img src="https://davidhodge931.netlify.app/2021/06/27/scales-with-simplevis/index_files/figure-html/unnamed-chunk-18-1.png" width="576" /></p>
-<p>Note there is a default sentence case transformation for categorical x, y or col variables. But you can use <code>ggplot2::waiver()</code> to turn this off.</p>
-<p>The <code>facet_labels</code> argument works slightly differently in that it provides access to the ggplot2 <code>labeller</code> argument within the ggplot <code>facet_wrap</code> function. Therefore you need to use ggplot labeller functions to modify them.</p>
+<p><img src="https://davidhodge931.netlify.app/2021/06/27/scales-with-simplevis/index_files/figure-html/unnamed-chunk-17-1.png" width="576" /></p>
+<p>Note there is a default sentence case transformation for categorical x, y or col variables. But you can use <code>function(x) x</code> to turn this off.</p>
 <p>Notice with the default transformation turned off, the <code>sex</code> variable returns to being lower case as it is in the <code>penguins</code> dataset.</p>
 <pre class="r"><code>gg_point_col_facet(penguins, bill_length_mm, body_mass_g, sex, sex, 
-  col_labels = ggplot2::waiver(),
-  facet_labels = ggplot2::label_value) </code></pre>
-<p><img src="https://davidhodge931.netlify.app/2021/06/27/scales-with-simplevis/index_files/figure-html/unnamed-chunk-19-1.png" width="576" /></p>
+  col_labels = function(x) x,
+  facet_labels = function(x) stringr::str_to_upper(x)) </code></pre>
+<p><img src="https://davidhodge931.netlify.app/2021/06/27/scales-with-simplevis/index_files/figure-html/unnamed-chunk-18-1.png" width="576" /></p>
 </div>
 <div id="na-values" class="section level3">
 <h3>NA values</h3>
-<p>You can quickly remove NA values by setting <code>x_na</code>, <code>y_na</code>, <code>col_na</code> or <code>facet_na</code> arguments to <code>FALSE</code>.</p>
-<pre class="r"><code>gg_point_col_facet(penguins, bill_length_mm, body_mass_g, sex, species, 
-                   col_na = F)</code></pre>
-<p><img src="https://davidhodge931.netlify.app/2021/06/27/scales-with-simplevis/index_files/figure-html/unnamed-chunk-20-1.png" width="576" /></p>
+<p>You can quickly remove NA values by setting <code>x_na_rm</code>, <code>y_na_rm</code>, <code>col_na_rm</code> or <code>facet_na_rm</code> arguments to <code>TRUE</code>.</p>
+<pre class="r"><code>gg_point_col_facet(penguins, bill_length_mm, body_mass_g, sex, species,                    col_na_rm = T)</code></pre>
+<p><img src="https://davidhodge931.netlify.app/2021/06/27/scales-with-simplevis/index_files/figure-html/unnamed-chunk-19-1.png" width="576" /></p>
 </div>
 <div id="expanding-the-scale" class="section level3">
 <h3>Expanding the scale</h3>
@@ -254,11 +247,11 @@ gg_hbar_col(plot_data, average_price, cut, clarity,
 gg_line(plot_data, year, wind, 
         x_expand = ggplot2::expansion(add = c(1, 2.5)),
         y_expand = ggplot2::expansion(mult = c(0.05, 0.1)))</code></pre>
-<p><img src="https://davidhodge931.netlify.app/2021/06/27/scales-with-simplevis/index_files/figure-html/unnamed-chunk-21-1.png" width="576" /></p>
+<p><img src="https://davidhodge931.netlify.app/2021/06/27/scales-with-simplevis/index_files/figure-html/unnamed-chunk-20-1.png" width="576" /></p>
 </div>
 <div id="further-information" class="section level3">
 <h3>Further information</h3>
-<p>More blogs to come on <code>simplevis</code>. In the meantime, see the vignette and articles on the <a href="https://statisticsnz.github.io/simplevis/">simplevis website</a>.</p>
+<p>For further information, see the <a href="https://statisticsnz.github.io/simplevis/">simplevis website</a>.</p>
 <center>
 <p><img src="logo.png" style="width:25.0%" /></p>
 </div>

@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Hugo 0.82.1" />
+
+
+<title>ggblanket-basics - David Hodge</title>
+<meta property="og:title" content="ggblanket-basics - David Hodge">
+
+
+  <link href='https://davidhodge931.netlify.app/favicon.ico' rel='icon' type='image/x-icon'/>
+
+
+
+  
+
+
+
+
+
+
+
+
+<link href='//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css' rel='stylesheet' type='text/css' />
+
+
+
+<link rel="stylesheet" href="/css/fonts.css" media="all">
+<link rel="stylesheet" href="/css/main.css" media="all">
+
+
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav">
+  <a href="/" class="nav-logo">
+    <img src="/images/logo.png"
+         width="50"
+         height="50"
+         alt="Logo">
+  </a>
+
+  <ul class="nav-links">
+    
+    <li><a href="/about/">About</a></li>
+    
+    <li><a href="https://github.com/davidhodge931">GitHub</a></li>
+    
+    <li><a href="https://twitter.com/davidhodge931">Twitter</a></li>
+    
+  </ul>
+</nav>
+
+      </header>
+
+
+<main class="content" role="main">
+
+  <article class="article">
+    
+    <span class="article-duration">2 min read</span>
+    
+
+    <h1 class="article-title">ggblanket-basics</h1>
+
+    
+    <span class="article-date">2023-05-03</span>
+    
+
+    <div class="article-content">
+      
+
+
+<p>ggblanket seeks to simplify ggplot2 visualisation.</p>
+<p>How?</p>
+<pre class="r"><code>library(tidyverse)
+library(ggblanket)
+library(patchwork)
+library(palmerpenguins)
+
+penguins &lt;- penguins |&gt;
+  mutate(sex = stringr::str_to_sentence(sex)) |&gt;
+  tidyr::drop_na(sex)</code></pre>
+<ol style="list-style-type: decimal">
+<li>One-function approach. I.e. No +’s</li>
+</ol>
+<pre class="r"><code>p1 &lt;- penguins |&gt; #pipe in
+  ggplot() + #now plus&#39;s
+  geom_point(aes(x = flipper_length_mm, y = body_mass_g, col = species))
+
+p2 &lt;- penguins |&gt;
+  gg_point(
+    x = flipper_length_mm,
+    y = body_mass_g,
+    col = species
+  )
+
+
+p1 / p2</code></pre>
+<p><img src="https://davidhodge931.netlify.app/2023/05/03/ggblanket-why/index_files/figure-html/unnamed-chunk-3-1.png" width="576" /></p>
+<ol start="2" style="list-style-type: decimal">
+<li>col and fill as a unified col aesthetic</li>
+</ol>
+<pre class="r"><code>p1 &lt;- penguins |&gt;
+  ggplot() +
+  geom_density(aes(x = body_mass_g, fill = species))
+
+p2 &lt;- penguins |&gt;
+  gg_density(
+    x = body_mass_g, 
+    col = species
+  )
+
+p1 / p2</code></pre>
+<p><img src="https://davidhodge931.netlify.app/2023/05/03/ggblanket-why/index_files/figure-html/unnamed-chunk-4-1.png" width="576" /></p>
+<ol start="3" style="list-style-type: decimal">
+<li>unifed approach to changing colours via a pal argument</li>
+</ol>
+<pre class="r"><code>p1 &lt;- penguins |&gt;
+  ggplot() +
+  geom_histogram(
+    aes(x = body_mass_g),
+    fill = &quot;#794044&quot;)
+
+p2 &lt;- penguins |&gt;
+  gg_histogram(
+    x = body_mass_g, 
+    pal = &quot;#794044&quot;
+  )
+
+p1 / p2</code></pre>
+<p><img src="https://davidhodge931.netlify.app/2023/05/03/ggblanket-why/index_files/figure-html/unnamed-chunk-5-1.png" width="576" /></p>
+<pre class="r"><code>p1 &lt;- penguins |&gt;
+  ggplot() +
+  geom_jitter(aes(x = species, y = body_mass_g, col = sex)) +
+  scale_color_manual(values = c(&quot;#fa8072&quot;, &quot;#468499&quot;))
+
+p2 &lt;- penguins |&gt;
+  gg_jitter(
+    x = species, 
+    y = body_mass_g, 
+    col = sex, 
+    pal = c(&quot;#fa8072&quot;, &quot;#468499&quot;))
+
+p1 / p2</code></pre>
+<p><img src="https://davidhodge931.netlify.app/2023/05/03/ggblanket-why/index_files/figure-html/unnamed-chunk-6-1.png" width="576" /></p>
+<ol start="4" style="list-style-type: decimal">
+<li>facetting as an aesthetic</li>
+</ol>
+<pre class="r"><code>p1 &lt;- penguins |&gt;
+  ggplot() +
+  geom_density(aes(x = flipper_length_mm, fill = sex)) +
+  facet_wrap(~species)
+
+p2 &lt;- penguins |&gt;
+  gg_density(
+    x = flipper_length_mm,
+    col = sex,
+    facet = species)
+
+
+p1 / p2</code></pre>
+<p><img src="https://davidhodge931.netlify.app/2023/05/03/ggblanket-why/index_files/figure-html/unnamed-chunk-7-1.png" width="576" /></p>
+<pre class="r"><code>p1 &lt;- penguins |&gt;
+  ggplot() +
+  geom_histogram(aes(x = flipper_length_mm)) +
+  facet_grid(rows = vars(species), cols = vars(sex))
+
+p2 &lt;- penguins |&gt;
+  gg_histogram(
+    x = flipper_length_mm,
+    facet = sex,
+    facet2 = species)
+
+p1 / p2</code></pre>
+<p><img src="https://davidhodge931.netlify.app/2023/05/03/ggblanket-why/index_files/figure-html/unnamed-chunk-8-1.png" width="576" /></p>
+<ol start="5" style="list-style-type: decimal">
+<li><p>prefixed arguments easy to find with autotab</p></li>
+<li><p>numeric scales working in ‘pretty’ ways</p></li>
+</ol>
+
+    </div>
+  </article>
+
+  
+
+
+</main>
+
+      <footer class="footer">
+        <ul class="footer-links">
+          <li>
+            <a href="/index.xml" type="application/rss+xml" target="_blank">RSS feed</a>
+          </li>
+          <li>
+            <a href="https://gohugo.io/" class="footer-links-kudos">Made with <img src="/images/hugo-logo.png" alt="Img link to Hugo website" width="22" height="22"></a>
+          </li>
+        </ul>
+      </footer>
+
+    </div>
+    
+
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/r.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/yaml.min.js"></script>
+<script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+
+
+
+    
+
+    
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-EGCQLRSZK9"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-EGCQLRSZK9', { 'anonymize_ip': false });
+}
+</script>
+
+  </body>
+</html>
+

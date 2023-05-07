@@ -1,0 +1,164 @@
+---
+title: "ggblanket: some basics"
+author: "David Hodge"
+date: "2023-05-03"
+slug: "ggblanket-why"
+categories: R
+tags: R
+---
+
+
+
+<p>ggblanket seeks to simplify ggplot2 visualisation.</p>
+<p>The below article outlines the basics of how the package works.</p>
+<p>How?</p>
+<pre class="r"><code>library(tidyverse)
+library(ggblanket)
+library(patchwork)
+library(palmerpenguins)
+
+penguins &lt;- penguins |&gt;
+  mutate(sex = stringr::str_to_sentence(sex)) |&gt;
+  tidyr::drop_na(sex)</code></pre>
+<ol style="list-style-type: decimal">
+<li>Over thirty gg_* wrapper functions to plot a single geom</li>
+</ol>
+<pre class="r"><code>penguins |&gt; 
+  ggplot() + #now plus&#39;s
+  geom_point(aes(x = flipper_length_mm, y = body_mass_g))</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-3-1.png" width="576" /></p>
+<pre class="r"><code>
+penguins |&gt;
+  gg_point(
+    x = flipper_length_mm,
+    y = body_mass_g)</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-3-2.png" width="576" /></p>
+<ol start="2" style="list-style-type: decimal">
+<li>A single col argument to colour and fill by a variable</li>
+</ol>
+<pre class="r"><code>penguins |&gt;
+  ggplot() +
+  geom_density(aes(x = body_mass_g, fill = species))</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-4-1.png" width="576" /></p>
+<pre class="r"><code>
+penguins |&gt;
+  gg_density(
+    x = body_mass_g, 
+    col = species)</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-4-2.png" width="576" /></p>
+<ol start="3" style="list-style-type: decimal">
+<li>unifed approach to changing colours via a pal argument</li>
+</ol>
+<pre class="r"><code>penguins |&gt;
+  ggplot() +
+  geom_histogram(
+    aes(x = body_mass_g),
+    fill = &quot;#800000&quot;)</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-5-1.png" width="576" /></p>
+<pre class="r"><code>
+penguins |&gt;
+  gg_histogram(
+    x = body_mass_g, 
+    pal = &quot;#800000&quot;)</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-5-2.png" width="576" /></p>
+<pre class="r"><code>penguins |&gt;
+  ggplot() +
+  geom_jitter(aes(x = species, y = body_mass_g, col = sex)) +
+  scale_color_manual(values = c(&quot;#fa8072&quot;, &quot;#468499&quot;))</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-6-1.png" width="576" /></p>
+<pre class="r"><code>
+penguins |&gt;
+  gg_jitter(
+    x = species, 
+    y = body_mass_g, 
+    col = sex, 
+    pal = c(&quot;#fa8072&quot;, &quot;#468499&quot;))</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-6-2.png" width="576" /></p>
+<ol start="4" style="list-style-type: decimal">
+<li>A facet argument to facet by a variable</li>
+</ol>
+<pre class="r"><code>penguins |&gt;
+  ggplot() +
+  geom_violin(aes(x = sex, y = body_mass_g)) +
+  facet_wrap(~species) </code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-7-1.png" width="576" /></p>
+<pre class="r"><code>
+penguins |&gt;
+  gg_violin(
+    x = sex,
+    y = body_mass_g,
+    facet = species)</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-7-2.png" width="576" /></p>
+<ol start="5" style="list-style-type: decimal">
+<li>An additional facet2 argument to for grid faceting</li>
+</ol>
+<pre class="r"><code>penguins |&gt;
+  ggplot() +
+  geom_histogram(aes(x = flipper_length_mm)) +
+  facet_grid(rows = vars(species), cols = vars(sex))</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-8-1.png" width="576" /></p>
+<pre class="r"><code>
+penguins |&gt;
+  gg_histogram(
+    x = flipper_length_mm,
+    facet = sex,
+    facet2 = species)</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-8-2.png" width="576" /></p>
+<ol start="6" style="list-style-type: decimal">
+<li>prefixed arguments easy to find with autotab</li>
+</ol>
+<pre class="r"><code>penguins |&gt;
+  ggplot() +
+  geom_boxplot(aes(x = sex, y = body_mass_g, fill = sex), 
+               show.legend = F) +
+  facet_wrap(~species) +
+  expand_limits(y = 0) +
+  scale_x_discrete(labels = \(x) stringr::str_sub(x, 1, 1)) +
+  scale_y_continuous(breaks = scales::breaks_width(500))</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-9-1.png" width="576" /></p>
+<pre class="r"><code>
+penguins |&gt;
+  gg_boxplot(
+    x = sex,
+    y = body_mass_g,
+    col = sex,
+    facet = species, 
+    x_labels = \(x) stringr::str_sub(x, 1, 1),
+    y_include = 0, 
+    y_breaks = scales::breaks_width(500))</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-9-2.png" width="576" /></p>
+<ol start="7" style="list-style-type: decimal">
+<li>Default titles converted to sentence case</li>
+</ol>
+<pre class="r"><code>penguins |&gt; 
+  group_by(species, sex) |&gt; 
+  summarise(body_mass_g = mean(body_mass_g, na.rm = TRUE)) |&gt; 
+  ggplot() +
+  geom_col(aes(x = body_mass_g, y = species, fill = sex),
+           position = &quot;dodge&quot;,
+           width = 0.75) +
+  labs(y = &quot;Penguin species&quot;)  </code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-10-1.png" width="576" /></p>
+<pre class="r"><code>
+penguins |&gt; 
+  group_by(species, sex) |&gt; 
+  summarise(body_mass_g = mean(body_mass_g, na.rm = TRUE)) |&gt; 
+  gg_col(
+    x = body_mass_g, 
+    y = species, 
+    col = sex, 
+    position = &quot;dodge&quot;,
+    width = 0.75,
+    y_title = &quot;Penguin species&quot;)  </code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-10-2.png" width="576" /></p>
+<ol start="8" style="list-style-type: decimal">
+<li>default numeric scales working in pretty ways</li>
+</ol>
+<p>Where the orientation is normal (i.e. vertical):</p>
+<ul>
+<li>Default x scale limits and expanding are as per ggplot2 defaults</li>
+<li>Default numeric y scale limits start and end on a break with zero expanding</li>
+</ul>
+<p>It does the opposite where the orientation is horizontal.</p>
+<p>This looks nice and symmetrical.</p>
+<p>For further information, see the <a href="https://davidhodge931.github.io/ggblanket/">ggblanket website</a>.</p>

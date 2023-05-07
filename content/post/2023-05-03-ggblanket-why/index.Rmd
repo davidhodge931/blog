@@ -1,0 +1,183 @@
+---
+title: "ggblanket: some basics"
+author: "David Hodge"
+date: "2023-05-03"
+slug: "ggblanket-why"
+categories: R
+tags: R
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  message = FALSE,
+  warning = FALSE,
+  fig.height = 3.5, 
+  fig.width = 6
+)
+```
+
+ggblanket seeks to simplify ggplot2 visualisation.
+
+The below article outlines some basics of how the package works.
+
+```{r}
+library(tidyverse)
+library(ggblanket)
+library(patchwork)
+library(palmerpenguins)
+
+penguins <- penguins |>
+  mutate(sex = stringr::str_to_sentence(sex)) |>
+  tidyr::drop_na(sex)
+```
+
+1.  Over thirty gg_* wrapper functions to plot a single geom
+
+```{r}
+penguins |> 
+  ggplot() + 
+  geom_point(aes(x = flipper_length_mm, y = body_mass_g))
+
+penguins |>
+  gg_point(
+    x = flipper_length_mm,
+    y = body_mass_g)
+```
+
+2.  A single col argument to colour and fill by a variable
+
+```{r}
+penguins |>
+  ggplot() +
+  geom_density(aes(x = body_mass_g, fill = species))
+
+penguins |>
+  gg_density(
+    x = body_mass_g, 
+    col = species)
+```
+
+3.  unifed approach to changing colours via a pal argument
+
+```{r}
+penguins |>
+  ggplot() +
+  geom_histogram(
+    aes(x = body_mass_g),
+    fill = "#800000")
+
+penguins |>
+  gg_histogram(
+    x = body_mass_g, 
+    pal = "#800000")
+```
+
+```{r}
+penguins |>
+  ggplot() +
+  geom_jitter(aes(x = species, y = body_mass_g, col = sex)) +
+  scale_color_manual(values = c("#fa8072", "#468499"))
+
+penguins |>
+  gg_jitter(
+    x = species, 
+    y = body_mass_g, 
+    col = sex, 
+    pal = c("#fa8072", "#468499"))
+```
+
+4.  A facet argument to facet by a variable
+
+```{r}
+penguins |>
+  ggplot() +
+  geom_violin(aes(x = sex, y = body_mass_g)) +
+  facet_wrap(~species) 
+
+penguins |>
+  gg_violin(
+    x = sex,
+    y = body_mass_g,
+    facet = species)
+```
+
+5. An additional facet2 argument to for grid faceting
+
+```{r, fig.height=5}
+penguins |>
+  ggplot() +
+  geom_histogram(aes(x = flipper_length_mm)) +
+  facet_grid(rows = vars(species), cols = vars(sex))
+
+penguins |>
+  gg_histogram(
+    x = flipper_length_mm,
+    facet = sex,
+    facet2 = species)
+```
+
+6.  prefixed arguments easy to find using autotab
+
+```{r}
+penguins |>
+  ggplot() +
+  geom_boxplot(aes(x = sex, y = body_mass_g, fill = sex), 
+               show.legend = F) +
+  facet_wrap(~species) +
+  expand_limits(y = 0) +
+  scale_x_discrete(labels = \(x) stringr::str_sub(x, 1, 1)) +
+  scale_y_continuous(breaks = scales::breaks_width(500))
+
+penguins |>
+  gg_boxplot(
+    x = sex,
+    y = body_mass_g,
+    col = sex,
+    facet = species, 
+    x_labels = \(x) stringr::str_sub(x, 1, 1),
+    y_include = 0, 
+    y_breaks = scales::breaks_width(500))
+
+```
+
+7. Default titles converted to sentence case
+
+```{r}
+penguins |> 
+  group_by(species, sex) |> 
+  summarise(body_mass_g = mean(body_mass_g, na.rm = TRUE)) |> 
+  ggplot() +
+  geom_col(aes(x = body_mass_g, y = species, fill = sex),
+           position = "dodge",
+           width = 0.75) +
+  labs(y = "Penguin species")  
+
+penguins |> 
+  group_by(species, sex) |> 
+  summarise(body_mass_g = mean(body_mass_g, na.rm = TRUE)) |> 
+  gg_col(
+    x = body_mass_g, 
+    y = species, 
+    col = sex, 
+    position = "dodge",
+    width = 0.75,
+    y_title = "Penguin species")  
+```
+
+8.  default numeric scales working in pretty ways
+
+Where the orientation is normal (i.e. vertical): 
+
+* Default x scale limits and expanding are as per ggplot2 defaults
+* Default numeric y scale limits start and end on a break with zero expanding
+
+It does the opposite where the orientation is horizontal.
+
+Default gridllines work with this, and the effect is that the plot looks very nice and symmetrical - to my eye anyway! 
+
+
+
+
+For further information, see the [ggblanket website](https://davidhodge931.github.io/ggblanket/).

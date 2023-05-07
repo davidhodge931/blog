@@ -1,22 +1,46 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>R on A Hugo website</title>
+    <title>R on David Hodge</title>
     <link>https://davidhodge931.netlify.app/tags/r/</link>
-    <description>Recent content in R on A Hugo website</description>
+    <description>Recent content in R on David Hodge</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 30 Apr 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://davidhodge931.netlify.app/tags/r/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 03 May 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://davidhodge931.netlify.app/tags/r/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>One-way ANOVA by hand</title>
-      <link>https://davidhodge931.netlify.app/2021/04/30/one-way-anova-by-hand/</link>
-      <pubDate>Fri, 30 Apr 2021 00:00:00 +0000</pubDate>
+      <title>ggblanket-basics</title>
+      <link>https://davidhodge931.netlify.app/2023/05/03/ggblanket-why/</link>
+      <pubDate>Wed, 03 May 2023 00:00:00 +0000</pubDate>
       
-      <guid>https://davidhodge931.netlify.app/2021/04/30/one-way-anova-by-hand/</guid>
-      <description>One-way ANOVA is a test used to assess whether there is a statistically significant difference between the mean of groups.
-There is 1 response numeric variable and 1 explanatory categorical variable with more than 1 level.
-ANOVA assesses the ratio of explained variance to unexplained variance in the complete model, if the null hypothesis is true that all population means are equal.
-There is a distribution of sample F statistics with different probabilities, if the null hypothesis was true of no difference between means.</description>
+      <guid>https://davidhodge931.netlify.app/2023/05/03/ggblanket-why/</guid>
+      <description>ggblanket seeks to simplify ggplot2 visualisation.
+How?
+library(tidyverse)library(ggblanket)library(patchwork)library(palmerpenguins)penguins &amp;lt;- penguins |&amp;gt;mutate(sex = stringr::str_to_sentence(sex)) |&amp;gt;tidyr::drop_na(sex)One-function approach. I.e. No +’sp1 &amp;lt;- penguins |&amp;gt; #pipe inggplot() + #now plus&amp;#39;sgeom_point(aes(x = flipper_length_mm, y = body_mass_g, col = species))p2 &amp;lt;- penguins |&amp;gt;gg_point(x = flipper_length_mm,y = body_mass_g,col = species)p1 / p2col and fill as a unified col aestheticp1 &amp;lt;- penguins |&amp;gt;ggplot() +geom_density(aes(x = body_mass_g, fill = species))p2 &amp;lt;- penguins |&amp;gt;gg_density(x = body_mass_g, col = species)p1 / p2unifed approach to changing colours via a pal argumentp1 &amp;lt;- penguins |&amp;gt;ggplot() +geom_histogram(aes(x = body_mass_g),fill = &amp;quot;#794044&amp;quot;)p2 &amp;lt;- penguins |&amp;gt;gg_histogram(x = body_mass_g, pal = &amp;quot;#794044&amp;quot;)p1 / p2p1 &amp;lt;- penguins |&amp;gt;ggplot() +geom_jitter(aes(x = species, y = body_mass_g, col = sex)) +scale_color_manual(values = c(&amp;quot;#fa8072&amp;quot;, &amp;quot;#468499&amp;quot;))p2 &amp;lt;- penguins |&amp;gt;gg_jitter(x = species, y = body_mass_g, col = sex, pal = c(&amp;quot;#fa8072&amp;quot;, &amp;quot;#468499&amp;quot;))p1 / p2facetting as an aestheticp1 &amp;lt;- penguins |&amp;gt;ggplot() +geom_density(aes(x = flipper_length_mm, fill = sex)) +facet_wrap(~species)p2 &amp;lt;- penguins |&amp;gt;gg_density(x = flipper_length_mm,col = sex,facet = species)p1 / p2p1 &amp;lt;- penguins |&amp;gt;ggplot() +geom_histogram(aes(x = flipper_length_mm)) +facet_grid(rows = vars(species), cols = vars(sex))p2 &amp;lt;- penguins |&amp;gt;gg_histogram(x = flipper_length_mm,facet = sex,facet2 = species)p1 / p2prefixed arguments easy to find with autotab</description>
+    </item>
+    
+    <item>
+      <title>{ggblanket}: common x and y scale adjustments</title>
+      <link>https://davidhodge931.netlify.app/2022/05/31/ggblanket-showing-common-x-and-y-scale-adjustments/</link>
+      <pubDate>Tue, 31 May 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://davidhodge931.netlify.app/2022/05/31/ggblanket-showing-common-x-and-y-scale-adjustments/</guid>
+      <description>I was messing around with some scale adjustments with my {ggblanket} package, and thought I’d share this as a post.
+It’s by no means a complete demonstration of the functionality available.
+But it demonstrates a bit of how x and y scales can be adjusted.. as well as some other stuff randomly thrown in.
+library(palmerpenguins)library(tidyverse)library(lubridate)library(ggblanket)Note x scale default limits of min/max breaks and zero expanding</description>
+    </item>
+    
+    <item>
+      <title>{ggblanket}: simplify beautiful ggplot2 visualisation</title>
+      <link>https://davidhodge931.netlify.app/2022/05/14/ggblanket-making-beautiful-ggplot2-visualisation-simpler/</link>
+      <pubDate>Sat, 14 May 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://davidhodge931.netlify.app/2022/05/14/ggblanket-making-beautiful-ggplot2-visualisation-simpler/</guid>
+      <description>A few days ago, I released {ggblanket} onto CRAN.
+This package took over my brain for 1.5 months, and I worked obsessively on it. I hope people find it useful.
+The objective of {ggblanket} is to make beautiful {ggplot2} visualisation simpler.
+With this objective in mind, the {ggblanket} package:
+uses quick functions that wrap around a single geommerges col and fill aesthetics into a single col aestheticprovides colour customisation via a pal argumenttreats faceting as an aestheticpushes x and y limits to the max of the x and y breaks by defaultarranges horizontal geom y and col labels etc to be in correct orderconverts titles and labels to sentence case and comma format by defaultprovides arguments for scale adjustment and legend placementallows users to access all other non-aesthetic geom functionalitychanges default colours, alphas, widths and themeslibrary(dplyr)library(ggplot2)library(ggblanket)penguins2 &amp;lt;- palmerpenguins::penguins %&amp;gt;% tidyr::drop_na() %&amp;gt;% mutate(body_mass_kg = body_mass_g / 1000) penguins2 %&amp;gt;% ggplot() +geom_histogram(aes(x = body_mass_kg)) penguins2 %&amp;gt;% gg_histogram(x = body_mass_kg) penguins2 %&amp;gt;%group_by(species, sex, island) %&amp;gt;%summarise(body_mass_kg = mean(body_mass_kg)) %&amp;gt;%ggplot() +geom_col(aes(x = body_mass_kg, y = species, fill = sex), position = &amp;quot;dodge&amp;quot;) +facet_wrap( ~ island) +theme(legend.</description>
     </item>
     
   </channel>

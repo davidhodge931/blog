@@ -73,6 +73,7 @@
 
     <div class="article-content">
       
+<script src="https://davidhodge931.netlify.app/2021/06/07/introducing-simplevis/index_files/header-attrs/header-attrs.js"></script>
 
 
 <div id="introduction" class="section level3">
@@ -107,7 +108,7 @@ gg_bar(plot_data, year, wind)</code></pre>
 gg_line(plot_data, year, wind)</code></pre>
 <p><img src="https://davidhodge931.netlify.app/2021/06/07/introducing-simplevis/index_files/figure-html/unnamed-chunk-5-1.png" width="576" /></p>
 <p>boxplot</p>
-<pre class="r"><code>gg_boxplot(storms, year, wind)</code></pre>
+<pre class="r"><code>gg_boxplot(penguins, species, body_mass_g)</code></pre>
 <p><img src="https://davidhodge931.netlify.app/2021/06/07/introducing-simplevis/index_files/figure-html/unnamed-chunk-6-1.png" width="576" /></p>
 <p>hbar (i.e horizontal bar)</p>
 <pre class="r"><code>plot_data &lt;- ggplot2::diamonds %&gt;%
@@ -117,7 +118,7 @@ gg_line(plot_data, year, wind)</code></pre>
 gg_hbar(plot_data, price, cut)</code></pre>
 <p><img src="https://davidhodge931.netlify.app/2021/06/07/introducing-simplevis/index_files/figure-html/unnamed-chunk-7-1.png" width="576" /></p>
 <p>sf (short for simple features map)</p>
-<pre class="r"><code>gg_sf(example_sf_point, borders = nz)</code></pre>
+<pre class="r"><code>gg_sf(example_point, borders = example_borders)</code></pre>
 <p><img src="https://davidhodge931.netlify.app/2021/06/07/introducing-simplevis/index_files/figure-html/unnamed-chunk-8-1.png" width="576" /></p>
 </div>
 <div id="colouring-facetting-neither-or-both" class="section level3">
@@ -137,11 +138,9 @@ gg_hbar(plot_data, price, cut)</code></pre>
 <p>A <code>*_col_facet()</code> function such <code>gg_point_col_facet()</code> requires only a dataset, an x variable, a y variable, a colour variable, and a facet variable.</p>
 <pre class="r"><code>gg_point_col_facet(penguins, bill_length_mm, body_mass_g, sex, species)</code></pre>
 <p><img src="https://davidhodge931.netlify.app/2021/06/07/introducing-simplevis/index_files/figure-html/unnamed-chunk-12-1.png" width="576" /></p>
-<p>Data is generally plotted with a stat of <code>identity</code>, which means data is plotted as is. Only for boxplot, there is a different default stat of boxplot, which means data will be transformed to boxplot statistics.</p>
-</div>
-<div id="further-information" class="section level3">
-<h3>Further information</h3>
-<p>For further information, see the vignette and articles on the <a href="https://statisticsnz.github.io/simplevis/">simplevis website</a>.</p>
+<p>Data is generally plotted with a stat of <code>identity</code>, which means data is plotted as is. Only for boxplot, there is a different default stat of boxplot, which means data will be transformed to boxplot statistics.
+### Further information</p>
+<p>For further information, see the <a href="https://statisticsnz.github.io/simplevis/">simplevis website</a>.</p>
 <center>
 <p><img src="logo.png" style="width:25.0%" /></p>
 </center>
