@@ -20,15 +20,6 @@ tags: R
 <li>Alignment: use conventions generally aligned with ggplot2.</li>
 </ul>
 <p>It is intended to be useful for all levels of experience from beginner to expert.</p>
-<p>This article will illustrate the essence of how ggblanket works compared to ggplot2.</p>
-<pre class="r"><code>library(dplyr)
-library(ggplot2)
-library(ggblanket)
-library(palmerpenguins)
-
-penguins &lt;- penguins |&gt;
-  mutate(sex = stringr::str_to_sentence(sex)) |&gt;
-  tidyr::drop_na(sex)</code></pre>
 </div>
 <div id="how-it-works" class="section level2">
 <h2>How it works</h2>
@@ -47,6 +38,14 @@ penguins &lt;- penguins |&gt;
 <li>Pretty default limits, expanding and gridlines</li>
 <li>A powerful gg_blank function for extra flexibility</li>
 </ol>
+<pre class="r"><code>library(dplyr)
+library(ggplot2)
+library(ggblanket)
+library(palmerpenguins)
+
+penguins &lt;- penguins |&gt;
+  mutate(sex = stringr::str_to_sentence(sex)) |&gt;
+  tidyr::drop_na(sex)</code></pre>
 <div id="over-thirty-gg_-wrapper-functions-to-plot-a-single-geom" class="section level3">
 <h3>1. Over thirty gg_* wrapper functions to plot a single geom</h3>
 <p>ggblanket supports the majority of geoms in ggplot2.</p>

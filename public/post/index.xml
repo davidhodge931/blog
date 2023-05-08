@@ -17,7 +17,7 @@
 The primary objective is to simplify ggplot2 visualisation.
 Secondary objectives relate to:
 Scope: cover the most useful 80% of what ggplot2 doesDesign: produce well-designed visualisation by defaultAlignment: use conventions generally aligned with ggplot2.It is intended to be useful for all levels of experience from beginner to expert.
-This article will illustrate the essence of how ggblanket works compared to ggplot2.</description>
+How it worksTo simplify ggplot2 visualisation, the ggblanket package provides:</description>
     </item>
     
     <item>

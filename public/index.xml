@@ -27,15 +27,6 @@
 &lt;li&gt;Alignment: use conventions generally aligned with ggplot2.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;It is intended to be useful for all levels of experience from beginner to expert.&lt;/p&gt;
-&lt;p&gt;This article will illustrate the essence of how ggblanket works compared to ggplot2.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(dplyr)
-library(ggplot2)
-library(ggblanket)
-library(palmerpenguins)
-
-penguins &amp;lt;- penguins |&amp;gt;
-  mutate(sex = stringr::str_to_sentence(sex)) |&amp;gt;
-  tidyr::drop_na(sex)&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;div id=&#34;how-it-works&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;How it works&lt;/h2&gt;
@@ -54,6 +45,14 @@ penguins &amp;lt;- penguins |&amp;gt;
 &lt;li&gt;Pretty default limits, expanding and gridlines&lt;/li&gt;
 &lt;li&gt;A powerful gg_blank function for extra flexibility&lt;/li&gt;
 &lt;/ol&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(dplyr)
+library(ggplot2)
+library(ggblanket)
+library(palmerpenguins)
+
+penguins &amp;lt;- penguins |&amp;gt;
+  mutate(sex = stringr::str_to_sentence(sex)) |&amp;gt;
+  tidyr::drop_na(sex)&lt;/code&gt;&lt;/pre&gt;
 &lt;div id=&#34;over-thirty-gg_-wrapper-functions-to-plot-a-single-geom&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;1. Over thirty gg_* wrapper functions to plot a single geom&lt;/h3&gt;
 &lt;p&gt;ggblanket supports the majority of geoms in ggplot2.&lt;/p&gt;
