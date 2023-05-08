@@ -1,12 +1,78 @@
----
-title: "ggblanket"
-author: "David Hodge"
-date: "2023-05-03"
-slug: "ggblanket-why-how"
-categories: R
-tags: R
----
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Hugo 0.82.1" />
 
+
+<title>ggblanket - David Hodge</title>
+<meta property="og:title" content="ggblanket - David Hodge">
+
+
+  <link href='https://davidhodge931.netlify.app/favicon.ico' rel='icon' type='image/x-icon'/>
+
+
+
+  
+
+
+
+
+
+
+
+
+<link href='//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css' rel='stylesheet' type='text/css' />
+
+
+
+<link rel="stylesheet" href="/css/fonts.css" media="all">
+<link rel="stylesheet" href="/css/main.css" media="all">
+
+
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header">
+        <nav class="nav">
+  <a href="/" class="nav-logo">
+    <img src="/images/logo.png"
+         width="50"
+         height="50"
+         alt="Logo">
+  </a>
+
+  <ul class="nav-links">
+    
+    <li><a href="/about/">About</a></li>
+    
+    <li><a href="https://github.com/davidhodge931">GitHub</a></li>
+    
+    <li><a href="https://twitter.com/davidhodge931">Twitter</a></li>
+    
+  </ul>
+</nav>
+
+      </header>
+
+
+<main class="content" role="main">
+
+  <article class="article">
+    
+    <span class="article-duration">8 min read</span>
+    
+
+    <h1 class="article-title">ggblanket</h1>
+
+    
+    <span class="article-date">2023-05-03</span>
+    
+
+    <div class="article-content">
+      
 
 
 <div id="overview" class="section level2">
@@ -56,12 +122,12 @@ penguins &lt;- penguins |&gt;
 <pre class="r"><code>penguins |&gt; 
   ggplot() + 
   geom_point(aes(x = flipper_length_mm, y = body_mass_g))</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-2-1.png" width="70%" /></p>
+<p><img src="https://davidhodge931.netlify.app/2023/05/03/ggblanket-why-how/index_files/figure-html/unnamed-chunk-2-1.png" width="70%" /></p>
 <pre class="r"><code>penguins |&gt;
   gg_point(
     x = flipper_length_mm,
     y = body_mass_g)</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-2-2.png" width="70%" /></p>
+<p><img src="https://davidhodge931.netlify.app/2023/05/03/ggblanket-why-how/index_files/figure-html/unnamed-chunk-2-2.png" width="70%" /></p>
 <p>See the <a href="https://davidhodge931.github.io/ggblanket/reference/index.html">reference</a> for the full list of functions available.</p>
 </div>
 <div id="a-single-col-argument-to-colour-and-fill-by-a-variable" class="section level3">
@@ -71,22 +137,22 @@ penguins &lt;- penguins |&gt;
   ggplot() + 
   geom_point(aes(x = flipper_length_mm, y = body_mass_g,
                  col = species))</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-3-1.png" width="70%" /></p>
+<p><img src="https://davidhodge931.netlify.app/2023/05/03/ggblanket-why-how/index_files/figure-html/unnamed-chunk-3-1.png" width="70%" /></p>
 <pre class="r"><code>penguins |&gt;
   gg_point(
     x = flipper_length_mm,
     y = body_mass_g, 
     col = species)</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-3-2.png" width="70%" /></p>
+<p><img src="https://davidhodge931.netlify.app/2023/05/03/ggblanket-why-how/index_files/figure-html/unnamed-chunk-3-2.png" width="70%" /></p>
 <pre class="r"><code>penguins |&gt;
   ggplot() +
   geom_density(aes(x = body_mass_g, fill = species))</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-4-1.png" width="70%" /></p>
+<p><img src="https://davidhodge931.netlify.app/2023/05/03/ggblanket-why-how/index_files/figure-html/unnamed-chunk-4-1.png" width="70%" /></p>
 <pre class="r"><code>penguins |&gt;
   gg_density(
     x = body_mass_g, 
     col = species)</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-4-2.png" width="70%" /></p>
+<p><img src="https://davidhodge931.netlify.app/2023/05/03/ggblanket-why-how/index_files/figure-html/unnamed-chunk-4-2.png" width="70%" /></p>
 </div>
 <div id="a-pal-argument-to-customise-colours" class="section level3">
 <h3>3. A pal argument to customise colours</h3>
@@ -97,24 +163,24 @@ penguins &lt;- penguins |&gt;
   geom_histogram(
     aes(x = body_mass_g),
     fill = &quot;#1B9E77&quot;)</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-5-1.png" width="70%" /></p>
+<p><img src="https://davidhodge931.netlify.app/2023/05/03/ggblanket-why-how/index_files/figure-html/unnamed-chunk-5-1.png" width="70%" /></p>
 <pre class="r"><code>penguins |&gt;
   gg_histogram(
     x = body_mass_g, 
     pal = &quot;#1B9E77&quot;)</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-5-2.png" width="70%" /></p>
+<p><img src="https://davidhodge931.netlify.app/2023/05/03/ggblanket-why-how/index_files/figure-html/unnamed-chunk-5-2.png" width="70%" /></p>
 <pre class="r"><code>penguins |&gt;
   ggplot() +
   geom_jitter(aes(x = species, y = body_mass_g, col = sex)) +
   scale_color_manual(values = c(&quot;#1B9E77&quot;, &quot;#9E361B&quot;))</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-6-1.png" width="70%" /></p>
+<p><img src="https://davidhodge931.netlify.app/2023/05/03/ggblanket-why-how/index_files/figure-html/unnamed-chunk-6-1.png" width="70%" /></p>
 <pre class="r"><code>penguins |&gt;
   gg_jitter(
     x = species, 
     y = body_mass_g, 
     col = sex, 
     pal = c(&quot;#1B9E77&quot;, &quot;#9E361B&quot;))</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-6-2.png" width="70%" /></p>
+<p><img src="https://davidhodge931.netlify.app/2023/05/03/ggblanket-why-how/index_files/figure-html/unnamed-chunk-6-2.png" width="70%" /></p>
 </div>
 <div id="a-facet-argument-to-facet-by-a-variable" class="section level3">
 <h3>4. A facet argument to facet by a variable</h3>
@@ -124,13 +190,13 @@ penguins &lt;- penguins |&gt;
   ggplot() +
   geom_violin(aes(x = sex, y = body_mass_g)) +
   facet_wrap(~species) </code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-7-1.png" width="70%" /></p>
+<p><img src="https://davidhodge931.netlify.app/2023/05/03/ggblanket-why-how/index_files/figure-html/unnamed-chunk-7-1.png" width="70%" /></p>
 <pre class="r"><code>penguins |&gt;
   gg_violin(
     x = sex,
     y = body_mass_g,
     facet = species)</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-7-2.png" width="70%" /></p>
+<p><img src="https://davidhodge931.netlify.app/2023/05/03/ggblanket-why-how/index_files/figure-html/unnamed-chunk-7-2.png" width="70%" /></p>
 </div>
 <div id="an-additional-facet2-argument-to-facet-by-a-second-variable" class="section level3">
 <h3>5. An additional facet2 argument to facet by a second variable</h3>
@@ -140,13 +206,13 @@ penguins &lt;- penguins |&gt;
   ggplot() +
   geom_histogram(aes(x = flipper_length_mm)) +
   facet_grid(rows = vars(species), cols = vars(sex))</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-8-1.png" width="70%" /></p>
+<p><img src="https://davidhodge931.netlify.app/2023/05/03/ggblanket-why-how/index_files/figure-html/unnamed-chunk-8-1.png" width="70%" /></p>
 <pre class="r"><code>penguins |&gt;
   gg_histogram(
     x = flipper_length_mm,
     facet = sex,
     facet2 = species)</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-8-2.png" width="70%" /></p>
+<p><img src="https://davidhodge931.netlify.app/2023/05/03/ggblanket-why-how/index_files/figure-html/unnamed-chunk-8-2.png" width="70%" /></p>
 </div>
 <div id="prefixed-arguments-to-adjust-scales-guides-titles-and-faceting" class="section level3">
 <h3>6. Prefixed arguments to adjust scales, guides, titles and faceting</h3>
@@ -163,7 +229,7 @@ penguins &lt;- penguins |&gt;
                      labels = scales::label_number(big.mark = &quot; &quot;),
                      trans = &quot;sqrt&quot;) +
   labs(y = &quot;Body mass (g)&quot;)</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-11-1.png" width="70%" /></p>
+<p><img src="https://davidhodge931.netlify.app/2023/05/03/ggblanket-why-how/index_files/figure-html/unnamed-chunk-11-1.png" width="70%" /></p>
 <pre class="r"><code>penguins |&gt;
   gg_jitter(
     x = species,
@@ -175,7 +241,7 @@ penguins &lt;- penguins |&gt;
     y_labels = scales::label_number(big.mark = &quot; &quot;), 
     y_trans = &quot;sqrt&quot;,
     y_title = &quot;Body mass (g)&quot;)</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-11-2.png" width="70%" /></p>
+<p><img src="https://davidhodge931.netlify.app/2023/05/03/ggblanket-why-how/index_files/figure-html/unnamed-chunk-11-2.png" width="70%" /></p>
 </div>
 <div id="default-titles-converted-with-snakecaseto_sentence" class="section level3">
 <h3>7. Default titles converted with snakecase::to_sentence</h3>
@@ -190,7 +256,7 @@ penguins &lt;- penguins |&gt;
        subtitle = &quot; Palmer Archipelago, Antarctica&quot;,
        x = &quot;Flipper length (mm)&quot;, 
        caption = &quot;Source: Gorman, 2020&quot;)</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-12-1.png" width="70%" /></p>
+<p><img src="https://davidhodge931.netlify.app/2023/05/03/ggblanket-why-how/index_files/figure-html/unnamed-chunk-12-1.png" width="70%" /></p>
 <pre class="r"><code>
 penguins |&gt;
   gg_blank(
@@ -200,7 +266,7 @@ penguins |&gt;
     subtitle = &quot; Palmer Archipelago, Antarctica&quot;,
     x_title = &quot;Flipper length (mm)&quot;,
     caption = &quot;Source: Gorman, 2020&quot;)</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-12-2.png" width="70%" /></p>
+<p><img src="https://davidhodge931.netlify.app/2023/05/03/ggblanket-why-how/index_files/figure-html/unnamed-chunk-12-2.png" width="70%" /></p>
 </div>
 <div id="a-theme-argument-to-customise-the-look-and-feel" class="section level3">
 <h3>8. A theme argument to customise the look and feel</h3>
@@ -214,7 +280,7 @@ penguins |&gt;
            facet = species, 
            pal = c(&quot;#1B9E77&quot;, &quot;#9E361B&quot;), 
            theme = theme_grey())</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-13-1.png" width="70%" /></p>
+<p><img src="https://davidhodge931.netlify.app/2023/05/03/ggblanket-why-how/index_files/figure-html/unnamed-chunk-13-1.png" width="70%" /></p>
 <pre class="r"><code>penguins |&gt;
   gg_point(x = flipper_length_mm,
            y = body_mass_g,
@@ -222,7 +288,7 @@ penguins |&gt;
            facet = species, 
            pal = c(&quot;#1B9E77&quot;, &quot;#9E361B&quot;)) +
   theme_grey()</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-13-2.png" width="70%" /></p>
+<p><img src="https://davidhodge931.netlify.app/2023/05/03/ggblanket-why-how/index_files/figure-html/unnamed-chunk-13-2.png" width="70%" /></p>
 </div>
 <div id="a-gg_theme-function-to-create-a-quick-theme" class="section level3">
 <h3>9. A gg_theme function to create a quick theme</h3>
@@ -243,7 +309,7 @@ storms |&gt;
     x_labels = \(x) stringr::str_sub(x, 3, 4),
     x_expand = c(0, 0),
     theme = custom_theme)</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-14-1.png" width="70%" /></p>
+<p><img src="https://davidhodge931.netlify.app/2023/05/03/ggblanket-why-how/index_files/figure-html/unnamed-chunk-14-1.png" width="70%" /></p>
 </div>
 <div id="access-to-other-geom_-arguments-via-..." class="section level3">
 <h3>10. Access to other geom_* arguments via <code>...</code></h3>
@@ -262,7 +328,7 @@ storms |&gt;
     col_title = &quot;&quot;, 
     col_labels = stringr::str_to_sentence, 
     colour = &quot;white&quot;) #accessed via geom_smooth</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-15-1.png" width="70%" /></p>
+<p><img src="https://davidhodge931.netlify.app/2023/05/03/ggblanket-why-how/index_files/figure-html/unnamed-chunk-15-1.png" width="70%" /></p>
 </div>
 <div id="pretty-default-limits-expanding-and-gridlines" class="section level3">
 <h3>11. Pretty default limits, expanding and gridlines</h3>
@@ -308,7 +374,7 @@ p2 &lt;- penguins |&gt;
   scale_alpha_manual(values = c(0.1, 1, 0.5))
 
 p1 + p2</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-16-1.png" width="70%" /></p>
+<p><img src="https://davidhodge931.netlify.app/2023/05/03/ggblanket-why-how/index_files/figure-html/unnamed-chunk-16-1.png" width="70%" /></p>
 <ul>
 <li>make plots with non-supported geoms that make a stat based on the positional x and y aesthetics (i.e not the col aesthetic)</li>
 </ul>
@@ -323,7 +389,7 @@ p1 + p2</code></pre>
   ggdensity::geom_hdr(colour = NA) +
   labs(alpha = &quot;Probs&quot;) +
   theme(legend.title = element_text(margin = margin(t = 10)))</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-17-1.png" width="70%" /></p>
+<p><img src="https://davidhodge931.netlify.app/2023/05/03/ggblanket-why-how/index_files/figure-html/unnamed-chunk-17-1.png" width="70%" /></p>
 <ul>
 <li>make plots with multiple geoms, where the first non-blank layer does not have a col aesthetic but a later layer does require a col aesthetic.</li>
 </ul>
@@ -347,10 +413,65 @@ p1 + p2</code></pre>
            inherit.aes = FALSE,
            width = 0.75) +
   geom_errorbar(width = 0.33) </code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-18-1.png" width="70%" /></p>
+<p><img src="https://davidhodge931.netlify.app/2023/05/03/ggblanket-why-how/index_files/figure-html/unnamed-chunk-18-1.png" width="70%" /></p>
 </div>
 </div>
 <div id="thanks" class="section level2">
 <h2>Thanks!</h2>
 <p>Thank you to all authors and contributors to ggplot2, tidyverse, and the wider R ecosystem. If you like ggblanket, please give the repository a star and help spread the word.</p>
 </div>
+
+    </div>
+  </article>
+
+  
+
+
+</main>
+
+      <footer class="footer">
+        <ul class="footer-links">
+          <li>
+            <a href="/index.xml" type="application/rss+xml" target="_blank">RSS feed</a>
+          </li>
+          <li>
+            <a href="https://gohugo.io/" class="footer-links-kudos">Made with <img src="/images/hugo-logo.png" alt="Img link to Hugo website" width="22" height="22"></a>
+          </li>
+        </ul>
+      </footer>
+
+    </div>
+    
+
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/r.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/yaml.min.js"></script>
+<script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+
+
+
+    
+<script src="/js/math-code.js"></script>
+<script async src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+
+    
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-EGCQLRSZK9"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-EGCQLRSZK9', { 'anonymize_ip': false });
+}
+</script>
+
+  </body>
+</html>
+
