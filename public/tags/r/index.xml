@@ -6,20 +6,7 @@
     <description>Recent content in R on David Hodge</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 03 May 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://davidhodge931.netlify.app/tags/r/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>ggblanket</title>
-      <link>https://davidhodge931.netlify.app/2023/05/03/ggblanket-why-how/</link>
-      <pubDate>Wed, 03 May 2023 00:00:00 +0000</pubDate>
-      
-      <guid>https://davidhodge931.netlify.app/2023/05/03/ggblanket-why-how/</guid>
-      <description>Overviewggblanket is a package of wrapper functions around the fantastic ggplot2 package.
-The primary objective is to simplify ggplot2 visualisation.
-Secondary objectives relate to:
-Scope: cover the most useful 80% of what ggplot2 doesDesign: produce well-designed visualisation by defaultAlignment: use conventions generally aligned with ggplot2.It is intended to be useful for all levels of experience from beginner to expert.
-How it worksTo simplify ggplot2 visualisation, the ggblanket package provides:</description>
-    </item>
-    
+    <lastBuildDate>Tue, 31 May 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://davidhodge931.netlify.app/tags/r/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>{ggblanket}: common x and y scale adjustments</title>
       <link>https://davidhodge931.netlify.app/2022/05/31/ggblanket-showing-common-x-and-y-scale-adjustments/</link>
