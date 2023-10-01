@@ -5,4 +5,4 @@ title: About
 
 This is a blog by David Hodge.
 
-I've set up this blog mainly to publicise the [simplevis](https://github.com/StatisticsNZ/simplevis) R package via [Rbloggers](https://www.r-bloggers.com).
+I've set up this blog mainly to publicise the [ggblanket](https://github.com/davidhodge931/ggblanket) R package via [Rbloggers](https://www.r-bloggers.com).

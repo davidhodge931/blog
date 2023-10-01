@@ -1,107 +1,0 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Posts on David Hodge</title>
-    <link>https://davidhodge931.netlify.app/post/</link>
-    <description>Recent content in Posts on David Hodge</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Tue, 31 May 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://davidhodge931.netlify.app/post/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>{ggblanket}: common x and y scale adjustments</title>
-      <link>https://davidhodge931.netlify.app/2022/05/31/ggblanket-showing-common-x-and-y-scale-adjustments/</link>
-      <pubDate>Tue, 31 May 2022 00:00:00 +0000</pubDate>
-      
-      <guid>https://davidhodge931.netlify.app/2022/05/31/ggblanket-showing-common-x-and-y-scale-adjustments/</guid>
-      <description>I was messing around with some scale adjustments with my {ggblanket} package, and thought I’d share this as a post.
-It’s by no means a complete demonstration of the functionality available.
-But it demonstrates a bit of how x and y scales can be adjusted.. as well as some other stuff randomly thrown in.
-library(palmerpenguins)library(tidyverse)library(lubridate)library(ggblanket)Note x scale default limits of min/max breaks and zero expanding</description>
-    </item>
-    
-    <item>
-      <title>{ggblanket}: simplify beautiful ggplot2 visualisation</title>
-      <link>https://davidhodge931.netlify.app/2022/05/14/ggblanket-making-beautiful-ggplot2-visualisation-simpler/</link>
-      <pubDate>Sat, 14 May 2022 00:00:00 +0000</pubDate>
-      
-      <guid>https://davidhodge931.netlify.app/2022/05/14/ggblanket-making-beautiful-ggplot2-visualisation-simpler/</guid>
-      <description>A few days ago, I released {ggblanket} onto CRAN.
-This package took over my brain for 1.5 months, and I worked obsessively on it. I hope people find it useful.
-The objective of {ggblanket} is to make beautiful {ggplot2} visualisation simpler.
-With this objective in mind, the {ggblanket} package:
-uses quick functions that wrap around a single geommerges col and fill aesthetics into a single col aestheticprovides colour customisation via a pal argumenttreats faceting as an aestheticpushes x and y limits to the max of the x and y breaks by defaultarranges horizontal geom y and col labels etc to be in correct orderconverts titles and labels to sentence case and comma format by defaultprovides arguments for scale adjustment and legend placementallows users to access all other non-aesthetic geom functionalitychanges default colours, alphas, widths and themeslibrary(dplyr)library(ggplot2)library(ggblanket)penguins2 &amp;lt;- palmerpenguins::penguins %&amp;gt;% tidyr::drop_na() %&amp;gt;% mutate(body_mass_kg = body_mass_g / 1000) penguins2 %&amp;gt;% ggplot() +geom_histogram(aes(x = body_mass_kg)) penguins2 %&amp;gt;% gg_histogram(x = body_mass_kg) penguins2 %&amp;gt;%group_by(species, sex, island) %&amp;gt;%summarise(body_mass_kg = mean(body_mass_kg)) %&amp;gt;%ggplot() +geom_col(aes(x = body_mass_kg, y = species, fill = sex), position = &amp;quot;dodge&amp;quot;) +facet_wrap( ~ island) +theme(legend.</description>
-    </item>
-    
-    <item>
-      <title>simplevis: new &amp; improved!</title>
-      <link>https://davidhodge931.netlify.app/2022/03/10/simplevis-new-improved/</link>
-      <pubDate>Thu, 10 Mar 2022 00:00:00 +0000</pubDate>
-      
-      <guid>https://davidhodge931.netlify.app/2022/03/10/simplevis-new-improved/</guid>
-      <description>simplevis version 6.2.0 has arrived with tonnes of new features.
-So, simplevis, if you haven’t heard of it, is a package of ggplot2 and leaflet wrapper functions.
-It aims to make visualisation easier on the brain, so you can save your thinking for other stuff.
-See the simplevis website for further information.
-For further information, see the simplevis website.
-</description>
-    </item>
-    
-    <item>
-      <title>simplevis: making leaflet sf maps</title>
-      <link>https://davidhodge931.netlify.app/2021/07/12/simplevis-making-leaflet-sf-maps/</link>
-      <pubDate>Mon, 12 Jul 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://davidhodge931.netlify.app/2021/07/12/simplevis-making-leaflet-sf-maps/</guid>
-      <description>library(simplevis)library(dplyr)library(palmerpenguins)Introductionsimplevis provides gglot2 (and leaflet) wrapper functions with an objective to help users make beautiful visualisation with less brainpower.
-This post will discuss the leaflet wrappers that have been provided to make leaflet easier to work with.The way these functions have been designed is to follow the logic of the ggplot2 wrapper functions.</description>
-    </item>
-    
-    <item>
-      <title>simplevis: interactive plots with plotly::ggplotly</title>
-      <link>https://davidhodge931.netlify.app/2021/07/04/simplevis-making-interactive-plots-with-plotly-ggplotly/</link>
-      <pubDate>Sun, 04 Jul 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://davidhodge931.netlify.app/2021/07/04/simplevis-making-interactive-plots-with-plotly-ggplotly/</guid>
-      <description>library(simplevis)library(dplyr)library(palmerpenguins)Introductionsimplevis provides gglot2 (and leaflet) wrapper functions with an objective to help users make beautiful visualisation with less brainpower.
-In the current post, we discus how to make yoursimplevis ggplot2 plots interactive html widgets using plotly::ggplotly, including how to fine-tune your tooltips.
-Turning a ggplot into an interactive html widgetThe plotly::ggplotly function provides the ability to convert the ggplot object to an interactive plotly html object.</description>
-    </item>
-    
-    <item>
-      <title>simplevis: adjusting titles and scales</title>
-      <link>https://davidhodge931.netlify.app/2021/06/27/scales-with-simplevis/</link>
-      <pubDate>Sun, 27 Jun 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://davidhodge931.netlify.app/2021/06/27/scales-with-simplevis/</guid>
-      <description>library(simplevis)library(dplyr)library(palmerpenguins)Introductionsimplevis provides gglot2 (and leaflet) wrapper functions with an objective to help users make beautiful visualisation with less brainpower.
-In the current post, we discus how to adjust titles and scales within simplevis.
-TitlesDefault titles in simplevis try to provide a polished quick graph with minimal code by:
-having no title, subtitle or captionconverting x, y and colour titles to sentence case using the snakecase::to_sentence_case function.</description>
-    </item>
-    
-    <item>
-      <title>simplevis: working with colour</title>
-      <link>https://davidhodge931.netlify.app/2021/06/20/colouring-with-simplevis/</link>
-      <pubDate>Sun, 20 Jun 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://davidhodge931.netlify.app/2021/06/20/colouring-with-simplevis/</guid>
-      <description>Introductionsimplevis provides gglot2 (and leaflet) wrapper functions with an objective to help users make beautiful visualisation with less brainpower.
-In the current post, we will discus the simplified and consistent method for colouring that simplevis has adopted.
-OverviewIn simplevis, users adhere to the following rules for adjusting colour:
-Always define the colours to use via the pal argument (short for palette)If colouring by a variable, use a *_col() or *_col_facet() function, and define the col_varFor gg_sf_col*() and gg_point_col*() functions where the col_var is numeric, also define the col_method of bin or quantile, and the col_cuts to use.</description>
-    </item>
-    
-    <item>
-      <title>simplevis: visualisation made easier</title>
-      <link>https://davidhodge931.netlify.app/2021/06/07/introducing-simplevis/</link>
-      <pubDate>Mon, 07 Jun 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://davidhodge931.netlify.app/2021/06/07/introducing-simplevis/</guid>
-      <description>Introductionsimplevis is a package of ggplot2 wrapper functions that aims to make beautiful ggplot2 visualisation with less brainpower and typing!
-This blog will provide an overview of:
-the visualisation family types that simplevis currently supportshow visualisation families support combinations of colouring (by a variable), facetting. both or neither.library(simplevis)library(dplyr)library(palmerpenguins)Visualisation family typesbar
-plot_data &amp;lt;- storms %&amp;gt;%group_by(year) %&amp;gt;%summarise(wind = mean(wind))gg_bar(plot_data, year, wind)point</description>
-    </item>
-    
-  </channel>
-</rss>
